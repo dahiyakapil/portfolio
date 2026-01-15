@@ -14,6 +14,7 @@ export interface WorkExperience {
   period: string;
   location: string;
   achievements: string[];
+  technologies: string[];
 }
 
 export interface SkillCategory {
