@@ -36,7 +36,7 @@ export function TechnicalSkills() {
     <section className="py-16">
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl md:text-3xl font-bold tracking-tight mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
             Technical Skills
           </h2>
           <p className="text-base text-muted-foreground">
@@ -51,7 +51,7 @@ export function TechnicalSkills() {
             return (
               <div
                 key={skill.name}
-                className="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all hover:scale-105 hover:shadow-lg hover:border-border group"
+                className="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all hover:shadow-lg hover:border-border group"
               >
                 <Icon
                   className={`text-xl ${skill.color} group-hover:scale-110 transition-transform`}
