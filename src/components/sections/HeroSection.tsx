@@ -31,23 +31,14 @@ export function HeroSection() {
           {/* Content - Below Avatar */}
           <div className="space-y-6 w-full">
             <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight leading-tight">
-              Hi, I'm {PERSONAL_INFO.nickname} — <span className="text-gray-500">{PERSONAL_INFO.title}</span>
+              Hi, I'm {PERSONAL_INFO.nickname} —{" "}
+              <span className="text-gray-500">{PERSONAL_INFO.title}</span>
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              I build interactive web apps using{" "}
-              <Badge variant="secondary" className="mx-1 font-medium">JavaScript</Badge>
-              ,{" "}
-              <Badge variant="secondary" className="mx-1 font-medium">React</Badge>
-              ,{" "}
-              <Badge variant="secondary" className="mx-1 font-medium">Node.js</Badge>
-              , and{" "}
-              <Badge variant="secondary" className="mx-1 font-medium">MongoDB</Badge>
-              .
-              <br />
-                    With a focus on{" "}
-              <strong className="text-foreground">UI</strong> design. Enthusiastic about{" "}
-              <strong className="text-foreground">Next.js</strong>, driven by a keen eye for design.
+              I build and ship production-ready web applications, owning
+              features from concept to deployment. I focus on creating scalable,
+              user-centric interfaces with clean architecture and thoughtful UX.
             </p>
 
             <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
@@ -89,7 +80,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </section>
   );
 }

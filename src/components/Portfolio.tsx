@@ -1,6 +1,7 @@
 import { Spotlight } from "./ui/spotlight";
 import { Navbar } from "./shared/Navbar";
 import { HeroSection } from "./sections/HeroSection";
+import { TechnicalSkills } from "./sections/TechnicalSkills";
 import { ExperienceSection } from "./sections/ExperienceSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { AboutSection } from "./sections/AboutSection";
@@ -14,6 +15,7 @@ export default function Portfolio() {
       
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10">
         <HeroSection />
+        <TechnicalSkills />
         <ExperienceSection />
         <ProjectsSection />
         <AboutSection />
