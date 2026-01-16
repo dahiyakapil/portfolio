@@ -6,6 +6,8 @@ export interface Project {
   outcome: string;
   tech: string[];
   link: string;
+  github?: string;
+  image?: string;
 }
 
 export interface WorkExperience {

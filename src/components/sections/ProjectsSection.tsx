@@ -1,78 +1,72 @@
-import { Rocket, ExternalLink, Github } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ExternalLink, Github } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS } from "@/constants/portfolio-data";
 import type { Project } from "@/types/portfolio";
 
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
-
-function ProjectCard({ project, index }: ProjectCardProps) {
-  const gradients = [
-    "from-purple-500/20 to-pink-500/20",
-    "from-blue-500/20 to-cyan-500/20",
-    "from-orange-500/20 to-red-500/20",
-  ];
-
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="overflow-hidden border-border/30 hover:border-border/60 transition-all duration-300 group bg-card/50">
-      <div className={`bg-gradient-to-br ${gradients[index % gradients.length]} p-8 md:p-10 relative`}>
-        {/* Tilted mockup image placeholder */}
-        <div className="relative w-full aspect-[16/10] mb-6">
-          <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-background/90 rounded-lg transform rotate-2 group-hover:rotate-0 transition-transform duration-300 shadow-2xl border border-border/50">
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex gap-1.5 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+   <Card className="rounded-xl bg-transparent">
+      {/* IMAGE AREA (flush to top, no white) */}
+      <div className="relative h-[220px] bg-gradient-to-br from-pink-500 via-purple-500 to-fuchsia-600">
+        <div className="absolute inset-0 flex items-end justify-center pb-6">
+          <div className="w-[88%] h-[160px] overflow-hidden shadow-2xl bg-slate-900">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-top"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-500 text-sm">
+                Project Preview
               </div>
-              <div className="flex-1 bg-muted/30 rounded-md flex items-center justify-center">
-                <Rocket className="h-16 w-16 text-muted-foreground/30" />
-              </div>
-            </div>
+            )}
           </div>
         </div>
+      </div>
 
-        <div className="flex items-start justify-between mb-4">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+      {/* CONTENT AREA (white starts here) */}
+      <div className="bg-white p-5 rounded-b-xl">
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="text-lg font-semibold text-gray-900">
             {project.title}
           </h3>
+
           <div className="flex gap-2">
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={`View ${project.title} project`}
+              className="text-gray-400 hover:text-gray-700"
             >
-              <ExternalLink className="h-5 w-5" />
+              <ExternalLink className="w-4 h-4" />
             </a>
             <a
-              href={project.link}
+              href={project.github!}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={`View ${project.title} on GitHub`}
+              className="text-gray-400 hover:text-gray-700"
             >
-              <Github className="h-5 w-5" />
+              <Github className="w-4 h-4" />
             </a>
           </div>
         </div>
 
-        <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-gray-600 leading-relaxed mb-4">
           {project.solution}
         </p>
 
         <div className="mb-4">
-          <span className="text-xs font-semibold text-foreground/70 uppercase tracking-wider">Technologies</span>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {project.tech.map((tech: string) => (
+          <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">
+            Technologies
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((tech) => (
               <Badge
                 key={tech}
                 variant="secondary"
-                className="text-xs font-medium bg-background/60 hover:bg-background/80"
+                className="text-xs px-2 py-0.5 bg-gray-100 text-gray-700"
               >
                 {tech}
               </Badge>
@@ -80,20 +74,20 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-            All Systems Operational
+        <div className="flex items-center justify-between text-xs text-gray-500">
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full border border-yellow-900 bg-green-500" />
+            Operational
           </span>
-          <span>•</span>
+
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors flex items-center gap-1"
+            className="hover:text-gray-900 flex items-center gap-1"
           >
-            View Details
-            <ExternalLink className="h-3 w-3" />
+            View details
+            <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </div>
@@ -101,20 +95,20 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   );
 }
 
+
 export function ProjectsSection() {
   return (
-    <section id="projects" className="mb-32 mt-16">
+    <section id="projects" className="mt-24 mb-32">
       <div className="mb-10">
-        <div className="flex items-center gap-3 mb-2">
-          <Rocket className="h-7 w-7 text-primary" />
-          <h2 className="text-3xl md:text-4xl font-bold">Projects</h2>
-        </div>
-        <p className="text-sm text-muted-foreground font-medium">Featured</p>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+          Featured
+        </p>
+        <h2 className="text-4xl font-bold text-gray-900">Projects</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-        {PROJECTS.map((project: Project, idx: number) => (
-          <ProjectCard key={`${project.title}-${idx}`} project={project} index={idx} />
+      <div className="grid md:grid-cols-2 gap-8 ">
+        {PROJECTS.map((project, idx) => (
+          <ProjectCard key={idx} project={project} />
         ))}
       </div>
     </section>

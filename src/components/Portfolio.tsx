@@ -6,6 +6,7 @@ import { ExperienceSection } from "./sections/ExperienceSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { AboutSection } from "./sections/AboutSection";
 import { Footer } from "./shared/Footer";
+import GithubActivity from "./sections/GithubActivity";
 
 export default function Portfolio() {
   return (
@@ -18,6 +19,7 @@ export default function Portfolio() {
         <TechnicalSkills />
         <ExperienceSection />
         <ProjectsSection />
+        <GithubActivity />
         <AboutSection />
         <Footer />
       </div>

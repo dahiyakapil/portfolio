@@ -9,41 +9,57 @@ export const SKILL_CATEGORIES: SkillCategory = {
 
 export const PROJECTS: Project[] = [
   {
-    title: "NotesBuddy",
+    title: "Resumind",
     problem:
-      "Students struggle to organize study materials and retain information effectively across multiple subjects",
+      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
-      "Built an AI-powered learning platform combining notes, flashcards, adaptive quizzes, and spaced repetition algorithms",
+      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
     technical:
-      "Implemented server-side rendering with Next.js for SEO, MongoDB with indexed queries for <100ms response times, deployed on Vercel Edge Network",
+      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
-      "Active daily users, 99.8% uptime, scales to handle 10k+ concurrent sessions",
-    tech: ["Next.js", "TypeScript", "MongoDB", "OpenAI"],
+      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
+    link: "https://resumindai-ashy.vercel.app/",
+    github: "https://github.com/dahiyakapil/Resumind-AI",
+    image: "./src/assets/projects/resumind.png",
+  },
+  {
+    title: "Resumind",
+    problem:
+      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
+    solution:
+      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
+    technical:
+      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
+    outcome:
+      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
     link: "#",
   },
   {
-    title: "Appwrite MCP Server",
+    title: "Resumind",
     problem:
-      "Developers needed programmatic database access with type safety and reliability for AI workflows",
+      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
-      "Architected Model Context Protocol server exposing 7 database operations with full TypeScript support",
+      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
     technical:
-      "Built connection pooling, retry logic with exponential backoff, comprehensive error handling ensuring 99.9% success rate",
+      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
-      "Open source tool with production adoption, handles 1000+ daily operations",
-    tech: ["TypeScript", "Appwrite", "MCP"],
+      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
     link: "#",
   },
   {
-    title: "Syncify",
+    title: "Resumind",
     problem:
-      "Music lovers lacked a platform for synchronized listening experiences with friends in real-time",
+      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
-      "Developed WebSocket-based streaming platform with sub-100ms sync latency and live chat",
+      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
     technical:
-      "Redis pub/sub for message broadcasting, PostgreSQL for user data, WebRTC for peer connections, horizontal scaling support",
-    outcome: "Supports 500+ concurrent listeners per room with <1% packet loss",
-    tech: ["React", "WebSocket", "Redis", "PostgreSQL"],
+      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
+    outcome:
+      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
     link: "#",
   },
 ];
@@ -68,9 +84,6 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
       "Implemented Firebase Cloud Functions for domain and email account management, managed Cloudflare DNS records, and ensured seamless connectivity between premium and admin panels via premium.tempusmail.com and panel.tempusmail.com",
     ],
   },
-
- 
-  
 ];
 
 export const SOCIAL_LINKS = {
