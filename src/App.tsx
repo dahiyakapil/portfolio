@@ -2,10 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/shared/Navbar";
 import { Footer } from "./components/shared/Footer";
 import { Spotlight } from "./components/ui/spotlight";
+import { Toaster } from "./components/ui/sonner";
 import Home from "./pages/Home";
 import ProjectsListPage from "./pages/ProjectsListPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import ResumePage from "./pages/ResumePage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -20,9 +22,11 @@ function App() {
             <Route path="/projects" element={<ProjectsListPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/resume" element={<ResumePage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
           <Footer />
         </div>
+        <Toaster position="top-right" richColors closeButton />
       </div>
     </Router>
   );

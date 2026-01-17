@@ -47,10 +47,12 @@ export function HeroSection() {
 
               {/* CTA */}
               <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
-                <Button size="lg" className="px-8 h-11 text-base">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Get in touch
-                </Button>
+                <Link to="/contact">
+                  <Button size="lg" className="px-8 h-11 text-base">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Get in touch
+                  </Button>
+                </Link>
                 <Link to="/resume">
                   <Button
                     variant="outline"
