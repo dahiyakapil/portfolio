@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Download, ArrowLeft, Loader2, Maximize2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import resumePdf from "@/assets/resume/Kapil_Dahiya_Resume.pdf";
+import resumePdf from "../../public/assets/resume/Kapil_Dahiya_Resume.pdf";
 
 export default function ResumePage() {
   const [isLoading, setIsLoading] = useState(true);
