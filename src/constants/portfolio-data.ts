@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
       "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
       "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB",],
     link: "https://resumindai-ashy.vercel.app/",
     github: "https://github.com/dahiyakapil/Resumind-AI",
     image: "/src/assets/projects/resumind.png",
@@ -128,7 +128,7 @@ export const PROJECTS: Project[] = [
       "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
       "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB",],
     link: "#",
   },
   {
@@ -143,7 +143,7 @@ export const PROJECTS: Project[] = [
       "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
       "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB",],
     link: "#",
   },
   {
@@ -158,7 +158,7 @@ export const PROJECTS: Project[] = [
       "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
     outcome:
       "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
+    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
     link: "#",
   },
 ];

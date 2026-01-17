@@ -1,10 +1,59 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiExpress,
+  SiPostgresql,
+  SiFirebase,
+} from "react-icons/si";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROJECTS } from "@/constants/portfolio-data";
+import { TECH_COLORS } from "@/constants/techColors";
 import type { Project } from "@/types/portfolio";
+
+// Tech name to icon mapping
+const TECH_ICONS: Record<string, React.ElementType> = {
+  "React.js": SiReact,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  JavaScript: SiJavascript,
+  "Node.js": SiNodedotjs,
+  "Tailwind CSS": SiTailwindcss,
+  MongoDB: SiMongodb,
+  "Express.js": SiExpress,
+  PostgreSQL: SiPostgresql,
+  Firebase: SiFirebase,
+};
+
+interface TechIconProps {
+  icon: React.ElementType;
+}
+
+function TechIcon({ icon: Icon }: TechIconProps) {
+  const iconName = Icon.displayName || Icon.name;
+  let color = TECH_COLORS[iconName] || "#9CA3AF";
+
+  // Fix Next.js icon visibility in light mode
+  if (iconName === "SiNextdotjs") {
+    color = "currentColor";
+  }
+
+  return (
+    <Icon
+      className="h-5 w-5 text-muted-foreground dark:text-white"
+      style={{ color }}
+    />
+  );
+}
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -67,16 +116,21 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
             Technologies
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.map((tech) => (
-              <Badge
-                key={tech}
-                variant="secondary"
-                className="text-xs px-2 py-0.5"
-              >
-                {tech}
-              </Badge>
-            ))}
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((tech) => {
+              const Icon = TECH_ICONS[tech];
+              return Icon ? (
+                <TechIcon key={tech} icon={Icon} />
+              ) : (
+                <Badge
+                  key={tech}
+                  variant="secondary"
+                  className="text-xs px-2 py-0.5"
+                >
+                  {tech}
+                </Badge>
+              );
+            })}
           </div>
         </div>
 
