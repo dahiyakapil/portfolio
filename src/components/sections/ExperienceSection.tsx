@@ -136,7 +136,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-10">
       <div className="mb-4">
         <div className="flex items-center gap-3 mb-2">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">

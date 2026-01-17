@@ -1,0 +1,29 @@
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiPostgresql,
+  SiDocker,
+  SiGit,
+  SiHtml5,
+  SiCss3,
+} from "react-icons/si";
+
+export const TECH_COLORS: Record<string, string> = {
+  SiReact: "#61DAFB",
+  SiNextdotjs: "#FFFFFF",
+  SiTypescript: "#3178C6",
+  SiJavascript: "#F7DF1E",
+  SiNodedotjs: "#339933",
+  SiTailwindcss: "#38BDF8",
+  SiMongodb: "#47A248",
+  SiPostgresql: "#4169E1",
+  SiDocker: "#2496ED",
+  SiGit: "#F05032",
+  SiHtml5: "#E34F26",
+  SiCss3: "#1572B6",
+};

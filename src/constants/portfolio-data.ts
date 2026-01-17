@@ -11,7 +11,8 @@ export const PROJECTS: Project[] = [
   {
     id: "resumind",
     title: "Resumind",
-    description: "An AI-powered resume analyzer that helps job seekers optimize their resumes for ATS systems and specific job roles",
+    description:
+      "An AI-powered resume analyzer that helps job seekers optimize their resumes for ATS systems and specific job roles",
     problem:
       "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
@@ -28,7 +29,8 @@ export const PROJECTS: Project[] = [
     role: "Full Stack",
     team: "Solo",
     status: "Completed",
-    overview: "Resumind is an AI-powered resume analysis platform that helps job seekers understand why their resumes may be rejected by Applicant Tracking Systems (ATS) and provides actionable insights to improve them for specific job roles. The platform uses advanced AI models to parse resumes, analyze content against job descriptions, and generate detailed feedback.",
+    overview:
+      "Resumind is an AI-powered resume analysis platform that helps job seekers understand why their resumes may be rejected by Applicant Tracking Systems (ATS) and provides actionable insights to improve them for specific job roles. The platform uses advanced AI models to parse resumes, analyze content against job descriptions, and generate detailed feedback.",
     features: [
       "Upload Resume: Users can upload their resume in PDF or DOCX format for instant analysis",
       "Job Description Matching: Compare your resume against specific job descriptions to find gaps",
@@ -36,31 +38,86 @@ export const PROJECTS: Project[] = [
       "Keyword Analysis: Identify missing keywords and skills from job descriptions",
       "Improvement Suggestions: Receive actionable recommendations to enhance your resume",
       "Section Analysis: Get detailed feedback on each resume section (experience, skills, education)",
-      "Real-time Feedback: Instant analysis results without waiting"
+      "Real-time Feedback: Instant analysis results without waiting",
     ],
     challenges: [
       "Job seekers don't know why their resumes get rejected by ATS systems",
       "Difficult to optimize resumes for specific job roles without expertise",
       "No clear visibility into what recruiters and ATS systems are looking for",
-      "Generic resume templates don't account for role-specific requirements"
+      "Generic resume templates don't account for role-specific requirements",
     ],
     impact: [
       "Helped users identify critical gaps in their resumes within seconds",
       "Improved ATS match scores by highlighting missing keywords and skills",
       "Provided role-specific feedback that increased interview callbacks",
       "Saved time by automating resume analysis that would take hours manually",
-      "Empowered job seekers with actionable insights to improve their applications"
+      "Empowered job seekers with actionable insights to improve their applications",
     ],
     futurePlans: [
       "Add resume builder with ATS-optimized templates",
       "Implement cover letter analysis and generation",
       "Create industry-specific optimization profiles",
       "Add LinkedIn profile optimization",
-      "Build Chrome extension for one-click job application analysis"
-    ]
+      "Build Chrome extension for one-click job application analysis",
+    ],
   },
   {
-    id: "resumind-2",
+    id: "url-shortener",
+    title: "URL Shortener",
+    description:
+      "A full-stack URL shortening service that lets users generate short, shareable links from long URLs with analytics support.",
+    problem:
+      "Long URLs are hard to remember, share, or include in messages; there was no lightweight, self-hosted solution in my toolset.",
+    solution:
+      "Built a custom URL shortening service with a React frontend and Node.js backend to generate, store, and redirect short URLs, with real-time analytics for link clicks with real user data.",
+    technical:
+      "Designed with React for the frontend UI, Node.js/Express for the backend API, MongoDB for link storage, and deployed via Vercel (frontend) and a cloud Node host (backend).",
+    outcome:
+      "Users can easily shorten long URLs, track click counts, and copy/share the resulting links across platforms.",
+    tech: [
+      "React.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    link: "https://url-short-pearl.vercel.app", 
+    github: "https://github.com/dahiyakapil/Url-Shortener",
+    image: "/src/assets/projects/url-shortener.png",
+    timeline: "3 weeks",
+    role: "Full Stack",
+    team: "Solo",
+    status: "Completed",
+    overview:
+      "A full-stack web application that provides a simple UI for creating short links from long URLs and a backend API for link redirection and analytics",
+    features: [
+      "Create short, human-friendly URLs",
+      "Automatic redirect when accessing a short link",
+      "Click count analytics per URL",
+      "Copy short links to clipboard",
+      "Responsive UI",
+    ],
+    challenges: [
+      "Ensuring accurate tracking of link clicks without affecting performance",
+      "Designing a scalable redirect system",
+      "Handling invalid URL inputs and collisions",
+    ],
+    impact: [
+      "Users can shorten URLs with one click and track usage without third-party services",
+      "Self-hosted solution gives full control over data",
+      "Improved shareability of links for portfolios, emails, and chats",
+    ],
+    futurePlans: [
+      "Add custom slug creation",
+      "Add user authentication and personal dashboards",
+      "Generate QR codes for shortened links",
+      "Add API keys for third-party API usage",
+      "Deploy with analytics dashboard",
+    ],
+  },
+  {
+    id: "resumind-3",
     title: "Resumind",
     description: "An AI-powered resume analyzer for job seekers",
     problem:
@@ -75,7 +132,7 @@ export const PROJECTS: Project[] = [
     link: "#",
   },
   {
-    id: "resumind-3",
+    id: "resumind-4",
     title: "Resumind",
     description: "An AI-powered resume analyzer for job seekers",
     problem:
@@ -142,6 +199,6 @@ export const PERSONAL_INFO = {
     "I architect scalable web applications with TypeScript, React, and Next.js. Focused on performance, design systems, and user experience.",
   bio: "Founding engineer specializing in frontend architecture and product development. I build scalable systems from the ground up, with a focus on performance, maintainability, and exceptional user experiences.",
   avatar: "/src/assets/Kapil_DP-modified.png",
-  avatarLarge: "/src/assets/Kapil_DP-modified.png",
+  avatarLarge: "./src/assets/Kapil_Square.png",
   initials: "K",
 } as const;

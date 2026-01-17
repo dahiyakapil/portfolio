@@ -27,13 +27,12 @@ export function TechnicalSkills() {
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-sky-500" },
     { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
     { name: "Git", icon: SiGit, color: "text-orange-600" },
-    { name: "Docker", icon: SiDocker, color: "text-blue-500" },
     { name: "HTML5", icon: SiHtml5, color: "text-orange-600" },
     { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-10">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">

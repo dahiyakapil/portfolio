@@ -75,10 +75,17 @@ export default function ResumePage() {
             shadow-2xl overflow-hidden"
           >
             {/* Fake PDF App Bar */}
-            <div className="flex items-center justify-between px-5 py-3 border-b bg-muted/40">
-              <span className="text-sm font-medium text-muted-foreground">
-                Kapil_Dahiya_Resume.pdf
-              </span>
+            <div className="flex items-center justify-between px-5 py-3 border-b bg-muted/30 backdrop-blur">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-red-400" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <span className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+                <span className="ml-3 text-sm font-medium text-muted-foreground">
+                  Kapil_Dahiya_Resume.pdf
+                </span>
+              </div>
 
               <div className="flex gap-2">
                 <Button size="sm" variant="ghost" asChild>
@@ -95,7 +102,10 @@ export default function ResumePage() {
 
             {/* Loading Overlay */}
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
+              <div
+                className="absolute inset-0 -z-10 bg-[radial-gradient(#00000008_1px,transparent_1px)] 
+  [background-size:24px_24px] dark:bg-[radial-gradient(#ffffff0a_1px,transparent_1px)]"
+              >
                 <div className="flex flex-col items-center gap-3">
                   <Loader2 className="h-8 w-8 animate-spin text-primary" />
                   <p className="text-sm text-muted-foreground">
@@ -107,7 +117,7 @@ export default function ResumePage() {
 
             {/* PDF Frame */}
             <div
-              className="w-full bg-white dark:bg-muted"
+              className="w-full bg-white dark:bg-muted shadow-inner"
               style={{ height: "calc(100vh - 260px)" }}
             >
               <iframe

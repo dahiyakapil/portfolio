@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { PROJECTS } from "@/constants/portfolio-data";
 import type { Project } from "@/types/portfolio";
 
@@ -100,7 +101,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-10">
       <div className="mb-10">
         <div className="flex items-center justify-between mb-2">
           <p className="text-xs uppercase tracking-widest text-muted-foreground">
@@ -121,6 +122,20 @@ export function ProjectsSection() {
         {PROJECTS.slice(0, 4).map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
+      </div>
+
+      {/* Show More Button */}
+      <div className="flex justify-center mt-8">
+        <Link to="/projects">
+          <Button
+            variant="outline"
+            size="lg"
+            className="gap-2 group"
+          >
+            Show all projects
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </Link>
       </div>
     </section>
   );

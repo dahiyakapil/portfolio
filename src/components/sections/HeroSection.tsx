@@ -12,7 +12,7 @@ const AvatarSkeleton = () => (
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center py-20">
+    <section className="min-h-screen flex items-center py-10">
       <div className="w-full">
         <div className="max-w-3xl mx-auto px-4">
           <div className="flex flex-col gap-6">
