@@ -33,7 +33,7 @@ export function TechnicalSkills() {
   ];
 
   return (
-    <section className="py-16">
+    <section className="py-20">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">

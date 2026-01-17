@@ -9,7 +9,9 @@ export const SKILL_CATEGORIES: SkillCategory = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "resumind",
     title: "Resumind",
+    description: "An AI-powered resume analyzer that helps job seekers optimize their resumes for ATS systems and specific job roles",
     problem:
       "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
@@ -21,10 +23,46 @@ export const PROJECTS: Project[] = [
     tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "AI"],
     link: "https://resumindai-ashy.vercel.app/",
     github: "https://github.com/dahiyakapil/Resumind-AI",
-    image: "./src/assets/projects/resumind.png",
+    image: "/src/assets/projects/resumind.png",
+    timeline: "2 months",
+    role: "Full Stack",
+    team: "Solo",
+    status: "Completed",
+    overview: "Resumind is an AI-powered resume analysis platform that helps job seekers understand why their resumes may be rejected by Applicant Tracking Systems (ATS) and provides actionable insights to improve them for specific job roles. The platform uses advanced AI models to parse resumes, analyze content against job descriptions, and generate detailed feedback.",
+    features: [
+      "Upload Resume: Users can upload their resume in PDF or DOCX format for instant analysis",
+      "Job Description Matching: Compare your resume against specific job descriptions to find gaps",
+      "ATS Score: Get a detailed ATS compatibility score with breakdown by category",
+      "Keyword Analysis: Identify missing keywords and skills from job descriptions",
+      "Improvement Suggestions: Receive actionable recommendations to enhance your resume",
+      "Section Analysis: Get detailed feedback on each resume section (experience, skills, education)",
+      "Real-time Feedback: Instant analysis results without waiting"
+    ],
+    challenges: [
+      "Job seekers don't know why their resumes get rejected by ATS systems",
+      "Difficult to optimize resumes for specific job roles without expertise",
+      "No clear visibility into what recruiters and ATS systems are looking for",
+      "Generic resume templates don't account for role-specific requirements"
+    ],
+    impact: [
+      "Helped users identify critical gaps in their resumes within seconds",
+      "Improved ATS match scores by highlighting missing keywords and skills",
+      "Provided role-specific feedback that increased interview callbacks",
+      "Saved time by automating resume analysis that would take hours manually",
+      "Empowered job seekers with actionable insights to improve their applications"
+    ],
+    futurePlans: [
+      "Add resume builder with ATS-optimized templates",
+      "Implement cover letter analysis and generation",
+      "Create industry-specific optimization profiles",
+      "Add LinkedIn profile optimization",
+      "Build Chrome extension for one-click job application analysis"
+    ]
   },
   {
+    id: "resumind-2",
     title: "Resumind",
+    description: "An AI-powered resume analyzer for job seekers",
     problem:
       "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
@@ -37,7 +75,9 @@ export const PROJECTS: Project[] = [
     link: "#",
   },
   {
+    id: "resumind-3",
     title: "Resumind",
+    description: "An AI-powered resume analyzer for job seekers",
     problem:
       "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
@@ -50,7 +90,9 @@ export const PROJECTS: Project[] = [
     link: "#",
   },
   {
+    id: "resumind-4",
     title: "Resumind",
+    description: "An AI-powered resume analyzer for job seekers",
     problem:
       "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
     solution:
@@ -87,9 +129,9 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 ];
 
 export const SOCIAL_LINKS = {
-  github: "#",
-  linkedin: "#",
-  email: "#",
+  github: "https://github.com/dahiyakapil",
+  linkedin: "https://www.linkedin.com/in/kapildahiya21/",
+  email: "mailto:kapildahiya308@gmail.com",
 } as const;
 
 export const PERSONAL_INFO = {

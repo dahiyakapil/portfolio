@@ -33,7 +33,7 @@ export default function GithubActivity() {
 
 
   return (
-    <section className="mt-32">
+    <section className="py-20">
       <style>{`
         @keyframes shimmer {
           0%, 100% {

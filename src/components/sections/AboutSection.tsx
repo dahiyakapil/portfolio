@@ -35,7 +35,7 @@ function SkillGroup({ category, skills }: SkillGroupProps) {
 
 export function AboutSection() {
   return (
-    <section id="about" className="mb-32">
+    <section id="about" className="py-20">
       <Card className="border-border/40 shadow-sm">
         <CardContent className="p-8 md:p-12">
           <div className="max-w-4xl mx-auto">

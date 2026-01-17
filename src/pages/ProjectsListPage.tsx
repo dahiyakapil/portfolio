@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS } from "@/constants/portfolio-data";
@@ -7,8 +7,8 @@ import type { Project } from "@/types/portfolio";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="rounded-xl bg-transparent">
-      {/* IMAGE AREA (flush to top, no white) */}
+    <Card className="rounded-xl bg-transparent hover:shadow-xl transition-all duration-300">
+      {/* IMAGE AREA */}
       <div className="relative h-[220px] bg-gradient-to-br from-pink-500 via-purple-500 to-fuchsia-600">
         <div className="absolute inset-0 flex items-end justify-center pb-6">
           <div className="w-[88%] h-[160px] overflow-hidden shadow-2xl bg-slate-900">
@@ -42,6 +42,7 @@ function ProjectCard({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink className="w-4 h-4" />
             </a>
@@ -51,6 +52,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
+                onClick={(e) => e.stopPropagation()}
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -98,30 +100,42 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export function ProjectsSection() {
+export default function ProjectsListPage() {
   return (
-    <section id="projects" className="py-20">
-      <div className="mb-10">
-        <div className="flex items-center justify-between mb-2">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            Featured
-          </p>
+    <div className="min-h-screen pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-12">
           <Link
-            to="/projects"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+            to="/"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
-            View all
-            <ArrowRight className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
           </Link>
-        </div>
-        <h2 className="text-4xl font-bold text-foreground">Projects</h2>
-      </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        {PROJECTS.slice(0, 4).map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+          <div>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+              Featured
+            </p>
+            <h1 className="text-5xl font-bold text-foreground mb-4">
+              All Projects
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              A collection of my work spanning web applications, tools, and
+              experiments. Each project represents a unique challenge and
+              learning experience.
+            </p>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

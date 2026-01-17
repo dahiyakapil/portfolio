@@ -1,5 +1,9 @@
+export type ProjectStatus = "Completed" | "In Progress" | "Planned";
+
 export interface Project {
+  id: string;
   title: string;
+  description: string;
   problem: string;
   solution: string;
   technical: string;
@@ -8,6 +12,15 @@ export interface Project {
   link: string;
   github?: string;
   image?: string;
+  timeline?: string;
+  role?: string;
+  team?: string;
+  status?: ProjectStatus;
+  overview?: string;
+  features?: string[];
+  challenges?: string[];
+  impact?: string[];
+  futurePlans?: string[];
 }
 
 export interface WorkExperience {
