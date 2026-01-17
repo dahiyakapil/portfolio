@@ -32,7 +32,7 @@ export function HeroSection() {
           <div className="space-y-6 w-full">
             <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight leading-tight">
               Hi, I'm {PERSONAL_INFO.nickname} —{" "}
-              <span className="text-gray-500">{PERSONAL_INFO.title}</span>
+              <span className="text-muted-foreground">{PERSONAL_INFO.title}</span>
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">

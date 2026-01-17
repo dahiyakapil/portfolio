@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import {GitHubCalendar} from 'react-github-calendar';
 import type { Activity } from 'react-github-calendar';
+import { useTheme } from "@/context/theme-provider";
 
 export default function GithubActivity() {
   const [mounted, setMounted] = useState(false);
   const [totalContributions, setTotalContributions] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -13,19 +15,22 @@ export default function GithubActivity() {
   if (!mounted) return null;
 
   // Transform data to show last 9 months (from April onwards)
-  const selectLastNineMonths = (contributions: Activity[]) => {
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    
-    // Calculate how many days to show (approximately 9 months = 39 weeks)
-    const data = contributions.slice(-39 * 7);
-    
-    // Calculate total contributions
-    const total = data.reduce((sum, day) => sum + day.count, 0);
-    setTotalContributions(total);
-    
-    return data;
-  };
+ const selectLastNineMonths = (contributions: Activity[]) => {
+  // Group by weeks (7 days per week)
+  const weeks: Activity[][] = [];
+  for (let i = 0; i < contributions.length; i += 7) {
+    weeks.push(contributions.slice(i, i + 7));
+  }
+
+  // Take last 40–44 weeks (≈ 9–10 months safely)
+  const visibleWeeks = weeks.slice(-39).flat();
+
+  const total = visibleWeeks.reduce((sum, day) => sum + day.count, 0);
+  setTotalContributions(total);
+
+  return visibleWeeks;
+};
+
 
   return (
     <section className="mt-32">
@@ -63,16 +68,16 @@ export default function GithubActivity() {
         Featured
       </p>
 
-      <h2 className="text-4xl font-bold text-gray-900">GitHub Activity</h2>
+      <h2 className="text-4xl font-bold text-foreground">GitHub Activity</h2>
 
-      <div className="rounded-xl border bg-gradient-to-br from-white to-gray-50 p-6 max-w-5xl mt-5 mb-32 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+      <div className="rounded-xl border border-border/40 bg-card/50 p-6 max-w-5xl mt-5 mb-32 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
         <div className="flex items-center justify-between mb-6">
           <div className="space-y-1">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Open-source & personal contributions
             </p>
-            <p className="text-2xl font-bold text-gray-900">
-              {totalContributions} <span className="text-sm font-normal text-gray-500">contributions</span>
+            <p className="text-2xl font-bold text-foreground">
+              {totalContributions} <span className="text-sm font-normal text-muted-foreground">contributions</span>
             </p>
           </div>
 
@@ -80,7 +85,7 @@ export default function GithubActivity() {
             href="https://github.com/dahiyakapil"
             target="_blank"
             rel="noreferrer"
-            className="text-sm text-gray-500 hover:text-black transition-colors duration-200 flex items-center gap-1 group"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1 group"
           >
             <span>@dahiyakapil</span>
             <svg 
@@ -106,7 +111,7 @@ export default function GithubActivity() {
               blockSize={12}
               blockMargin={4}
               fontSize={12}
-              colorScheme="light"
+              colorScheme={theme === "dark" ? "dark" : "light"}
               transformData={selectLastNineMonths}
               theme={{
                 light: [
@@ -116,15 +121,22 @@ export default function GithubActivity() {
                   "#30a14e",
                   "#216e39",
                 ],
+                dark: [
+                  "#161b22",
+                  "#0e4429",
+                  "#006d32",
+                  "#26a641",
+                  "#39d353",
+                ],
               }}
               style={{
-                color: '#666',
+                color: theme === "dark" ? '#9ca3af' : '#666',
               }}
             />
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+        <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
           <span>Last 9 months activity</span>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">

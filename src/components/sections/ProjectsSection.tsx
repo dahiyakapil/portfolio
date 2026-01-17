@@ -26,10 +26,10 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* CONTENT AREA (white starts here) */}
-      <div className="bg-white p-5 rounded-b-xl">
+      {/* CONTENT AREA */}
+      <div className="bg-card p-5 rounded-b-xl border border-border/40">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-foreground">
             {project.title}
           </h3>
 
@@ -38,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gray-700"
+              className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
             </a>
@@ -46,19 +46,19 @@ function ProjectCard({ project }: { project: Project }) {
               href={project.github!}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gray-700"
+              className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
           </div>
         </div>
 
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
           {project.solution}
         </p>
 
         <div className="mb-4">
-          <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">
+          <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
             Technologies
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -66,7 +66,7 @@ function ProjectCard({ project }: { project: Project }) {
               <Badge
                 key={tech}
                 variant="secondary"
-                className="text-xs px-2 py-0.5 bg-gray-100 text-gray-700"
+                className="text-xs px-2 py-0.5"
               >
                 {tech}
               </Badge>
@@ -74,9 +74,9 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-xs text-gray-500">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full border border-yellow-900 bg-green-500" />
+            <span className="w-2 h-2 rounded-full border border-primary bg-green-500" />
             Operational
           </span>
 
@@ -84,7 +84,7 @@ function ProjectCard({ project }: { project: Project }) {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 flex items-center gap-1"
+            className="hover:text-foreground transition-colors flex items-center gap-1"
           >
             View details
             <ExternalLink className="w-3 h-3" />
@@ -103,7 +103,7 @@ export function ProjectsSection() {
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
           Featured
         </p>
-        <h2 className="text-4xl font-bold text-gray-900">Projects</h2>
+        <h2 className="text-4xl font-bold text-foreground">Projects</h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 ">
