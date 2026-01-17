@@ -5,6 +5,7 @@ import { Spotlight } from "./components/ui/spotlight";
 import Home from "./pages/Home";
 import ProjectsListPage from "./pages/ProjectsListPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import ResumePage from "./pages/ResumePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectsListPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
+            <Route path="/resume" element={<ResumePage />} />
           </Routes>
           <Footer />
         </div>

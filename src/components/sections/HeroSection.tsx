@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { Mail, Github, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -50,13 +51,15 @@ export function HeroSection() {
                   <Mail className="mr-2 h-4 w-4" />
                   Get in touch
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="px-8 h-11 text-base"
-                >
-                  Resume / CV
-                </Button>
+                <Link to="/resume">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="px-8 h-11 text-base"
+                  >
+                    Resume / CV
+                  </Button>
+                </Link>
               </div>
 
               {/* Socials */}
