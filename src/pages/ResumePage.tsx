@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Download, ArrowLeft, Loader2, Maximize2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import resumePdf from "../../public/assets/resume/Kapil_Dahiya_Resume.pdf";
+
 
 export default function ResumePage() {
   const [isLoading, setIsLoading] = useState(true);
+  const resumeFile = "/public/assets/resume/Kapil_Dahiya_Resume.pdf";
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = resumePdf;
+    link.href = resumeFile;
     link.download = "Kapil_Dahiya_Resume.pdf";
     document.body.appendChild(link);
     link.click();
@@ -52,7 +53,7 @@ export default function ResumePage() {
             </Button>
 
             <Button asChild size="lg" variant="outline">
-              <a href={resumePdf} target="_blank" rel="noopener noreferrer">
+              <a href={resumeFile} target="_blank" rel="noopener noreferrer">
                 <Maximize2 className="mr-2 h-4 w-4" />
                 View Fullscreen
               </a>
@@ -89,7 +90,7 @@ export default function ResumePage() {
 
               <div className="flex gap-2">
                 <Button size="sm" variant="ghost" asChild>
-                  <a href={resumePdf} target="_blank" rel="noopener noreferrer">
+                  <a href={resumeFile} target="_blank" rel="noopener noreferrer">
                     Fullscreen
                   </a>
                 </Button>
@@ -121,7 +122,7 @@ export default function ResumePage() {
               style={{ height: "calc(100vh - 260px)" }}
             >
               <iframe
-                src={`${resumePdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                src={`${resumeFile}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                 className="w-full h-full border-0"
                 title="Kapil Dahiya Resume"
                 onLoad={() => setIsLoading(false)}
@@ -147,7 +148,7 @@ export default function ResumePage() {
           <p className="text-sm text-muted-foreground">
             Having trouble viewing?{" "}
             <a
-              href={resumePdf}
+              href={resumeFile}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline font-medium"
