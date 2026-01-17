@@ -198,7 +198,7 @@ export const PERSONAL_INFO = {
   description:
     "I architect scalable web applications with TypeScript, React, and Next.js. Focused on performance, design systems, and user experience.",
   bio: "Founding engineer specializing in frontend architecture and product development. I build scalable systems from the ground up, with a focus on performance, maintainability, and exceptional user experiences.",
-  avatar: "/src/assets/Kapil_DP-modified.png",
-  avatarLarge: "./src/assets/Kapil_Square.png",
+  avatar: "/assets/Kapil_DP-modified.png",
+  avatarLarge: "/assets/Kapil_Square.png",
   initials: "K",
 } as const;
