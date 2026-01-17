@@ -140,20 +140,20 @@ export default function GithubActivity() {
           <span>Last 9 months activity</span>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#ebedf0] rounded-sm"></span>
+              <span className="w-2 h-2 bg-[#ebedf0]"></span>
               <span>Less</span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#9be9a8] rounded-sm"></span>
+              <span className="w-2 h-2 bg-[#9be9a8] "></span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#40c463] rounded-sm"></span>
+              <span className="w-2 h-2 bg-[#40c463] "></span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#30a14e] rounded-sm"></span>
+              <span className="w-2 h-2 bg-[#30a14e] "></span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#216e39] rounded-sm"></span>
+              <span className="w-2 h-2 bg-[#216e39] "></span>
               <span>More</span>
             </div>
           </div>

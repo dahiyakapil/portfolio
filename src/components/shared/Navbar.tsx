@@ -25,9 +25,6 @@ export function Navbar() {
             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
               <span className="text-white font-bold text-sm">K</span>
             </div>
-            <span className="font-semibold text-lg hidden sm:block">
-              Kapil
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
