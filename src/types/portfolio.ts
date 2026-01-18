@@ -30,6 +30,8 @@ export interface WorkExperience {
   location: string;
   achievements: string[];
   technologies: string[];
+  website?: string;
+  linkedin?: string;
 }
 
 export interface SkillCategory {

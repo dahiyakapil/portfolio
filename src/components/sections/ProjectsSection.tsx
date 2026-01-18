@@ -19,6 +19,13 @@ import { PROJECTS } from "@/constants/portfolio-data";
 import { TECH_COLORS } from "@/constants/techColors";
 import type { Project } from "@/types/portfolio";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 // Tech name to icon mapping
 const TECH_ICONS: Record<string, React.ElementType> = {
   "React.js": SiReact,
@@ -30,23 +37,41 @@ const TECH_ICONS: Record<string, React.ElementType> = {
   "Tailwind CSS": SiTailwindcss,
   MongoDB: SiMongodb,
   "Express.js": SiExpress,
+  Express: SiExpress,
   PostgreSQL: SiPostgresql,
   Firebase: SiFirebase,
 };
 
 interface TechIconProps {
+  name: string;
   icon: React.ElementType;
 }
 
-function TechIcon({ icon: Icon }: TechIconProps) {
-  const iconName = Icon.displayName || Icon.name;
-  const color = TECH_COLORS[iconName] || "#9CA3AF";
+function TechIcon({ name, icon: Icon }: TechIconProps) {
+  const iconName = Icon.displayName || Icon.name || "";
+  // Fix: Don't use hardcoded black (#000000) for Next.js and Express as it's invisible in dark mode.
+  // We'll fall back to currentColor if it's black.
+  let color = TECH_COLORS[iconName] || "#9CA3AF";
+  if (color === "#000000") {
+    color = "currentColor";
+  }
 
   return (
-    <Icon
-      className="h-5 w-5"
-      style={{ color }}
-    />
+    <TooltipProvider delayDuration={300}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex items-center justify-center">
+            <Icon
+              className="h-5 w-5 transition-transform hover:scale-110"
+              style={{ color }}
+            />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p className="text-xs">{name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
 
@@ -82,24 +107,43 @@ function ProjectCard({ project }: { project: Project }) {
           </Link>
 
           <div className="flex gap-2">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-            </a>
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-            )}
+            <TooltipProvider delayDuration={300}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-md"
+                    aria-label="Live Demo"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  <p className="text-xs">Live Demo</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {project.github && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-md"
+                      aria-label="GitHub Repository"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    <p className="text-xs">GitHub Repo</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </TooltipProvider>
           </div>
         </div>
 
@@ -115,7 +159,7 @@ function ProjectCard({ project }: { project: Project }) {
             {project.tech.map((tech) => {
               const Icon = TECH_ICONS[tech];
               return Icon ? (
-                <TechIcon key={tech} icon={Icon} />
+                <TechIcon key={tech} name={tech} icon={Icon} />
               ) : (
                 <Badge
                   key={tech}

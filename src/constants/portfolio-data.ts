@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
   },
 {
   id: "kapil-mail",
-  title: "Kapil Mail",
+  title: "Mail Website",
   description:
     "A lightweight full-stack email platform with real-time messaging, JWT authentication, and WebSocket-based updates built on Cloudflare Workers.",
   problem:
@@ -232,10 +232,12 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: "Indian Capital and Investment (Coimbatore) Limited",
+    company: "Indian Capital and Investment Limited",
     role: "Full Stack Developer",
     period: "Sept 2025 - Dec 2025",
     location: "Remote (India)",
+    website: "https://tempusmail.com",
+    linkedin: "https://www.linkedin.com/company/tempusmail",
     technologies: [
       "React.js",
       "TypeScript",
@@ -255,6 +257,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     role: "Full Stack Developer Intern",
     period: "Jul 2024 - Jan 2025",
     location: "Remote (India)",
+    website: "https://unifiedmentor.com",
+    linkedin: "https://www.linkedin.com/company/unified-mentor",
     technologies: [
       "React.js",
       "Next.js",

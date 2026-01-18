@@ -47,22 +47,29 @@ const TECH_ICONS: Record<string, React.ElementType> = {
 const TECH_COLORS: Record<string, string> = {
   "React.js": "#61DAFB",
   React: "#61DAFB",
-  "Next.js": "#000000",
+  "Next.js": "currentColor",
   TypeScript: "#3178C6",
   JavaScript: "#F7DF1E",
   "Node.js": "#339933",
   "Tailwind CSS": "#38BDF8",
   MongoDB: "#47A248",
-  "Express.js": "#000000",
-  Express: "#000000",
+  "Express.js": "currentColor",
+  Express: "currentColor",
   PostgreSQL: "#4169E1",
   Firebase: "#FFCA28",
-  Vercel: "#000000",
+  Vercel: "currentColor",
   AWS: "#FF9900",
   Docker: "#2496ED",
   Git: "#F05032",
   Postman: "#FF6C37",
 };
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -254,10 +261,21 @@ export default function ProjectDetailPage() {
                   className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all"
                 >
                   {Icon && (
-                    <Icon
-                      className="text-lg"
-                      style={{ color: color || "currentColor" }}
-                    />
+                    <TooltipProvider delayDuration={300}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="flex items-center justify-center">
+                            <Icon
+                              className="text-lg transition-transform hover:scale-110"
+                              style={{ color: color || "currentColor" }}
+                            />
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                          <p className="text-xs">{tech}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
                   <span className="text-sm font-medium">{tech}</span>
                 </div>
