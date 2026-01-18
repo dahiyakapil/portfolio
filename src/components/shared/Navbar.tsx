@@ -24,9 +24,14 @@ export function Navbar() {
   const isExperiencePage = location.pathname.startsWith("/experience");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40 ">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+      {/* Full-width glass effect backdrop */}
+      <div className="absolute inset-0 bg-background/20 backdrop-blur-sm border-b border-border/5" />
+      
+      <div className="relative max-w-7xl mx-auto flex justify-center px-4">
+        <div className="max-w-3xl w-full bg-background/60 backdrop-blur-xl border-x border-b border-white/10 shadow-lg rounded-b-2xl overflow-hidden pointer-events-auto">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -42,7 +47,7 @@ export function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+                  className="px-3 py-1.5 rounded-full transition-all text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
                 >
                   {item.name}
                 </a>
@@ -50,10 +55,10 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`transition-colors text-sm font-medium ${
+                  className={`px-3 py-1.5 rounded-full transition-all text-sm font-medium hover:bg-muted ${
                     (isProjectsPage && item.href === "/projects") ||
                     (isExperiencePage && item.href === "/experience")
-                      ? "text-foreground"
+                      ? "text-foreground bg-muted"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -115,11 +120,11 @@ export function Navbar() {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-sm font-medium ${
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     (isProjectsPage && item.href === "/projects") ||
                     (isExperiencePage && item.href === "/experience")
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-foreground bg-muted"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}
                 >
                   {item.name}
@@ -130,12 +135,24 @@ export function Navbar() {
             {/* Mobile theme toggle */}
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+              className="flex items-center gap-2 p-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors"
             >
-              {theme === "dark" ? "Light mode" : "Dark mode"}
+              {theme === "dark" ? (
+                <>
+                  <Sun className="h-4 w-4" />
+                  <span>Light mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-4 w-4" />
+                  <span>Dark mode</span>
+                </>
+              )}
             </button>
           </div>
         )}
+        </div>
+        </div>
       </div>
     </nav>
   );

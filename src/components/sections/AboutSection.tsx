@@ -42,7 +42,7 @@ function TechIcon({ label }: TechIconProps) {
 
 export function AboutSection() {
   return (
-    <section id="about">
+    <section id="about" className="py-10 px-4 sm:px-6 lg:px-8">
       <div>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
           About Me

@@ -189,7 +189,7 @@ export function ExperienceSection() {
   const [isSecondExpanded, setIsSecondExpanded] = useState(false);
 
   return (
-    <section id="experience" className="py-10">
+    <section id="experience" className="py-10 px-4 sm:px-6 lg:px-8">
       <div className="mb-4">
         <div className="flex items-center gap-3 mb-2">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">

@@ -208,23 +208,8 @@ export default function ProjectDetailPage() {
                       <TooltipTrigger asChild>
                         <div className="flex items-center justify-center p-1 cursor-default">
                           <Icon
-                            className="text-3xl transition-all duration-300 text-muted-foreground group-hover/icon:scale-110"
-                            style={{ 
-                              '--hover-color': color === 'currentColor' ? 'var(--foreground)' : color 
-                            } as React.CSSProperties}
-                            onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
-                              if (color !== 'currentColor') {
-                                (e.currentTarget as SVGElement).style.color = color;
-                              } else {
-                                (e.currentTarget as SVGElement).classList.add('text-foreground');
-                                (e.currentTarget as SVGElement).classList.remove('text-muted-foreground');
-                              }
-                            }}
-                            onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
-                              (e.currentTarget as SVGElement).style.color = '';
-                              (e.currentTarget as SVGElement).classList.remove('text-foreground');
-                              (e.currentTarget as SVGElement).classList.add('text-muted-foreground');
-                            }}
+                            className="text-3xl transition-all duration-300 group-hover/icon:scale-110"
+                            style={{ color: color === 'currentColor' ? 'inherit' : color }}
                           />
                         </div>
                       </TooltipTrigger>

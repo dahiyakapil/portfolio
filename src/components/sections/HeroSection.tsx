@@ -27,11 +27,10 @@ const AvatarSkeleton = () => (
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center py-10 overflow-hidden">
+    <section className="relative min-h-screen flex items-center py-10">
       
-      <div className="w-full relative z-10 pointer-events-none">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="flex flex-col gap-6 pointer-events-auto">
+      <div className="w-full relative z-10 pointer-events-none px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-6 pointer-events-auto">
             {/* Avatar */}
             <Suspense fallback={<AvatarSkeleton />}>
               <Avatar className="h-24 w-24 ring-2 ring-border ring-offset-4 ring-offset-background">
@@ -142,7 +141,6 @@ export function HeroSection() {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-            </div>
           </div>
         </div>
       </div>

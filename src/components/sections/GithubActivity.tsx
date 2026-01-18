@@ -40,7 +40,7 @@ export default function GithubActivity() {
 
 
   return (
-    <section className="py-10">
+    <section className="py-10 px-4 sm:px-6 lg:px-8">
       <style>{`
         @keyframes shimmer {
           0%, 100% {

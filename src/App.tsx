@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
         
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/experience" element={<ExperiencePage />} />

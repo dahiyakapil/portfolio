@@ -150,7 +150,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-10">
+    <section id="projects" className="py-10 px-4 sm:px-6 lg:px-8">
       <div className="mb-10">
         <div className="flex items-center justify-between mb-2">
           <p className="text-xs uppercase tracking-widest text-muted-foreground">

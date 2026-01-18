@@ -34,7 +34,7 @@ export function TechnicalSkills() {
   ];
 
   return (
-    <section className="py-10">
+    <section className="py-10 px-4 sm:px-6 lg:px-8">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
