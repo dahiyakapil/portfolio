@@ -1,16 +1,9 @@
 import { Suspense } from "react";
-import { User } from "lucide-react";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiNodedotjs,
-} from "react-icons/si";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { PERSONAL_INFO } from "@/constants/portfolio-data";
-import { TECH_COLORS } from "@/constants/techColors";
+import { getTechMeta } from "@/constants/techColors";
 import {
   Tooltip,
   TooltipContent,
@@ -23,19 +16,20 @@ const AvatarSkeleton = () => (
 );
 
 interface TechIconProps {
-  icon: React.ElementType;
   label: string;
 }
 
-function TechIcon({ icon: Icon, label }: TechIconProps) {
-  const iconName = Icon.displayName || Icon.name;
-  const color = TECH_COLORS[iconName] || "#9CA3AF";
+function TechIcon({ label }: TechIconProps) {
+  const meta = getTechMeta(label);
+  if (!meta) return null;
+
+  const { icon: Icon, color } = meta;
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <div className="cursor-default">
-          <Icon className="h-6 w-6" style={{ color }} />
+          <Icon className="h-6 w-6 transition-transform hover:scale-110" style={{ color }} />
         </div>
       </TooltipTrigger>
       <TooltipContent>
@@ -89,10 +83,10 @@ export function AboutSection() {
                 </p>
                 <TooltipProvider>
                   <div className="flex items-center space-x-2">
-                    <TechIcon icon={SiReact} label="React" />
-                    <TechIcon icon={SiNextdotjs} label="Next.js" />
-                    <TechIcon icon={SiTypescript} label="TypeScript" />
-                    <TechIcon icon={SiNodedotjs} label="Node.js" />
+                    <TechIcon label="React" />
+                    <TechIcon label="Next.js" />
+                    <TechIcon label="TypeScript" />
+                    <TechIcon label="Node.js" />
                   </div>
                 </TooltipProvider>
               </div>

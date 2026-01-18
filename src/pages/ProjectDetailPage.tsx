@@ -4,86 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { PROJECTS } from "@/constants/portfolio-data";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiExpress,
-  SiPostgresql,
-  SiFirebase,
-  SiVercel,
-  SiAmazonwebservices,
-  SiDocker,
-  SiGit,
-  SiPostman,
-  SiCloudflare,
-  SiVite,
-  SiJsonwebtokens,
-  SiSocketdotio,
-  SiHtml5,
-  SiCss3,
-} from "react-icons/si";
-
-
-// Tech name to icon mapping
-const TECH_ICONS: Record<string, React.ElementType> = {
-  "React.js": SiReact,
-  React: SiReact,
-  "Next.js": SiNextdotjs,
-  TypeScript: SiTypescript,
-  JavaScript: SiJavascript,
-  "Node.js": SiNodedotjs,
-  "Tailwind CSS": SiTailwindcss,
-  MongoDB: SiMongodb,
-  "Express.js": SiExpress,
-  Express: SiExpress,
-  PostgreSQL: SiPostgresql,
-  Firebase: SiFirebase,
-  Vercel: SiVercel,
-  AWS: SiAmazonwebservices,
-  Docker: SiDocker,
-  Git: SiGit,
-  Postman: SiPostman,
-  "Cloudflare Workers": SiCloudflare,
-  "Durable Objects": SiCloudflare,
-  WebSockets: SiSocketdotio,
-  JWT: SiJsonwebtokens,
-  Vite: SiVite,
-  HTML5: SiHtml5,
-  CSS3: SiCss3,
-};
-
-const TECH_COLORS: Record<string, string> = {
-  "React.js": "#61DAFB",
-  React: "#61DAFB",
-  "Next.js": "currentColor",
-  TypeScript: "#3178C6",
-  JavaScript: "#F7DF1E",
-  "Node.js": "#339933",
-  "Tailwind CSS": "#38BDF8",
-  MongoDB: "#47A248",
-  "Express.js": "currentColor",
-  Express: "currentColor",
-  PostgreSQL: "#4169E1",
-  Firebase: "#FFCA28",
-  Vercel: "currentColor",
-  AWS: "#FF9900",
-  Docker: "#2496ED",
-  Git: "#F05032",
-  Postman: "#FF6C37",
-  "Cloudflare Workers": "#F38020",
-  "Durable Objects": "#F38020",
-  WebSockets: "#010101",
-  JWT: "#000000",
-  Vite: "#646CFF",
-  HTML5: "#E34F26",
-  CSS3: "#1572B6",
-};
-
+import { getTechMeta } from "@/constants/techColors";
 import {
   Tooltip,
   TooltipContent,
@@ -270,34 +191,51 @@ export default function ProjectDetailPage() {
           <h2 className="text-2xl font-bold text-foreground mb-6">
             Tech Stack
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-8">
             {project.tech.map((tech) => {
-              const Icon = TECH_ICONS[tech];
-              const color = TECH_COLORS[tech];
+              const meta = getTechMeta(tech);
+              if (!meta) return <span key={tech} className="text-sm font-medium">{tech}</span>;
+              
+              const { icon: Icon, color } = meta;
               
               return (
                 <div
                   key={tech}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all"
+                  className="flex flex-col items-center gap-2 group/icon"
                 >
-                  {Icon && (
-                    <TooltipProvider delayDuration={300}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="flex items-center justify-center">
-                            <Icon
-                              className="text-lg transition-transform hover:scale-110"
-                              style={{ color: color || "currentColor" }}
-                            />
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent side="top">
-                          <p className="text-xs">{tech}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  )}
-                  <span className="text-sm font-medium">{tech}</span>
+                  <TooltipProvider delayDuration={300}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center justify-center p-1 cursor-default">
+                          <Icon
+                            className="text-3xl transition-all duration-300 text-muted-foreground group-hover/icon:scale-110"
+                            style={{ 
+                              '--hover-color': color === 'currentColor' ? 'var(--foreground)' : color 
+                            } as React.CSSProperties}
+                            onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
+                              if (color !== 'currentColor') {
+                                (e.currentTarget as SVGElement).style.color = color;
+                              } else {
+                                (e.currentTarget as SVGElement).classList.add('text-foreground');
+                                (e.currentTarget as SVGElement).classList.remove('text-muted-foreground');
+                              }
+                            }}
+                            onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
+                              (e.currentTarget as SVGElement).style.color = '';
+                              (e.currentTarget as SVGElement).classList.remove('text-foreground');
+                              (e.currentTarget as SVGElement).classList.add('text-muted-foreground');
+                            }}
+                          />
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p className="text-xs">{tech}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground group-hover/icon:text-foreground transition-colors">
+                    {tech}
+                  </span>
                 </div>
               );
             })}

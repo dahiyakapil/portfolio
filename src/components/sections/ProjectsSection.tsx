@@ -1,31 +1,11 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, ArrowRight } from "lucide-react";
-import {
-  SiGithub,
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiExpress,
-  SiPostgresql,
-  SiFirebase,
-  SiCloudflare,
-  SiVite,
-  SiJsonwebtokens,
-  SiSocketdotio,
-  SiHtml5,
-  SiCss3,
-} from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROJECTS } from "@/constants/portfolio-data";
-import { TECH_COLORS } from "@/constants/techColors";
+import { getTechMeta } from "@/constants/techColors";
 import type { Project } from "@/types/portfolio";
-
 import {
   Tooltip,
   TooltipContent,
@@ -33,42 +13,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-// Tech name to icon mapping
-const TECH_ICONS: Record<string, React.ElementType> = {
-  "React.js": SiReact,
-  React: SiReact,
-  "Next.js": SiNextdotjs,
-  TypeScript: SiTypescript,
-  JavaScript: SiJavascript,
-  "Node.js": SiNodedotjs,
-  "Tailwind CSS": SiTailwindcss,
-  MongoDB: SiMongodb,
-  "Express.js": SiExpress,
-  Express: SiExpress,
-  PostgreSQL: SiPostgresql,
-  Firebase: SiFirebase,
-  "Cloudflare Workers": SiCloudflare,
-  "Durable Objects": SiCloudflare,
-  WebSockets: SiSocketdotio,
-  JWT: SiJsonwebtokens,
-  Vite: SiVite,
-  HTML5: SiHtml5,
-  CSS3: SiCss3,
-};
-
 interface TechIconProps {
   name: string;
-  icon: React.ElementType;
 }
 
-function TechIcon({ name, icon: Icon }: TechIconProps) {
-  const iconName = Icon.displayName || Icon.name || "";
-  // Fix: Don't use hardcoded black (#000000) for Next.js and Express as it's invisible in dark mode.
-  // We'll fall back to currentColor if it's black.
-  let color = TECH_COLORS[iconName] || "#9CA3AF";
-  if (color === "#000000") {
-    color = "currentColor";
-  }
+function TechIcon({ name }: TechIconProps) {
+  const meta = getTechMeta(name);
+  if (!meta) return null;
+
+  const { icon: Icon, color } = meta;
 
   return (
     <TooltipProvider delayDuration={300}>
@@ -170,20 +123,9 @@ function ProjectCard({ project }: { project: Project }) {
             Technologies
           </p>
           <div className="flex flex-wrap gap-2">
-            {project.tech.map((tech) => {
-              const Icon = TECH_ICONS[tech];
-              return Icon ? (
-                <TechIcon key={tech} name={tech} icon={Icon} />
-              ) : (
-                <Badge
-                  key={tech}
-                  variant="secondary"
-                  className="text-xs px-2 py-0.5"
-                >
-                  {tech}
-                </Badge>
-              );
-            })}
+            {project.tech.map((tech) => (
+              <TechIcon key={tech} name={tech} />
+            ))}
           </div>
         </div>
 

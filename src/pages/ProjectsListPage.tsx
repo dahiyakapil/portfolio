@@ -4,25 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS } from "@/constants/portfolio-data";
 import type { Project } from "@/types/portfolio";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiExpress,
-  SiPostgresql,
-  SiFirebase,
-  SiCloudflare,
-  SiVite,
-  SiJsonwebtokens,
-  SiSocketdotio,
-  SiHtml5,
-  SiCss3,
-  SiGithub,
-} from "react-icons/si";
+import { getTechMeta } from "@/constants/techColors";
+import { SiGithub } from "react-icons/si";
 import {
   Tooltip,
   TooltipContent,
@@ -30,68 +13,35 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-// Tech name to icon mapping
-const TECH_ICONS: Record<string, React.ElementType> = {
-  "React.js": SiReact,
-  React: SiReact,
-  "Next.js": SiNextdotjs,
-  TypeScript: SiTypescript,
-  JavaScript: SiJavascript,
-  "Node.js": SiNodedotjs,
-  "Tailwind CSS": SiTailwindcss,
-  MongoDB: SiMongodb,
-  "Express.js": SiExpress,
-  Express: SiExpress,
-  PostgreSQL: SiPostgresql,
-  Firebase: SiFirebase,
-  "Cloudflare Workers": SiCloudflare,
-  "Durable Objects": SiCloudflare,
-  WebSockets: SiSocketdotio,
-  JWT: SiJsonwebtokens,
-  Vite: SiVite,
-  HTML5: SiHtml5,
-  CSS3: SiCss3,
-};
-
-const TECH_COLORS_MAP: Record<string, string> = {
-  "React.js": "#61DAFB",
-  React: "#61DAFB",
-  "Next.js": "currentColor",
-  TypeScript: "#3178C6",
-  JavaScript: "#F7DF1E",
-  "Node.js": "#339933",
-  "Tailwind CSS": "#38BDF8",
-  MongoDB: "#47A248",
-  "Express.js": "currentColor",
-  Express: "currentColor",
-  PostgreSQL: "#4169E1",
-  Firebase: "#FFCA28",
-  "Cloudflare Workers": "#F38020",
-  "Durable Objects": "#F38020",
-  WebSockets: "#010101",
-  JWT: "#000000",
-  Vite: "#646CFF",
-  HTML5: "#E34F26",
-  CSS3: "#1572B6",
-};
-
 function TechIcon({ name }: { name: string }) {
-  const Icon = TECH_ICONS[name];
-  if (!Icon) return <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{name}</Badge>;
+  const meta = getTechMeta(name);
+  if (!meta) return <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{name}</Badge>;
 
-  let color = TECH_COLORS_MAP[name] || "#9CA3AF";
-  if (color === "#000000") {
-    color = "currentColor";
-  }
+  const { icon: Icon, color } = meta;
 
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="flex items-center justify-center p-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors cursor-default">
+          <div className="flex items-center justify-center cursor-default group/icon">
             <Icon
-              className="h-4 w-4 transition-transform hover:scale-110"
-              style={{ color }}
+              className="h-4 w-4 transition-all duration-300 text-muted-foreground group-hover/icon:scale-110"
+              style={{ 
+                '--hover-color': color === 'currentColor' ? 'var(--foreground)' : color 
+              } as React.CSSProperties}
+              onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
+                if (color !== 'currentColor') {
+                  (e.currentTarget as SVGElement).style.color = color;
+                } else {
+                  (e.currentTarget as SVGElement).classList.add('text-foreground');
+                  (e.currentTarget as SVGElement).classList.remove('text-muted-foreground');
+                }
+              }}
+              onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
+                (e.currentTarget as SVGElement).style.color = '';
+                (e.currentTarget as SVGElement).classList.remove('text-foreground');
+                (e.currentTarget as SVGElement).classList.add('text-muted-foreground');
+              }}
             />
           </div>
         </TooltipTrigger>

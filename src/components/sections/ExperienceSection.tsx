@@ -2,23 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { WORK_EXPERIENCE } from "@/constants/portfolio-data";
 import type { WorkExperience } from "@/types/portfolio";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiPostgresql,
-  SiGit,
-  SiDocker,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiExpress,
-  SiVercel,
-  SiAmazonwebservices,
-  SiFirebase,
-  SiPostman,
   SiLinkedin,
 } from "react-icons/si";
 import { Button } from "@/components/ui/button";
@@ -31,53 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
-const techColorMap: Record<string, string> = {
-  JavaScript: "#F7DF1E",
-  "React.js": "#61DAFB",
-  React: "#61DAFB",
-  "Next.js": "currentColor",
-  TypeScript: "#3178C6",
-  "Node.js": "#339933",
-  "Tailwind CSS": "#38BDF8",
-  MongoDB: "#47A248",
-  Git: "#F05032",
-  Docker: "#2496ED",
-  HTML5: "#E34F26",
-  CSS3: "#1572B6",
-  Firebase: "#FFCA28",
-  PostgreSQL: "#4169E1",
-  "Express.js": "currentColor",
-  Express: "currentColor",
-  Vercel: "currentColor",
-  AWS: "#FF9900",
-  Postman: "#FF6C37",
-};
-
-const techIconMap: Record<
-  string,
-  React.ComponentType<{ className?: string; style?: React.CSSProperties }>
-> = {
-  JavaScript: SiJavascript,
-  "React.js": SiReact,
-  React: SiReact,
-  TypeScript: SiTypescript,
-  "Node.js": SiNodedotjs,
-  "Tailwind CSS": SiTailwindcss,
-  Firebase: SiFirebase,
-  "Next.js": SiNextdotjs,
-  MongoDB: SiMongodb,
-  PostgreSQL: SiPostgresql,
-  Docker: SiDocker,
-  Git: SiGit,
-  HTML5: SiHtml5,
-  CSS3: SiCss3,
-  "Express.js": SiExpress,
-  Express: SiExpress,
-  Vercel: SiVercel,
-  AWS: SiAmazonwebservices,
-  Postman: SiPostman,
-};
+import { getTechMeta } from "@/constants/techColors";
 
 interface ExperienceCardProps {
   experience: WorkExperience;
@@ -201,8 +138,7 @@ function ExperienceCard({ experience, isCollapsible = false, isExpanded = true, 
               <div className="flex flex-wrap gap-2">
                 <TooltipProvider delayDuration={300}>
                   {experience.technologies.map((tech) => {
-                    const Icon = techIconMap[tech];
-                    const color = techColorMap[tech];
+                    const meta = getTechMeta(tech);
 
                     return (
                       <Tooltip key={tech}>
@@ -210,10 +146,10 @@ function ExperienceCard({ experience, isCollapsible = false, isExpanded = true, 
                           <div
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors cursor-default"
                           >
-                            {Icon && (
-                              <Icon
+                            {meta && (
+                              <meta.icon
                                 className="text-base"
-                                style={{ color: color || "currentColor" }}
+                                style={{ color: meta.color }}
                               />
                             )}
                             <span className="text-xs font-medium">{tech}</span>
@@ -232,8 +168,8 @@ function ExperienceCard({ experience, isCollapsible = false, isExpanded = true, 
 
           {/* Achievements */}
           <ul className="space-y-0.5">
-            {experience.achievements.map((achievement) => (
-              <li className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
+            {experience.achievements.map((achievement, index) => (
+              <li key={index} className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
                 <span className="text-primary mt-1 shrink-0 font-bold">•</span>
                 <span
                   dangerouslySetInnerHTML={{
