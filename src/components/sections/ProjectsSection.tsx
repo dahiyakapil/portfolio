@@ -11,6 +11,12 @@ import {
   SiExpress,
   SiPostgresql,
   SiFirebase,
+  SiCloudflare,
+  SiVite,
+  SiJsonwebtokens,
+  SiSocketdotio,
+  SiHtml5,
+  SiCss3,
 } from "react-icons/si";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -40,6 +46,13 @@ const TECH_ICONS: Record<string, React.ElementType> = {
   Express: SiExpress,
   PostgreSQL: SiPostgresql,
   Firebase: SiFirebase,
+  "Cloudflare Workers": SiCloudflare,
+  "Durable Objects": SiCloudflare,
+  WebSockets: SiSocketdotio,
+  JWT: SiJsonwebtokens,
+  Vite: SiVite,
+  HTML5: SiHtml5,
+  CSS3: SiCss3,
 };
 
 interface TechIconProps {

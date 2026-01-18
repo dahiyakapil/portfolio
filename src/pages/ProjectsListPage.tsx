@@ -4,6 +4,103 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS } from "@/constants/portfolio-data";
 import type { Project } from "@/types/portfolio";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiExpress,
+  SiPostgresql,
+  SiFirebase,
+  SiCloudflare,
+  SiVite,
+  SiJsonwebtokens,
+  SiSocketdotio,
+  SiHtml5,
+  SiCss3,
+} from "react-icons/si";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+// Tech name to icon mapping
+const TECH_ICONS: Record<string, React.ElementType> = {
+  "React.js": SiReact,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  JavaScript: SiJavascript,
+  "Node.js": SiNodedotjs,
+  "Tailwind CSS": SiTailwindcss,
+  MongoDB: SiMongodb,
+  "Express.js": SiExpress,
+  Express: SiExpress,
+  PostgreSQL: SiPostgresql,
+  Firebase: SiFirebase,
+  "Cloudflare Workers": SiCloudflare,
+  "Durable Objects": SiCloudflare,
+  WebSockets: SiSocketdotio,
+  JWT: SiJsonwebtokens,
+  Vite: SiVite,
+  HTML5: SiHtml5,
+  CSS3: SiCss3,
+};
+
+const TECH_COLORS_MAP: Record<string, string> = {
+  "React.js": "#61DAFB",
+  React: "#61DAFB",
+  "Next.js": "currentColor",
+  TypeScript: "#3178C6",
+  JavaScript: "#F7DF1E",
+  "Node.js": "#339933",
+  "Tailwind CSS": "#38BDF8",
+  MongoDB: "#47A248",
+  "Express.js": "currentColor",
+  Express: "currentColor",
+  PostgreSQL: "#4169E1",
+  Firebase: "#FFCA28",
+  "Cloudflare Workers": "#F38020",
+  "Durable Objects": "#F38020",
+  WebSockets: "#010101",
+  JWT: "#000000",
+  Vite: "#646CFF",
+  HTML5: "#E34F26",
+  CSS3: "#1572B6",
+};
+
+function TechIcon({ name }: { name: string }) {
+  const Icon = TECH_ICONS[name];
+  if (!Icon) return <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{name}</Badge>;
+
+  let color = TECH_COLORS_MAP[name] || "#9CA3AF";
+  if (color === "#000000") {
+    color = "currentColor";
+  }
+
+  return (
+    <TooltipProvider delayDuration={300}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex items-center justify-center p-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors cursor-default">
+            <Icon
+              className="h-4 w-4 transition-transform hover:scale-110"
+              style={{ color }}
+            />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p className="text-xs font-medium">{name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -37,26 +134,45 @@ function ProjectCard({ project }: { project: Project }) {
           </Link>
 
           <div className="flex gap-2">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink className="w-4 h-4" />
-            </a>
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github className="w-4 h-4" />
-              </a>
-            )}
+            <TooltipProvider delayDuration={300}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-md"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="Live Demo"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  <p className="text-xs">Live Demo</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {project.github && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-md"
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label="GitHub Repository"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    <p className="text-xs">GitHub Repo</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </TooltipProvider>
           </div>
         </div>
 
@@ -68,15 +184,9 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
             Technologies
           </p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {project.tech.map((tech) => (
-              <Badge
-                key={tech}
-                variant="secondary"
-                className="text-xs px-2 py-0.5"
-              >
-                {tech}
-              </Badge>
+              <TechIcon key={tech} name={tech} />
             ))}
           </div>
         </div>

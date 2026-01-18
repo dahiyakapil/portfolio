@@ -20,6 +20,12 @@ import {
   SiDocker,
   SiGit,
   SiPostman,
+  SiCloudflare,
+  SiVite,
+  SiJsonwebtokens,
+  SiSocketdotio,
+  SiHtml5,
+  SiCss3,
 } from "react-icons/si";
 
 
@@ -42,6 +48,13 @@ const TECH_ICONS: Record<string, React.ElementType> = {
   Docker: SiDocker,
   Git: SiGit,
   Postman: SiPostman,
+  "Cloudflare Workers": SiCloudflare,
+  "Durable Objects": SiCloudflare,
+  WebSockets: SiSocketdotio,
+  JWT: SiJsonwebtokens,
+  Vite: SiVite,
+  HTML5: SiHtml5,
+  CSS3: SiCss3,
 };
 
 const TECH_COLORS: Record<string, string> = {
@@ -62,6 +75,13 @@ const TECH_COLORS: Record<string, string> = {
   Docker: "#2496ED",
   Git: "#F05032",
   Postman: "#FF6C37",
+  "Cloudflare Workers": "#F38020",
+  "Durable Objects": "#F38020",
+  WebSockets: "#010101",
+  JWT: "#000000",
+  Vite: "#646CFF",
+  HTML5: "#E34F26",
+  CSS3: "#1572B6",
 };
 
 import {
