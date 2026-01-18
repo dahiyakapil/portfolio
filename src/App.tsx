@@ -8,6 +8,7 @@ import ProjectsListPage from "./pages/ProjectsListPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import ResumePage from "./pages/ResumePage";
 import ContactPage from "./pages/ContactPage";
+import ExperiencePage from "./pages/ExperiencePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/projects" element={<ProjectsListPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/resume" element={<ResumePage />} />

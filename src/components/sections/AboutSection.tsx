@@ -22,17 +22,11 @@ interface TechIconProps {
 
 function TechIcon({ icon: Icon }: TechIconProps) {
   const iconName = Icon.displayName || Icon.name;
-
-  let color = TECH_COLORS[iconName] || "#9CA3AF";
-
-  // Fix Next.js icon visibility in light mode
-  if (iconName === "SiNextdotjs") {
-    color = "currentColor";
-  }
+  const color = TECH_COLORS[iconName] || "#9CA3AF";
 
   return (
     <Icon
-      className="h-6 w-6 text-muted-foreground dark:text-white"
+      className="h-6 w-6"
       style={{ color }}
     />
   );

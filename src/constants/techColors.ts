@@ -11,11 +11,13 @@ import {
   SiGit,
   SiHtml5,
   SiCss3,
+  SiExpress,
+  SiFirebase,
 } from "react-icons/si";
 
 export const TECH_COLORS: Record<string, string> = {
   SiReact: "#61DAFB",
-  SiNextdotjs: "#FFFFFF",
+  SiNextdotjs: "#000000",
   SiTypescript: "#3178C6",
   SiJavascript: "#F7DF1E",
   SiNodedotjs: "#339933",
@@ -26,4 +28,6 @@ export const TECH_COLORS: Record<string, string> = {
   SiGit: "#F05032",
   SiHtml5: "#E34F26",
   SiCss3: "#1572B6",
+  SiExpress: "#000000",
+  SiFirebase: "#FFCA28",
 };

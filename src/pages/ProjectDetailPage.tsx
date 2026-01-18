@@ -1,10 +1,68 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { PROJECTS } from "@/constants/portfolio-data";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiExpress,
+  SiPostgresql,
+  SiFirebase,
+  SiVercel,
+  SiAmazonwebservices,
+  SiDocker,
+  SiGit,
+  SiPostman,
+} from "react-icons/si";
+
+
+// Tech name to icon mapping
+const TECH_ICONS: Record<string, React.ElementType> = {
+  "React.js": SiReact,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  JavaScript: SiJavascript,
+  "Node.js": SiNodedotjs,
+  "Tailwind CSS": SiTailwindcss,
+  MongoDB: SiMongodb,
+  "Express.js": SiExpress,
+  Express: SiExpress,
+  PostgreSQL: SiPostgresql,
+  Firebase: SiFirebase,
+  Vercel: SiVercel,
+  AWS: SiAmazonwebservices,
+  Docker: SiDocker,
+  Git: SiGit,
+  Postman: SiPostman,
+};
+
+const TECH_COLORS: Record<string, string> = {
+  "React.js": "#61DAFB",
+  React: "#61DAFB",
+  "Next.js": "#000000",
+  TypeScript: "#3178C6",
+  JavaScript: "#F7DF1E",
+  "Node.js": "#339933",
+  "Tailwind CSS": "#38BDF8",
+  MongoDB: "#47A248",
+  "Express.js": "#000000",
+  Express: "#000000",
+  PostgreSQL: "#4169E1",
+  Firebase: "#FFCA28",
+  Vercel: "#000000",
+  AWS: "#FF9900",
+  Docker: "#2496ED",
+  Git: "#F05032",
+  Postman: "#FF6C37",
+};
 
 export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -186,15 +244,25 @@ export default function ProjectDetailPage() {
             Tech Stack
           </h2>
           <div className="flex flex-wrap gap-3">
-            {project.tech.map((tech) => (
-              <Badge
-                key={tech}
-                variant="secondary"
-                className="px-3 py-1.5 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-              >
-                {tech}
-              </Badge>
-            ))}
+            {project.tech.map((tech) => {
+              const Icon = TECH_ICONS[tech];
+              const color = TECH_COLORS[tech];
+              
+              return (
+                <div
+                  key={tech}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all"
+                >
+                  {Icon && (
+                    <Icon
+                      className="text-lg"
+                      style={{ color: color || "currentColor" }}
+                    />
+                  )}
+                  <span className="text-sm font-medium">{tech}</span>
+                </div>
+              );
+            })}
           </div>
         </section>
 

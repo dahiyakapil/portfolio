@@ -15,20 +15,16 @@ import {
 
 export function TechnicalSkills() {
   const skills = [
-    { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
-    { name: "React", icon: SiReact, color: "text-cyan-500" },
-    {
-      name: "Next.js",
-      icon: SiNextdotjs,
-      color: "text-gray-900 dark:text-white",
-    },
-    { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
-    { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-sky-500" },
-    { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-    { name: "Git", icon: SiGit, color: "text-orange-600" },
-    { name: "HTML5", icon: SiHtml5, color: "text-orange-600" },
-    { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "React", icon: SiReact, color: "#61DAFB" },
+    { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+    { name: "Git", icon: SiGit, color: "#F05032" },
+    { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
+    { name: "CSS3", icon: SiCss3, color: "#1572B6" },
   ];
 
   return (
@@ -53,7 +49,8 @@ export function TechnicalSkills() {
                 className="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all hover:shadow-lg hover:border-border group"
               >
                 <Icon
-                  className={`text-xl ${skill.color} group-hover:scale-110 transition-transform`}
+                  className="text-xl group-hover:scale-110 transition-transform"
+                  style={{ color: skill.color }}
                 />
                 <span className="font-medium text-sm text-foreground">
                   {skill.name}

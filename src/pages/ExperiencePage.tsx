@@ -1,3 +1,4 @@
+import { Briefcase } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { WORK_EXPERIENCE } from "@/constants/portfolio-data";
 import type { WorkExperience } from "@/types/portfolio";
@@ -20,28 +21,6 @@ import {
   SiFirebase,
   SiPostman,
 } from "react-icons/si";
-
-const techColorMap: Record<string, string> = {
-  JavaScript: "#F7DF1E",
-  "React.js": "#61DAFB",
-  React: "#61DAFB",
-  "Next.js": "#000000",
-  TypeScript: "#3178C6",
-  "Node.js": "#339933",
-  "Tailwind CSS": "#38BDF8",
-  MongoDB: "#47A248",
-  Git: "#F05032",
-  Docker: "#2496ED",
-  HTML5: "#E34F26",
-  CSS3: "#1572B6",
-  Firebase: "#FFCA28",
-  PostgreSQL: "#4169E1",
-  "Express.js": "#000000",
-  Express: "#000000",
-  Vercel: "#000000",
-  AWS: "#FF9900",
-  Postman: "#FF6C37",
-};
 
 const techIconMap: Record<
   string,
@@ -66,6 +45,28 @@ const techIconMap: Record<
   Vercel: SiVercel,
   AWS: SiAmazonwebservices,
   Postman: SiPostman,
+};
+
+const techColorMap: Record<string, string> = {
+  JavaScript: "#F7DF1E",
+  "React.js": "#61DAFB",
+  React: "#61DAFB",
+  "Next.js": "#000000",
+  TypeScript: "#3178C6",
+  "Node.js": "#339933",
+  "Tailwind CSS": "#38BDF8",
+  MongoDB: "#47A248",
+  Git: "#F05032",
+  Docker: "#2496ED",
+  HTML5: "#E34F26",
+  CSS3: "#1572B6",
+  Firebase: "#FFCA28",
+  PostgreSQL: "#4169E1",
+  "Express.js": "#000000",
+  Express: "#000000",
+  Vercel: "#000000",
+  AWS: "#FF9900",
+  Postman: "#FF6C37",
 };
 
 interface ExperienceCardProps {
@@ -135,9 +136,12 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
         )}
 
         {/* Achievements */}
-        <ul className="space-y-0.5">
-          {experience.achievements.map((achievement) => (
-            <li className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
+        <ul className="space-y-2">
+          {experience.achievements.map((achievement, i) => (
+            <li
+              key={i}
+              className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+            >
               <span className="text-primary mt-1 shrink-0 font-bold">•</span>
               <span
                 dangerouslySetInnerHTML={{
@@ -152,22 +156,32 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
   );
 }
 
-export function ExperienceSection() {
+export default function ExperiencePage() {
   return (
-    <section id="experience" className="py-10">
-      <div className="mb-4">
-        <div className="flex items-center gap-3 mb-2">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Experience
-          </h2>
+    <div className="min-h-screen pt-24 pb-16 bg-background">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Page Header */}
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <Briefcase className="w-6 h-6 text-primary" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Work Experience
+            </h1>
+          </div>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            My work experiences across different companies and roles.
+          </p>
+        </div>
+
+        {/* Experience Cards */}
+        <div className="space-y-6">
+          {WORK_EXPERIENCE.map((work: WorkExperience, idx: number) => (
+            <ExperienceCard key={`${work.company}-${idx}`} experience={work} />
+          ))}
         </div>
       </div>
-
-      <div className="space-y-6">
-        {WORK_EXPERIENCE.map((work: WorkExperience, idx: number) => (
-          <ExperienceCard key={`${work.company}-${idx}`} experience={work} />
-        ))}
-      </div>
-    </section>
+    </div>
   );
 }

@@ -9,12 +9,12 @@ export function Navbar() {
   const location = useLocation();
 
   const navItems = [
-    { name: "Work", href: "/#experience" },
+    { name: "Work", href: "/experience" },
     { name: "Projects", href: "/projects" },
-    { name: "About", href: "/#about" },
   ];
 
   const isProjectsPage = location.pathname.startsWith("/projects");
+  const isExperiencePage = location.pathname.startsWith("/experience");
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40 ">
@@ -44,7 +44,8 @@ export function Navbar() {
                   key={item.name}
                   to={item.href}
                   className={`transition-colors text-sm font-medium ${
-                    isProjectsPage && item.href === "/projects"
+                    (isProjectsPage && item.href === "/projects") ||
+                    (isExperiencePage && item.href === "/experience")
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -97,7 +98,8 @@ export function Navbar() {
                   to={item.href}
                   onClick={() => setIsOpen(false)}
                   className={`block text-sm font-medium ${
-                    isProjectsPage && item.href === "/projects"
+                    (isProjectsPage && item.href === "/projects") ||
+                    (isExperiencePage && item.href === "/experience")
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
