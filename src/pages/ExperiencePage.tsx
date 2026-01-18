@@ -163,9 +163,7 @@ export default function ExperiencePage() {
         {/* Page Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Briefcase className="w-6 h-6 text-primary" />
-            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
               Work Experience
             </h1>
