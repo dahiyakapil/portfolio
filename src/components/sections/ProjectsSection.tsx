@@ -161,13 +161,14 @@ export function ProjectsSection() {
           <p className="text-xs uppercase tracking-widest text-muted-foreground">
             Featured
           </p>
-          <Link
+          {/* See all projects link */}
+          {/* <Link
             to="/projects"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
           >
             View all
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </Link> */}
         </div>
         <h2 className="text-4xl font-bold text-foreground">Projects</h2>
       </div>
