@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import {
+  SiGithub,
   SiReact,
   SiNextdotjs,
   SiTypescript,
@@ -148,7 +149,7 @@ function ProjectCard({ project }: { project: Project }) {
                       className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-md"
                       aria-label="GitHub Repository"
                     >
-                      <Github className="w-4 h-4" />
+                      <SiGithub className="w-4 h-4" />
                     </a>
                   </TooltipTrigger>
                   <TooltipContent side="top">

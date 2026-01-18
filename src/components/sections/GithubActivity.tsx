@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
-import {GitHubCalendar} from 'react-github-calendar';
+import { GitHubCalendar } from 'react-github-calendar';
 import type { Activity } from 'react-github-calendar';
 import { useTheme } from "@/context/theme-provider";
+import { SiGithub } from "react-icons/si";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function GithubActivity() {
   const [mounted, setMounted] = useState(false);
@@ -81,22 +88,37 @@ export default function GithubActivity() {
             </p>
           </div>
 
-          <a
-            href="https://github.com/dahiyakapil"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1 group"
-          >
-            <span>@dahiyakapil</span>
-            <svg 
-              className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+          <TooltipProvider delayDuration={300}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://github.com/dahiyakapil"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-2 group"
+                >
+                  <SiGithub className="w-5 h-5" />
+                  <span>@dahiyakapil</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="top">
+                <p className="text-xs">GitHub Profile</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <div className="relative group">

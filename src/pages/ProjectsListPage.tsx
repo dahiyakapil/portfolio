@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Github, ArrowLeft } from "lucide-react";
+import { ExternalLink, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS } from "@/constants/portfolio-data";
@@ -21,6 +21,7 @@ import {
   SiSocketdotio,
   SiHtml5,
   SiCss3,
+  SiGithub,
 } from "react-icons/si";
 import {
   Tooltip,
@@ -164,7 +165,7 @@ function ProjectCard({ project }: { project: Project }) {
                       onClick={(e) => e.stopPropagation()}
                       aria-label="GitHub Repository"
                     >
-                      <Github className="w-4 h-4" />
+                      <SiGithub className="w-4 h-4" />
                     </a>
                   </TooltipTrigger>
                   <TooltipContent side="top">

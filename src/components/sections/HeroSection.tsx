@@ -1,5 +1,12 @@
 import { Suspense } from "react";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail } from "lucide-react";
+import {
+  SiX,
+  SiGithub,
+  SiLinkedin,
+  SiInstagram,
+  SiYoutube,
+} from "react-icons/si";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -74,25 +81,24 @@ export function HeroSection() {
               </div>
 
               {/* Socials */}
-              <div className="flex gap-5 pt-2">
+              <div className="flex items-center gap-5 pt-4">
                 <TooltipProvider delayDuration={300}>
+                  {/* X (Twitter) */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href={SOCIAL_LINKS.github}
+                        href={SOCIAL_LINKS.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
-                        aria-label="GitHub Profile"
                       >
-                        <Github className="h-5 w-5" />
+                        <SiX className="h-5 w-5" />
                       </a>
                     </TooltipTrigger>
-                    <TooltipContent side="top">
-                      <p className="text-xs">GitHub</p>
-                    </TooltipContent>
+                    <TooltipContent>X</TooltipContent>
                   </Tooltip>
 
+                  {/* LinkedIn */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
@@ -100,29 +106,39 @@ export function HeroSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
-                        aria-label="LinkedIn Profile"
                       >
-                        <Linkedin className="h-5 w-5" />
+                        <SiLinkedin className="h-5 w-5" />
                       </a>
                     </TooltipTrigger>
-                    <TooltipContent side="top">
-                      <p className="text-xs">LinkedIn</p>
-                    </TooltipContent>
+                    <TooltipContent>LinkedIn</TooltipContent>
                   </Tooltip>
 
+                  {/* GitHub */}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={SOCIAL_LINKS.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                      >
+                        <SiGithub className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>GitHub</TooltipContent>
+                  </Tooltip>
+
+                  {/* Email */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
                         href={`mailto:${SOCIAL_LINKS.email}`}
                         className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
-                        aria-label="Send Email"
                       >
                         <Mail className="h-5 w-5" />
                       </a>
                     </TooltipTrigger>
-                    <TooltipContent side="top">
-                      <p className="text-xs">Email</p>
-                    </TooltipContent>
+                    <TooltipContent>Email</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </div>

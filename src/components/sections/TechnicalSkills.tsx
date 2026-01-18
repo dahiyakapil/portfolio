@@ -12,6 +12,12 @@ import {
   SiCss3,
   SiJavascript,
 } from "react-icons/si";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function TechnicalSkills() {
   const skills = [
@@ -41,23 +47,34 @@ export function TechnicalSkills() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {skills.map((skill) => {
-            const Icon = skill.icon;
-            return (
-              <div
-                key={skill.name}
-                className="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all hover:shadow-lg hover:border-border group"
-              >
-                <Icon
-                  className="text-xl group-hover:scale-110 transition-transform"
-                  style={{ color: skill.color }}
-                />
-                <span className="font-medium text-sm text-foreground">
-                  {skill.name}
-                </span>
-              </div>
-            );
-          })}
+          <TooltipProvider delayDuration={300}>
+            {skills.map((skill) => {
+              const Icon = skill.icon;
+              return (
+                <div
+                  key={skill.name}
+                  className="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-accent/50 transition-all hover:shadow-lg hover:border-border group"
+                >
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center justify-center">
+                        <Icon
+                          className="text-xl group-hover:scale-110 transition-transform"
+                          style={{ color: skill.color }}
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p className="text-xs">{skill.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <span className="font-medium text-sm text-foreground">
+                    {skill.name}
+                  </span>
+                </div>
+              );
+            })}
+          </TooltipProvider>
         </div>
       </div>
     </section>

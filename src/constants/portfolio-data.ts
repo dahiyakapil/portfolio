@@ -284,6 +284,7 @@ export const SOCIAL_LINKS = {
   github: "https://github.com/dahiyakapil",
   linkedin: "https://www.linkedin.com/in/kapildahiya21/",
   email: "mailto:kapildahiya308@gmail.com",
+  twitter: "https://x.com/KapilDahiya21",
 } as const;
 
 export const PERSONAL_INFO = {

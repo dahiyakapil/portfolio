@@ -1,4 +1,4 @@
-import { Globe, Linkedin } from "lucide-react";
+import { Globe } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { WORK_EXPERIENCE } from "@/constants/portfolio-data";
 import type { WorkExperience } from "@/types/portfolio";
@@ -20,6 +20,7 @@ import {
   SiAmazonwebservices,
   SiFirebase,
   SiPostman,
+  SiLinkedin,
 } from "react-icons/si";
 import {
   Tooltip,
@@ -132,7 +133,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                             className="text-muted-foreground hover:text-primary transition-colors"
                             aria-label="LinkedIn profile"
                           >
-                            <Linkedin className="w-4 h-4" />
+                            <SiLinkedin className="w-4 h-4" />
                           </a>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -164,25 +165,33 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
               Technologies & Tools
             </h4>
             <div className="flex flex-wrap gap-2">
-              {experience.technologies.map((tech) => {
-                const Icon = techIconMap[tech];
-                const color = techColorMap[tech];
+              <TooltipProvider delayDuration={300}>
+                {experience.technologies.map((tech) => {
+                  const Icon = techIconMap[tech];
+                  const color = techColorMap[tech];
 
-                return (
-                  <div
-                    key={tech}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors"
-                  >
-                    {Icon && (
-                      <Icon
-                        className="text-base"
-                        style={{ color: color || "currentColor" }}
-                      />
-                    )}
-                    <span className="text-xs font-medium">{tech}</span>
-                  </div>
-                );
-              })}
+                  return (
+                    <Tooltip key={tech}>
+                      <TooltipTrigger asChild>
+                        <div
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors cursor-default"
+                        >
+                          {Icon && (
+                            <Icon
+                              className="text-base"
+                              style={{ color: color || "currentColor" }}
+                            />
+                          )}
+                          <span className="text-xs font-medium">{tech}</span>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p className="text-xs">{tech}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </TooltipProvider>
             </div>
           </div>
         )}
