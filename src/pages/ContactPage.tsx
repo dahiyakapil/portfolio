@@ -21,8 +21,8 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-12 md:py-20">
-      <div className="w-full max-w-2xl mx-auto ">
+    <div className="min-h-screen pt-24 pb-12 md:pt-32 md:pb-20">
+      <div className="w-full max-w-2xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function ContactPage() {
             >
              
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 mt-10">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 mt-6">
                   Contact
                 </h1>
                 <p className="text-muted-foreground text-base md:text-lg">

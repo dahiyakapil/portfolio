@@ -106,7 +106,7 @@ export function ContactForm({ onSuccess, onError }: ContactFormProps) {
   };
 
   return (
-    <div className="w-full mt-20">
+    <div className="w-full mt-8">
       <div className="space-y-6">
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -195,7 +195,7 @@ export function ContactForm({ onSuccess, onError }: ContactFormProps) {
               value={formData.message}
               onChange={handleChange}
               onBlur={() => handleBlur("message")}
-              rows={10}
+              rows={6}
               className={`transition-all resize-none ${
                 touched.message && errors.message
                   ? "border-destructive focus-visible:ring-destructive"
