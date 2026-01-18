@@ -40,7 +40,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
               const isExternal = item.href.startsWith("/#");
               return isExternal ? (
