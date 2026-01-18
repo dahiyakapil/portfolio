@@ -228,21 +228,6 @@ export const PROJECTS: Project[] = [
     "Introduce offline-first sync with background updates",
   ],
 },
-  {
-    id: "resumind-4",
-    title: "Resumind",
-    description: "An AI-powered resume analyzer for job seekers",
-    problem:
-      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
-    solution:
-      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
-    technical:
-      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
-    outcome:
-      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
-    link: "#",
-  },
 ];
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
