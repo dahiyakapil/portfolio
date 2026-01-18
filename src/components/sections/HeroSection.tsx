@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants/portfolio-data";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 const AvatarSkeleton = () => (
   <div className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-muted animate-pulse" />
 );
@@ -66,24 +73,56 @@ export function HeroSection() {
 
               {/* Socials */}
               <div className="flex gap-5 pt-2">
-                <a
-                  href={SOCIAL_LINKS.github}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href={SOCIAL_LINKS.linkedin}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a
-                  href={SOCIAL_LINKS.email}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
+                <TooltipProvider delayDuration={300}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={SOCIAL_LINKS.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        aria-label="GitHub Profile"
+                      >
+                        <Github className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p className="text-xs">GitHub</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={SOCIAL_LINKS.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        aria-label="LinkedIn Profile"
+                      >
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p className="text-xs">LinkedIn</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={`mailto:${SOCIAL_LINKS.email}`}
+                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        aria-label="Send Email"
+                      >
+                        <Mail className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p className="text-xs">Email</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </div>
           </div>
