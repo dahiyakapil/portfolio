@@ -158,7 +158,7 @@ export default function GithubActivity() {
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+        {/* <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
           <span>Last 9 months activity</span>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -179,7 +179,7 @@ export default function GithubActivity() {
               <span>More</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
