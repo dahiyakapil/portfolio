@@ -186,7 +186,7 @@ export const PROJECTS: Project[] = [
   problem:
     "Most note and messaging apps are heavy, slow, and require always-on devices, making quick note-taking and lightweight communication inefficient across multiple devices.",
   solution:
-    "Built a lightweight, notes platform that enables users to securely send and receive notes across multiple devices with instant synchronization, low-latency updates, and a highly responsive user experience. Users can add notes.",
+    "Built a lightweight, notes platform that enables users to securely send and receive notes across multiple devices with instant synchronization, low-latency updates, and a highly responsive user experience.",
   technical:
     "Developed a modern frontend using React and Vite for fast performance, implemented a Cloudflare Workers backend with Durable Objects for stateful real-time messaging, used WebSockets for live updates, and JWT-based authentication for secure access across sessions.",
   outcome:
