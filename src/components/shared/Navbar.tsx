@@ -11,6 +11,7 @@ export function Navbar() {
   const navItems = [
     { name: "Work", href: "/experience" },
     { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const isProjectsPage = location.pathname.startsWith("/projects");
