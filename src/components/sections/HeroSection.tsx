@@ -13,16 +13,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+
 const AvatarSkeleton = () => (
   <div className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-muted animate-pulse" />
 );
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center py-10">
-      <div className="w-full">
+    <section className="relative min-h-screen flex items-center py-10 overflow-hidden">
+      
+      <div className="w-full relative z-10 pointer-events-none">
         <div className="max-w-3xl mx-auto px-4">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 pointer-events-auto">
             {/* Avatar */}
             <Suspense fallback={<AvatarSkeleton />}>
               <Avatar className="h-24 w-24 ring-2 ring-border ring-offset-4 ring-offset-background">

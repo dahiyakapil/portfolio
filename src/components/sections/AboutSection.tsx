@@ -11,6 +11,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { PERSONAL_INFO } from "@/constants/portfolio-data";
 import { TECH_COLORS } from "@/constants/techColors";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const AvatarSkeleton = () => (
   <div className="h-56 w-56 rounded-2xl bg-muted animate-pulse" />
@@ -18,17 +24,24 @@ const AvatarSkeleton = () => (
 
 interface TechIconProps {
   icon: React.ElementType;
+  label: string;
 }
 
-function TechIcon({ icon: Icon }: TechIconProps) {
+function TechIcon({ icon: Icon, label }: TechIconProps) {
   const iconName = Icon.displayName || Icon.name;
   const color = TECH_COLORS[iconName] || "#9CA3AF";
 
   return (
-    <Icon
-      className="h-6 w-6"
-      style={{ color }}
-    />
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div className="cursor-default">
+          <Icon className="h-6 w-6" style={{ color }} />
+        </div>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p className="text-xs font-medium">{label}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -74,12 +87,14 @@ export function AboutSection() {
                 <p className="text-md font-bold text-muted-foreground mb-3">
                   Skills
                 </p>
-                <div className="flex items-center space-x-2">
-                  <TechIcon icon={SiReact} />
-                  <TechIcon icon={SiNextdotjs} />
-                  <TechIcon icon={SiTypescript} />
-                  <TechIcon icon={SiNodedotjs} />
-                </div>
+                <TooltipProvider>
+                  <div className="flex items-center space-x-2">
+                    <TechIcon icon={SiReact} label="React" />
+                    <TechIcon icon={SiNextdotjs} label="Next.js" />
+                    <TechIcon icon={SiTypescript} label="TypeScript" />
+                    <TechIcon icon={SiNodedotjs} label="Node.js" />
+                  </div>
+                </TooltipProvider>
               </div>
             </div>
           </div>

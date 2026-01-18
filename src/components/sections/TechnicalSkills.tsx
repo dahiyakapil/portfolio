@@ -17,7 +17,7 @@ export function TechnicalSkills() {
   const skills = [
     { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
     { name: "React", icon: SiReact, color: "#61DAFB" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+    { name: "Next.js", icon: SiNextdotjs, color: "currentColor" },
     { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8" },

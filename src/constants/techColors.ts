@@ -17,7 +17,7 @@ import {
 
 export const TECH_COLORS: Record<string, string> = {
   SiReact: "#61DAFB",
-  SiNextdotjs: "#000000",
+  SiNextdotjs: "currentColor",
   SiTypescript: "#3178C6",
   SiJavascript: "#F7DF1E",
   SiNodedotjs: "#339933",
@@ -28,6 +28,6 @@ export const TECH_COLORS: Record<string, string> = {
   SiGit: "#F05032",
   SiHtml5: "#E34F26",
   SiCss3: "#1572B6",
-  SiExpress: "#000000",
+  SiExpress: "currentColor",
   SiFirebase: "#FFCA28",
 };
