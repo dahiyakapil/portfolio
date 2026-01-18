@@ -199,7 +199,7 @@ export const PROJECTS: Project[] = [
     "HTML5",
   ],
   link: "https://pocket-notes-module-test-c1x3.vercel.app",
-  github: "https://github.com/dahiyakapil/pocket-notes",
+  github: "https://github.com/dahiyakapil/pocket-notes-module-test",
   image: "/assets/projects/Pocket-Notes.png",
   timeline: "2 weeks",
   role: "Full Stack",
