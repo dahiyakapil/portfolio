@@ -234,6 +234,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     linkedin:
       "https://www.linkedin.com/company/indian-capital-and-investment-cbe-ltd",
     technologies: [
+      "Next.js",
       "React.js",
       "TypeScript",
       "Node.js",
