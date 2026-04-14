@@ -21,6 +21,11 @@ import {
   SiFirebase,
   SiPostman,
   SiLinkedin,
+  SiLaravel,
+  SiPhp,
+  SiStrapi,
+  SiWordpress,
+  SiElementor
 } from "react-icons/si";
 import {
   Tooltip,
@@ -52,6 +57,11 @@ const techIconMap: Record<
   Vercel: SiVercel,
   AWS: SiAmazonwebservices,
   Postman: SiPostman,
+  Laravel: SiLaravel,
+  PHP: SiPhp,
+  Strapi: SiStrapi,
+  WordPress: SiWordpress,
+  Elementor: SiElementor,
 };
 
 const techColorMap: Record<string, string> = {
@@ -74,6 +84,11 @@ const techColorMap: Record<string, string> = {
   Vercel: "currentColor",
   AWS: "#FF9900",
   Postman: "#FF6C37",
+  Laravel: "#FF2D20",
+  PHP: "#777BB4",
+  Strapi: "#000000",
+  WordPress: "#21759B",
+  Elementor: "#0F75BC",
 };
 
 interface ExperienceCardProps {

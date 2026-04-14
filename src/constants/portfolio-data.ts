@@ -240,6 +240,11 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
       "Node.js",
       "Tailwind CSS",
       "Firebase",
+      "Laravel",
+      "PHP",
+      "Strapi",
+      "WordPress",
+      "Elementor",
     ],
     achievements: [
       "Built and deployed a scalable Notion-based database system using Cloudflare Workers for fast, serverless data handling on tempusmail.com",

@@ -1,3 +1,5 @@
+import { FaJava } from "react-icons/fa";
+
 import {
   SiReact,
   SiNextdotjs,
@@ -20,11 +22,16 @@ import {
   SiVite,
   SiJsonwebtokens,
   SiSocketdotio,
+  SiLaravel,
+  SiStrapi,
+  SiWordpress,
+  SiElementor,
+  SiPayloadcms
 } from "react-icons/si";
 
 export interface TechMeta {
   icon: React.ElementType;
-  color: string;
+  cSolor: string;
 }
 
 export const TECH_DATA: Record<string, TechMeta> = {
@@ -52,6 +59,12 @@ export const TECH_DATA: Record<string, TechMeta> = {
   "Vite": { icon: SiVite, color: "#646CFF" },
   "JWT": { icon: SiJsonwebtokens, color: "#000000" },
   "WebSockets": { icon: SiSocketdotio, color: "#010101" },
+  "Laravel": { icon: SiLaravel, color: "#FF2D20" },
+  "Java": { icon: FaJava, color: "#007396" },
+  "Strapi": { icon: SiStrapi, color: "#000000" },
+  "WordPress": { icon: SiWordpress, color: "#21759B" },
+  "Elementor": { icon: SiElementor, color: "#0F75BC" },
+  "Payload CMS": { icon: SiPayloadcms, color: "#FF6F61" },
 };
 
 export const getTechMeta = (name: string): TechMeta | null => {
