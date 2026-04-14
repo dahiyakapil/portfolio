@@ -11,7 +11,7 @@ export default function ResumePage() {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = resumeFile;
-    link.download = "Kapil_Dahiya_Resume.pdf";
+    link.download = "Kapil_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -84,7 +84,7 @@ export default function ResumePage() {
                   <span className="w-3 h-3 rounded-full bg-green-400" />
                 </div>
                 <span className="ml-3 text-sm font-medium text-muted-foreground">
-                  Kapil_Dahiya_Resume.pdf
+                  Kapil_Resume.pdf
                 </span>
               </div>
 
