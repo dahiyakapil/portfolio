@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ResumePage() {
   const [isLoading, setIsLoading] = useState(true);
-  const resumeFile = "/assets/resume/Kapil_Dahiya_Resume.pdf";
+  const resumeFile = "/assets/resume/Kapil_Resume.pdf";
 
   const handleDownload = () => {
     const link = document.createElement("a");
