@@ -3,6 +3,12 @@ import { SiGithub, SiLinkedin } from "react-icons/si";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants/portfolio-data";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function ContactCTA() {
   return (
@@ -31,45 +37,24 @@ export function ContactCTA() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Let&apos;s build reliable software.
+            Interested in building reliable software together?
           </h2>
 
           <p className="text-muted-foreground leading-relaxed">
-            I enjoy building production systems where reliability matters more
-            than demos—payments, concurrency, distributed jobs, and software
-            that real businesses depend on.
+            I&apos;m currently looking for backend and full-stack opportunities
+            where I can build production systems, APIs, payments, and
+            distributed infrastructure.
           </p>
 
-          <p className="text-sm text-foreground/85 leading-relaxed">
-            Looking for backend and full-stack roles focused on distributed
-            systems, payments, APIs, and production infrastructure.
+          <p className="text-sm text-foreground/80 leading-relaxed">
+            {PERSONAL_INFO.availability}
           </p>
 
-          <div className="flex flex-wrap gap-2.5 pt-1">
+          <div className="flex flex-wrap items-center gap-2.5 pt-1">
             <a href={`mailto:${SOCIAL_LINKS.email}`}>
               <Button size="lg" className="gap-2">
                 <Mail className="h-4 w-4" />
-                Email
-              </Button>
-            </a>
-            <a
-              href={SOCIAL_LINKS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" size="lg" className="gap-2">
-                <SiLinkedin className="h-4 w-4" />
-                LinkedIn
-              </Button>
-            </a>
-            <a
-              href={SOCIAL_LINKS.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" size="lg" className="gap-2">
-                <SiGithub className="h-4 w-4" />
-                GitHub
+                Contact me
               </Button>
             </a>
             <a
@@ -78,11 +63,59 @@ export function ContactCTA() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="ghost" size="lg" className="gap-2">
+              <Button variant="outline" size="lg" className="gap-2">
                 <FileDown className="h-4 w-4" />
                 Download CV
               </Button>
             </a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={SOCIAL_LINKS.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <SiGithub className="h-4 w-4" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>GitHub</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={SOCIAL_LINKS.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <SiLinkedin className="h-4 w-4" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>LinkedIn</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={`mailto:${SOCIAL_LINKS.email}`}
+                    className="inline-flex items-center gap-2 h-9 rounded-full border border-border/60 px-3 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                    aria-label="Email"
+                  >
+                    <Mail className="h-3.5 w-3.5 shrink-0" />
+                    {SOCIAL_LINKS.email}
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>Email</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
