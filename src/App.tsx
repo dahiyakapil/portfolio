@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/shared/Navbar";
 import { Footer } from "./components/shared/Footer";
 import { SeoManager } from "./components/seo/SeoManager";
+import { Analytics } from "./components/seo/Analytics";
+import { StructuredData } from "./components/seo/StructuredData";
 import { HashScroll } from "./components/shared/HashScroll";
 import { Spotlight } from "./components/ui/spotlight";
 import { Toaster } from "./components/ui/sonner";
@@ -30,6 +32,8 @@ function App() {
   return (
     <Router>
       <SeoManager />
+      <Analytics />
+      <StructuredData />
       <HashScroll />
       <a
         href="#main"

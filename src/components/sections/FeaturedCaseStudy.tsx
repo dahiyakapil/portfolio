@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { CASE_STUDY } from "@/constants/portfolio-data";
 import { getTechMeta } from "@/constants/techColors";
+import { trackEvent } from "@/lib/analytics";
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
@@ -244,14 +245,29 @@ export function FeaturedCaseStudy() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-1">
-            <Link to={`/projects/${project.id}`}>
+            <Link
+              to={`/projects/${project.id}`}
+              onClick={() =>
+                trackEvent("Case Study Click", {
+                  source: "featured",
+                  project: project.id,
+                })
+              }
+            >
               <Button size="lg" className="gap-2 h-11 px-6">
                 Engineering deep dive
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             {isExternalLive && (
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent("Live Product Click", { project: project.id })
+                }
+              >
                 <Button variant="outline" size="lg" className="gap-2 h-11 px-6">
                   Open live product
                   <ExternalLink className="w-4 h-4" />

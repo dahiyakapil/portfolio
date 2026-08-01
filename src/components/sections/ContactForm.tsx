@@ -1,28 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Loader2, Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SOCIAL_LINKS } from "@/constants/portfolio-data";
+import { trackEvent } from "@/lib/analytics";
 import {
   validateContactForm,
   sendContactMessage,
   openMailtoFallback,
+  isContactApiConfigured,
   ContactServiceError,
   type ContactFormData,
 } from "@/api/services/contactService";
 
 interface ContactFormProps {
-  onSuccess?: () => void;
+  onSuccess?: (meta?: { usedMailto?: boolean }) => void;
   onError?: (error: string) => void;
 }
 
 export function ContactForm({ onSuccess, onError }: ContactFormProps) {
+  const openedAtRef = useRef(Date.now());
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     message: "",
+    website: "",
+    formOpenedAt: openedAtRef.current,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -78,17 +83,34 @@ export function ContactForm({ onSuccess, onError }: ContactFormProps) {
     setErrors({});
 
     try {
-      const response = await sendContactMessage(formData);
+      const response = await sendContactMessage(
+        {
+          ...formData,
+          formOpenedAt: openedAtRef.current,
+        },
+        { fallbackToMailto: true }
+      );
       if (response.success) {
-        setFormData({ name: "", email: "", message: "" });
+        trackEvent("Contact Submit", {
+          method: response.usedMailto ? "mailto" : "api",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          website: "",
+          formOpenedAt: Date.now(),
+        });
+        openedAtRef.current = Date.now();
         setTouched({});
-        onSuccess?.();
+        onSuccess?.({ usedMailto: response.usedMailto });
       }
     } catch (error) {
       let errorMessage = "Failed to send message. Please try again.";
       if (error instanceof ContactServiceError) {
         errorMessage = error.message;
       }
+      trackEvent("Contact Error");
       onError?.(errorMessage);
     } finally {
       setIsSubmitting(false);
@@ -97,7 +119,30 @@ export function ContactForm({ onSuccess, onError }: ContactFormProps) {
 
   return (
     <div className="w-full mt-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      {!isContactApiConfigured() && import.meta.env.DEV ? (
+        <p className="mb-4 text-xs text-amber-500/90">
+          Dev note: `VITE_API_BASE_URL` is unset — submits will use mailto.
+        </p>
+      ) : null}
+
+      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+        {/* Honeypot — hidden from users, filled by many bots */}
+        <div
+          className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website ?? ""}
+            onChange={handleChange}
+          />
+        </div>
+
         <div className="space-y-2">
           <Label htmlFor="name" className="text-sm font-medium">
             Name <span className="text-destructive">*</span>
@@ -208,7 +253,10 @@ export function ContactForm({ onSuccess, onError }: ContactFormProps) {
             size="lg"
             className="w-full gap-2 h-11"
             disabled={!isFormValid || isSubmitting}
-            onClick={() => openMailtoFallback(formData)}
+            onClick={() => {
+              trackEvent("Contact Mailto Fallback", { source: "button" });
+              openMailtoFallback(formData);
+            }}
           >
             <Mail className="h-4 w-4" />
             Or email {SOCIAL_LINKS.email}

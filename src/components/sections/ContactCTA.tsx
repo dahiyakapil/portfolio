@@ -4,6 +4,7 @@ import { IconGithub, IconLinkedin } from "@/components/icons/brands";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants/portfolio-data";
+import { trackEvent } from "@/lib/analytics";
 import {
   Tooltip,
   TooltipContent,
@@ -56,7 +57,12 @@ export function ContactCTA() {
 
           <div className="flex flex-wrap items-center gap-2.5 pt-1">
             <Button asChild size="lg" className="gap-2">
-              <Link to="/contact">
+              <Link
+                to="/contact"
+                onClick={() =>
+                  trackEvent("Contact Open", { source: "cta" })
+                }
+              >
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Contact me
               </Link>
@@ -66,6 +72,7 @@ export function ContactCTA() {
               download="Kapil_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("Download CV", { source: "cta" })}
             >
               <Button variant="outline" size="lg" className="gap-2">
                 <FileDown className="h-4 w-4" aria-hidden="true" />

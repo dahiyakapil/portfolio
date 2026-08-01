@@ -16,6 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { scrollToHash } from "@/lib/hashScroll";
+import { trackEvent } from "@/lib/analytics";
 import { useHeavyHeroEffects } from "@/hooks/useMotionPreference";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
@@ -186,6 +187,7 @@ export function HeroSection() {
                 <Link
                   to="/#case-study"
                   onClick={(e) => {
+                    trackEvent("Case Study Click", { source: "hero" });
                     if (window.location.pathname === "/") {
                       e.preventDefault();
                       if (window.location.hash !== "#case-study") {
@@ -205,6 +207,9 @@ export function HeroSection() {
                   download="Kapil_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent("Download CV", { source: "hero" })
+                  }
                 >
                   <Button
                     variant="outline"

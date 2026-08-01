@@ -5,15 +5,23 @@ const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(
   ""
 );
 
+/** Minimum time (ms) a human needs to fill the form — bots often submit instantly. */
+const MIN_SUBMIT_MS = 2500;
+
 export interface ContactFormData {
   name: string;
   email: string;
   message: string;
+  /** Honeypot — must stay empty */
+  website?: string;
+  /** Epoch ms when the form was opened */
+  formOpenedAt?: number;
 }
 
 export interface ContactResponse {
   success: boolean;
   message: string;
+  usedMailto?: boolean;
 }
 
 export class ContactServiceError extends Error {
@@ -32,6 +40,10 @@ export class ContactServiceError extends Error {
   }
 }
 
+export function isContactApiConfigured(): boolean {
+  return Boolean(API_BASE_URL);
+}
+
 function buildMailtoHref(formData: ContactFormData): string {
   const subject = encodeURIComponent(`Portfolio contact from ${formData.name}`);
   const body = encodeURIComponent(
@@ -47,18 +59,50 @@ export function openMailtoFallback(formData: ContactFormData): void {
   window.location.href = buildMailtoHref(formData);
 }
 
+function assertNotSpam(formData: ContactFormData): void {
+  if (formData.website && formData.website.trim() !== "") {
+    throw new ContactServiceError("Unable to send message.", 400);
+  }
+
+  const openedAt = formData.formOpenedAt ?? 0;
+  if (openedAt > 0 && Date.now() - openedAt < MIN_SUBMIT_MS) {
+    throw new ContactServiceError(
+      "Please take a moment to review your message, then try again.",
+      429
+    );
+  }
+}
+
 /**
  * Sends a contact form submission to the API.
- * Falls back to mailto when VITE_API_BASE_URL is missing.
+ * Falls back to mailto when VITE_API_BASE_URL is missing or the request fails hard.
  */
 export const sendContactMessage = async (
-  formData: ContactFormData
+  formData: ContactFormData,
+  options?: { fallbackToMailto?: boolean }
 ): Promise<ContactResponse> => {
+  assertNotSpam(formData);
+
+  const payload = {
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    message: formData.message.trim(),
+    // Opaque anti-spam fields — backend may ignore; still useful client-side
+    _hp: formData.website ?? "",
+    _t: formData.formOpenedAt ?? Date.now(),
+  };
+
   if (!API_BASE_URL) {
+    if (import.meta.env.PROD) {
+      console.warn(
+        "[contact] VITE_API_BASE_URL is not set — using mailto fallback."
+      );
+    }
     openMailtoFallback(formData);
     return {
       success: true,
       message: "Opened your email client to send the message.",
+      usedMailto: true,
     };
   }
 
@@ -71,7 +115,7 @@ export const sendContactMessage = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
       signal: controller.signal,
     });
 
@@ -80,7 +124,7 @@ export const sendContactMessage = async (
     try {
       data = raw ? (JSON.parse(raw) as ContactResponse) : {};
     } catch {
-      // Non-JSON (e.g. Render cold-start HTML) — treat as failure below
+      // Non-JSON (e.g. Render cold-start HTML)
     }
 
     if (!response.ok) {
@@ -96,10 +140,27 @@ export const sendContactMessage = async (
     };
   } catch (error) {
     if (error instanceof ContactServiceError) {
+      if (options?.fallbackToMailto && error.statusCode !== 429) {
+        openMailtoFallback(formData);
+        return {
+          success: true,
+          message: "Opened your email client to send the message.",
+          usedMailto: true,
+        };
+      }
       throw error;
     }
 
     if (error instanceof DOMException && error.name === "AbortError") {
+      if (options?.fallbackToMailto) {
+        openMailtoFallback(formData);
+        return {
+          success: true,
+          message:
+            "The server was slow to respond, so I opened your email client instead.",
+          usedMailto: true,
+        };
+      }
       throw new ContactServiceError(
         "The server is taking too long to respond (it may be waking up). Please try again in a moment, or email me directly.",
         408,
@@ -108,6 +169,15 @@ export const sendContactMessage = async (
     }
 
     if (error instanceof TypeError) {
+      if (options?.fallbackToMailto) {
+        openMailtoFallback(formData);
+        return {
+          success: true,
+          message:
+            "Could not reach the server, so I opened your email client instead.",
+          usedMailto: true,
+        };
+      }
       throw new ContactServiceError(
         "Could not reach the contact server. Please try again or email me directly.",
         undefined,

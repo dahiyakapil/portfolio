@@ -5,7 +5,15 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
-  const handleSuccess = () => {
+  const handleSuccess = (meta?: { usedMailto?: boolean }) => {
+    if (meta?.usedMailto) {
+      toast.message("Email client opened", {
+        description:
+          "Finish sending from your mail app — or try the form again in a moment if the server was waking up.",
+        duration: 6000,
+      });
+      return;
+    }
     toast.success("Message sent successfully!", {
       description: "I'll get back to you as soon as I can.",
       duration: 5000,
