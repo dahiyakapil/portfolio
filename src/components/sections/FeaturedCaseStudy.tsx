@@ -23,7 +23,7 @@ export function FeaturedCaseStudy() {
   const nodes = project.architecture ?? [];
 
   return (
-    <section id="case-study" className="py-10 px-4 sm:px-6 lg:px-8">
+    <section id="case-study" className="pt-4 pb-10 px-4 sm:px-6 lg:px-8">
       <article className="rounded-2xl border border-border/60 bg-card/40 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] overflow-hidden">
         {/* Header band */}
         <header className="px-5 sm:px-8 md:px-10 pt-7 sm:pt-9 pb-6 border-b border-border/40">
