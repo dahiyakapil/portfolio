@@ -140,10 +140,10 @@ export const PROJECTS: Project[] = [
     caseStudy: true,
     accent: "green",
     metrics: [
-      { value: "Redis", label: "Distributed Locks" },
-      { value: "Mongo", label: "Transactions" },
-      { value: "BullMQ", label: "Background Jobs" },
-      { value: "Razorpay", label: "Payments Live" },
+      { value: "Concurrency", label: "Redis Locks" },
+      { value: "Transactions", label: "MongoDB ACID" },
+      { value: "Background Jobs", label: "BullMQ" },
+      { value: "Payments", label: "Razorpay" },
     ],
     architecture: [
       "Frontend",
