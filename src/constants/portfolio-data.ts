@@ -92,18 +92,6 @@ export const COMPANIES: Company[] = [
   },
 ];
 
-export const CAREER_TIMELINE: StatItem[] = [
-  { value: "2024", label: "Unified Mentor intern · React + REST APIs" },
-  {
-    value: "2025",
-    label: "Indian Capital intern · Workers, auth, payments, CMS",
-  },
-  {
-    value: "2026",
-    label: "Freelance · SportsHub live — bookings, Redis, Razorpay",
-  },
-];
-
 export const FEATURED_SKILLS = [
   { name: "React.js", color: "#61DAFB" },
   { name: "Node.js", color: "#339933" },

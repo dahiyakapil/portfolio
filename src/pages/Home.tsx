@@ -1,4 +1,3 @@
-import { AboutSection } from "@/components/sections/AboutSection";
 import { CompaniesSection } from "@/components/sections/CompaniesSection";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
@@ -16,7 +15,6 @@ export default function Home() {
       <ExperienceSection />
       <ProjectsSection />
       <TechnicalSkills />
-      <AboutSection />
       <ContactCTA />
     </>
   );
