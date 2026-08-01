@@ -18,7 +18,7 @@ export const SITE = {
   name: PERSONAL_INFO.name,
   title: `${PERSONAL_INFO.name} · ${PERSONAL_INFO.role}`,
   description:
-    "Backend Engineer specializing in distributed systems and payment-enabled apps. Sole engineer on SportsHub — Redis locks, MongoDB transactions, BullMQ, Razorpay. Open to full-time roles.",
+    "Full Stack Developer specializing in distributed systems and payment-enabled apps. Sole engineer on SportsHub — Redis locks, MongoDB transactions, BullMQ, Razorpay. Open to full-time roles.",
   /** Default share image (relative to origin) */
   ogImage: "/assets/projects/SportsHub-hero.webp",
   ogImageAlt: "SportsHub — live sports venue booking platform",

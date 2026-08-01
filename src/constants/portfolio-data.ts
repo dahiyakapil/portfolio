@@ -650,9 +650,9 @@ export const SOCIAL_LINKS = {
 export const PERSONAL_INFO = {
   name: "Kapil Dahiya",
   nickname: "Kapil",
-  role: "Backend Engineer",
+  role: "Full Stack Developer",
   punchline: "specializing in distributed systems",
-  title: "Backend Engineer specializing in distributed systems",
+  title: "Full Stack Developer specializing in distributed systems",
   headlineLead: "Building",
   headlineAccent: "production systems",
   headlineTail: "and payment-enabled apps.",

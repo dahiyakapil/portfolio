@@ -127,7 +127,7 @@ function resolveRouteSeo(pathname: string): SeoProps {
   if (pathname === "/resume") {
     return {
       title: pageTitle("Resume"),
-      description: `Resume / CV — ${SITE.name}, ${SITE.title.split(" · ")[1] ?? "Backend Engineer"}.`,
+      description: `Resume / CV — ${SITE.name}, ${SITE.title.split(" · ")[1] ?? "Full Stack Developer"}.`,
       path: "/resume",
     };
   }
