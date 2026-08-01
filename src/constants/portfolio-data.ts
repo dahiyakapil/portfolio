@@ -131,7 +131,7 @@ export const PROJECTS: Project[] = [
       "Docker",
     ],
     link: "https://sports-hub-user-web.vercel.app/",
-    image: "/assets/projects/SportsHub.webp",
+    image: "/assets/projects/SportsHub-hero.webp",
     imageWidth: 1024,
     imageHeight: 480,
     timeline: "Jan 2026 – Present",

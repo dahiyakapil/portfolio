@@ -57,8 +57,8 @@ const jobs = [
     fit: "cover",
   },
   {
-    in: "public/assets/projects/SportsHub.png",
-    out: "public/assets/projects/SportsHub",
+    in: "public/assets/projects/SportsHub-hero.png",
+    out: "public/assets/projects/SportsHub-hero",
     width: 1200,
   },
   {

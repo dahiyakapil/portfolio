@@ -11,11 +11,11 @@
     "webp": "/assets/kapil-avatar-lg.webp",
     "avif": "/assets/kapil-avatar-lg.avif"
   },
-  "SportsHub": {
+  "SportsHub-hero": {
     "width": 1024,
     "height": 480,
-    "webp": "/assets/projects/SportsHub.webp",
-    "avif": "/assets/projects/SportsHub.avif"
+    "webp": "/assets/projects/SportsHub-hero.webp",
+    "avif": "/assets/projects/SportsHub-hero.avif"
   },
   "Resumind": {
     "width": 1200,
