@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink, Star } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { ACCENT_CARD, ACCENT_PICK } from "@/constants/accents";
 import { getTechMeta } from "@/constants/techColors";
 import type { Project } from "@/types/portfolio";
@@ -50,9 +51,11 @@ function BrowserFrame({ project }: { project: Project }) {
       </div>
       <div className="aspect-[21/9] bg-zinc-900 overflow-hidden">
         {project.image ? (
-          <img
+          <OptimizedImage
             src={project.image}
             alt={`${project.title} product UI`}
+            width={project.imageWidth ?? 1200}
+            height={project.imageHeight ?? 514}
             className="w-full h-full object-cover object-top"
             loading="lazy"
           />

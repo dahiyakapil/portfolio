@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { CASE_STUDY } from "@/constants/portfolio-data";
 import { getTechMeta } from "@/constants/techColors";
 
@@ -203,10 +204,13 @@ export function FeaturedCaseStudy() {
                   <div className="w-10" aria-hidden />
                 </div>
                 <div className="aspect-[16/9] bg-zinc-900">
-                  <img
+                  <OptimizedImage
                     src={project.image}
                     alt={`${project.title} product UI`}
+                    width={project.imageWidth ?? 1024}
+                    height={project.imageHeight ?? 487}
                     className="w-full h-full object-cover object-top"
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -4,6 +4,7 @@ import { SiX, SiGithub, SiLinkedin } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import {
   CASE_STUDY,
   PERSONAL_INFO,
@@ -49,11 +50,14 @@ function HeroArchitecturePreview() {
 
         {CASE_STUDY?.image ? (
           <div className="mb-4 rounded-lg overflow-hidden border border-border/40 bg-slate-950 aspect-[16/10]">
-            <img
+            <OptimizedImage
               src={CASE_STUDY.image}
               alt={`${CASE_STUDY.title} preview`}
+              width={CASE_STUDY.imageWidth ?? 1024}
+              height={CASE_STUDY.imageHeight ?? 487}
               className="w-full h-full object-cover object-top opacity-90"
               loading="eager"
+              fetchPriority="high"
             />
           </div>
         ) : null}
@@ -115,7 +119,10 @@ export function HeroSection() {
               <AvatarImage
                 src={PERSONAL_INFO.avatar}
                 alt={PERSONAL_INFO.name}
+                width={PERSONAL_INFO.avatarWidth}
+                height={PERSONAL_INFO.avatarHeight}
                 loading="eager"
+                fetchPriority="high"
               />
               <AvatarFallback className="text-2xl bg-foreground text-background">
                 {PERSONAL_INFO.initials}

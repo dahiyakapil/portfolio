@@ -1,0 +1,50 @@
+{
+  "kapil-avatar": {
+    "width": 192,
+    "height": 192,
+    "webp": "/assets/kapil-avatar.webp",
+    "avif": "/assets/kapil-avatar.avif"
+  },
+  "kapil-avatar-lg": {
+    "width": 256,
+    "height": 256,
+    "webp": "/assets/kapil-avatar-lg.webp",
+    "avif": "/assets/kapil-avatar-lg.avif"
+  },
+  "SportsHub": {
+    "width": 1024,
+    "height": 487,
+    "webp": "/assets/projects/SportsHub.webp",
+    "avif": "/assets/projects/SportsHub.avif"
+  },
+  "Resumind": {
+    "width": 1200,
+    "height": 569,
+    "webp": "/assets/projects/Resumind.webp",
+    "avif": "/assets/projects/Resumind.avif"
+  },
+  "Mail-App-Cloudflare": {
+    "width": 1200,
+    "height": 570,
+    "webp": "/assets/projects/Mail-App-Cloudflare.webp",
+    "avif": "/assets/projects/Mail-App-Cloudflare.avif"
+  },
+  "URL-Shortener": {
+    "width": 932,
+    "height": 442,
+    "webp": "/assets/projects/URL-Shortener.webp",
+    "avif": "/assets/projects/URL-Shortener.avif"
+  },
+  "Pocket-Notes": {
+    "width": 1200,
+    "height": 813,
+    "webp": "/assets/projects/Pocket-Notes.webp",
+    "avif": "/assets/projects/Pocket-Notes.avif"
+  },
+  "HungryHub": {
+    "width": 1200,
+    "height": 573,
+    "webp": "/assets/projects/HungryHub.webp",
+    "avif": "/assets/projects/HungryHub.avif"
+  }
+}

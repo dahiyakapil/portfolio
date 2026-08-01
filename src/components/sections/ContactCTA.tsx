@@ -23,7 +23,10 @@ export function ContactCTA() {
             <AvatarImage
               src={PERSONAL_INFO.avatarLarge}
               alt={PERSONAL_INFO.name}
+              width={PERSONAL_INFO.avatarLargeWidth}
+              height={PERSONAL_INFO.avatarLargeHeight}
               className="object-cover w-full h-full"
+              loading="lazy"
             />
           </Avatar>
         </div>

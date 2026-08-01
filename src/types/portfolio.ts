@@ -31,6 +31,9 @@ export interface Project {
   link: string;
   github?: string;
   image?: string;
+  /** Intrinsic pixel size of `image` (for CLS) */
+  imageWidth?: number;
+  imageHeight?: number;
   timeline?: string;
   role?: string;
   team?: string;

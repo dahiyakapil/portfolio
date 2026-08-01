@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { PROJECTS } from "@/constants/portfolio-data";
 import { ACCENT_FRAME, ACCENT_SOFT } from "@/constants/accents";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -46,10 +47,13 @@ export default function ProjectDetailPage() {
           >
             <div className="absolute inset-0 flex items-end justify-center p-4 md:p-8 pb-0">
               <div className="w-[94%] h-[88%] rounded-t-lg overflow-hidden shadow-2xl border border-black/20 bg-slate-950">
-                <img
+                <OptimizedImage
                   src={project.image}
                   alt={project.title}
+                  width={project.imageWidth ?? 1200}
+                  height={project.imageHeight ?? 675}
                   className="w-full h-full object-cover object-top"
+                  loading="eager"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = "none";
