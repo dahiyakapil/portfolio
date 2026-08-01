@@ -71,6 +71,9 @@
 
 :root {
   --radius: 0.625rem;
+  /* Hero punchline accent — cool ink → teal, not purple */
+  --hero-accent-from: oklch(0.42 0.11 250);
+  --hero-accent-to: oklch(0.48 0.1 195);
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -105,6 +108,8 @@
 }
 
 .dark {
+  --hero-accent-from: oklch(0.82 0.1 250);
+  --hero-accent-to: oklch(0.88 0.09 185);
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
@@ -153,5 +158,62 @@
   
   code, pre {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+@layer utilities {
+  .text-hero-accent {
+    background-image: linear-gradient(
+      105deg,
+      var(--hero-accent-from) 0%,
+      var(--hero-accent-to) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklch, var(--foreground) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 8%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 75%);
+  }
+
+  .hero-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  .hero-cursor-glow {
+    --mx: 50%;
+    --my: 30%;
+    background: radial-gradient(
+      600px circle at var(--mx) var(--my),
+      color-mix(in oklch, var(--hero-accent-to) 22%, transparent),
+      transparent 55%
+    );
+  }
+
+  .animate-blob {
+    animation: blob 12s ease-in-out infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(12px, -18px) scale(1.05);
+    }
+    66% {
+      transform: translate(-10px, 10px) scale(0.96);
+    }
   }
 }

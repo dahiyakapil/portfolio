@@ -1,18 +1,15 @@
-import { Suspense } from "react";
-import { Mail } from "lucide-react";
-import {
-  SiX,
-  SiGithub,
-  SiLinkedin,
-  SiInstagram,
-  SiYoutube,
-} from "react-icons/si";
+import { useEffect, useRef } from "react";
+import { ArrowRight, FileDown, Mail } from "lucide-react";
+import { SiX, SiGithub, SiLinkedin } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants/portfolio-data";
-
+import {
+  CASE_STUDY,
+  HERO_STATS,
+  PERSONAL_INFO,
+  SOCIAL_LINKS,
+} from "@/constants/portfolio-data";
 import {
   Tooltip,
   TooltipContent,
@@ -20,128 +17,272 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+function HeroArchitecturePreview() {
+  const nodes = CASE_STUDY?.architecture ?? [
+    "React / Redux",
+    "Node.js API",
+    "Redis locks",
+    "MongoDB txs",
+    "Razorpay",
+  ];
 
-const AvatarSkeleton = () => (
-  <div className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-muted animate-pulse" />
-);
+  return (
+    <div className="relative w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+      <div
+        className="absolute -inset-4 rounded-3xl bg-[var(--hero-accent-to)]/10 blur-2xl"
+        aria-hidden
+      />
+      <div className="relative rounded-2xl border border-border/50 bg-card/70 backdrop-blur-md p-5 shadow-xl overflow-hidden">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
+              System preview
+            </p>
+            <p className="text-sm font-semibold text-foreground">
+              {CASE_STUDY?.title ?? "SportsHub"}
+            </p>
+          </div>
+          <span className="text-[10px] font-medium px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            Live
+          </span>
+        </div>
+
+        {CASE_STUDY?.image ? (
+          <div className="mb-4 rounded-lg overflow-hidden border border-border/40 bg-slate-950 aspect-[16/10]">
+            <img
+              src={CASE_STUDY.image}
+              alt={`${CASE_STUDY.title} preview`}
+              className="w-full h-full object-cover object-top opacity-90"
+              loading="eager"
+            />
+          </div>
+        ) : (
+          <div className="mb-4 rounded-lg border border-border/40 bg-muted/30 p-4">
+            <p className="text-xs text-muted-foreground mb-3">
+              Concurrency-safe booking · live freelance product · sole engineer
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {(CASE_STUDY?.metrics ?? []).map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-md border border-border/40 bg-background/60 px-2.5 py-2"
+                >
+                  <p className="text-sm font-bold text-foreground">{m.value}</p>
+                  <p className="text-[10px] text-muted-foreground">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-1.5">
+          {nodes.map((node, i) => (
+            <div key={node} className="flex items-center gap-1.5">
+              <span className="text-[11px] font-medium px-2 py-1 rounded-md border border-border/60 bg-muted/40 text-foreground">
+                {node}
+              </span>
+              {i < nodes.length - 1 && (
+                <span className="text-muted-foreground text-[10px]" aria-hidden>
+                  →
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function HeroSection() {
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const glow = glowRef.current;
+    if (!glow) return;
+
+    const onMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      glow.style.setProperty("--mx", `${x}%`);
+      glow.style.setProperty("--my", `${y}%`);
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center py-10">
-      
-      <div className="w-full relative z-10 pointer-events-none px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 pointer-events-auto">
-            {/* Avatar */}
-            <Suspense fallback={<AvatarSkeleton />}>
-              <Avatar className="h-24 w-24 ring-2 ring-border ring-offset-4 ring-offset-background">
-                <AvatarImage
-                  src={PERSONAL_INFO.avatar}
-                  alt={PERSONAL_INFO.name}
-                  loading="lazy"
-                />
-                <AvatarFallback className="text-2xl bg-gradient-to-br from-purple-500 to-pink-500">
-                  {PERSONAL_INFO.initials}
-                </AvatarFallback>
-              </Avatar>
-            </Suspense>
+    <section className="relative min-h-[90vh] flex flex-col justify-center py-16 md:py-24 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-0" aria-hidden>
+        <div className="absolute inset-0 hero-grid opacity-[0.35] dark:opacity-[0.25]" />
+        <div className="absolute inset-0 hero-noise opacity-[0.04] dark:opacity-[0.06]" />
+        <div
+          ref={glowRef}
+          className="absolute inset-0 hero-cursor-glow opacity-60 dark:opacity-80"
+        />
+        <div className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-[var(--hero-accent-to)]/20 blur-3xl animate-blob" />
+        <div className="absolute bottom-0 left-[-10%] h-64 w-64 rounded-full bg-[var(--hero-accent-from)]/15 blur-3xl animate-blob animation-delay-2000" />
+      </div>
 
-            {/* Text */}
-            <div className="space-y-6">
-              <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight leading-tight">
-                Hi, I'm {PERSONAL_INFO.nickname} —{" "}
-                <span className="text-muted-foreground">
-                  {PERSONAL_INFO.title}
+      <div className="w-full relative z-10 px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-12 items-center">
+          {/* Copy column */}
+          <div className="flex flex-col gap-6">
+            <Avatar className="h-20 w-20 md:h-24 md:w-24 ring-2 ring-border ring-offset-4 ring-offset-background">
+              <AvatarImage
+                src={PERSONAL_INFO.avatar}
+                alt={PERSONAL_INFO.name}
+                loading="eager"
+              />
+              <AvatarFallback className="text-2xl bg-foreground text-background">
+                {PERSONAL_INFO.initials}
+              </AvatarFallback>
+            </Avatar>
+
+            <div className="space-y-5">
+              <p className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground tracking-wide">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-              </h1>
-
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                I build real-world web applications with authentication,
-                dashboards, APIs, and production deployments. Experienced in
-                React, TypeScript, Node.js, and MongoDB.
+                {PERSONAL_INFO.availability}
               </p>
 
-              {/* CTA */}
-              <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
-                <Link to="/contact">
-                  <Button size="lg" className="px-8 h-11 text-base">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Get in touch
+              {/* Intro — quiet, sharp */}
+              <p className="text-base md:text-lg text-muted-foreground font-medium max-w-[40ch]">
+                Hi, I'm {PERSONAL_INFO.nickname} — {PERSONAL_INFO.role}{" "}
+                {PERSONAL_INFO.punchline}.
+              </p>
+
+              {/* One dominant message */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.12] text-foreground max-w-[18ch]">
+                {PERSONAL_INFO.headlineLead}{" "}
+                <span className="text-hero-accent">
+                  {PERSONAL_INFO.headlineAccent}
+                </span>{" "}
+                {PERSONAL_INFO.headlineTail}
+              </h1>
+
+              <p className="text-base md:text-[1.05rem] text-muted-foreground leading-relaxed max-w-[58ch]">
+                {PERSONAL_INFO.description}
+              </p>
+
+              {/* Recruiter journey CTAs */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <a href="#case-study">
+                  <Button size="lg" className="px-7 h-11 text-base gap-2">
+                    View projects
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
-                </Link>
-                <Link to="/resume">
+                </a>
+                <a
+                  href="/assets/resume/Kapil_Resume.pdf"
+                  download="Kapil_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
                     variant="outline"
                     size="lg"
-                    className="px-8 h-11 text-base"
+                    className="px-7 h-11 text-base gap-2"
                   >
-                    Resume / CV
+                    <FileDown className="h-4 w-4" />
+                    Download resume
+                  </Button>
+                </a>
+                <Link to="/contact">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="px-5 h-11 text-base text-muted-foreground hover:text-foreground gap-2"
+                  >
+                    <Mail className="h-4 w-4" />
+                    Contact
                   </Button>
                 </Link>
               </div>
 
-              {/* Socials */}
-              <div className="flex items-center gap-5 pt-4">
+              {/* Social icons */}
+              <div className="flex items-center gap-5 pt-3">
                 <TooltipProvider delayDuration={300}>
-                  {/* X (Twitter) */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
                         href={SOCIAL_LINKS.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label="X"
                       >
-                        <SiX className="h-5 w-5" />
+                        <SiX className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>X</TooltipContent>
                   </Tooltip>
-
-                  {/* LinkedIn */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
                         href={SOCIAL_LINKS.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label="LinkedIn"
                       >
-                        <SiLinkedin className="h-5 w-5" />
+                        <SiLinkedin className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>LinkedIn</TooltipContent>
                   </Tooltip>
-
-                  {/* GitHub */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
                         href={SOCIAL_LINKS.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label="GitHub"
                       >
-                        <SiGithub className="h-5 w-5" />
+                        <SiGithub className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>GitHub</TooltipContent>
                   </Tooltip>
-
-                  {/* Email */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
                         href={`mailto:${SOCIAL_LINKS.email}`}
-                        className="text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label="Email"
                       >
-                        <Mail className="h-5 w-5" />
+                        <Mail className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>Email</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </div>
+            </div>
           </div>
+
+          {/* Visual proof — below on mobile, side on desktop */}
+          <div className="order-last lg:order-none">
+            <HeroArchitecturePreview />
+          </div>
+        </div>
+
+        {/* Proof strip */}
+        <div className="mt-14 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border-t border-border/50 pt-8">
+          {HERO_STATS.map((stat) => (
+            <div key={stat.label} className="space-y-1">
+              <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+                {stat.value}
+              </p>
+              <p className="text-xs md:text-sm text-muted-foreground leading-snug">
+                {stat.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

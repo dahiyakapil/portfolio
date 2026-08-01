@@ -1,8 +1,16 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Lightbulb,
+  TrendingUp,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { PROJECTS } from "@/constants/portfolio-data";
+import { ACCENT_FRAME, ACCENT_SOFT } from "@/constants/accents";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getTechMeta } from "@/constants/techColors";
 import {
@@ -15,6 +23,7 @@ import {
 export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
   const project = PROJECTS.find((p) => p.id === id);
+  const accent = project?.accent ?? "blue";
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -23,7 +32,6 @@ export default function ProjectDetailPage() {
   return (
     <div className="min-h-screen pt-24 pb-16 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back Button */}
         <Link
           to="/projects"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 group"
@@ -32,40 +40,114 @@ export default function ProjectDetailPage() {
           Back to Projects
         </Link>
 
-        {/* Project Image */}
         {project.image && (
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 mb-12 shadow-2xl">
-            <div className="absolute inset-6 bg-slate-900/90 rounded-xl overflow-hidden shadow-2xl">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover object-top"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+          <div
+            className={`relative w-full aspect-[16/10] md:aspect-[16/9] rounded-2xl overflow-hidden mb-12 shadow-lg border border-border/40 ${ACCENT_FRAME[accent]}`}
+          >
+            <div className="absolute inset-0 flex items-end justify-center p-4 md:p-8 pb-0">
+              <div className="w-[94%] h-[88%] rounded-t-lg overflow-hidden shadow-2xl border border-black/20 bg-slate-950">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                  }}
+                />
+              </div>
             </div>
           </div>
         )}
 
-        {/* Project Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <span className="px-3 py-1 bg-green-500/10 text-green-500 rounded-full text-sm font-medium">
-              {project.status || "Completed"}
+            <span className="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full text-sm font-medium">
+              {project.status === "In Progress"
+                ? "Live · Active"
+                : project.status || "Live"}
             </span>
+            {project.team?.toLowerCase().includes("freelance") && (
+              <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm font-medium">
+                Freelance
+              </span>
+            )}
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             {project.title}
           </h1>
 
-          <p className="text-lg text-muted-foreground mb-8 max-w-3xl leading-relaxed">
+          <p className="text-lg text-muted-foreground mb-8 max-w-[65ch] leading-relaxed">
             {project.description}
           </p>
 
-          {/* Project Metadata */}
+          {project.metrics && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+              {project.metrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-border/40 bg-card/50 px-4 py-3"
+                >
+                  <p className="text-xl font-bold text-foreground">{m.value}</p>
+                  <p className="text-xs text-muted-foreground">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="grid gap-3 mb-8 max-w-[65ch]">
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1.5">
+                <AlertTriangle className="h-3.5 w-3.5" />
+                Problem
+              </p>
+              <p className="text-sm text-foreground/90 leading-relaxed">
+                {project.problem}
+              </p>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-1.5">
+                <Lightbulb className="h-3.5 w-3.5" />
+                Solution
+              </p>
+              <p className="text-sm text-foreground/90 leading-relaxed">
+                {project.solution}
+              </p>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1.5">
+                <TrendingUp className="h-3.5 w-3.5" />
+                Impact
+              </p>
+              <p className="text-sm text-foreground/90 leading-relaxed">
+                {project.outcome}
+              </p>
+            </div>
+          </div>
+
+          {project.architecture && (
+            <div className="mb-8">
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                Architecture
+              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                {project.architecture.map((node, i) => (
+                  <div key={node} className="flex items-center gap-2">
+                    <span
+                      className={`text-xs md:text-sm font-medium px-3 py-1.5 rounded-lg border ${ACCENT_SOFT[accent]}`}
+                    >
+                      {node}
+                    </span>
+                    {i < project.architecture!.length - 1 && (
+                      <span className="text-muted-foreground text-sm">→</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             {project.timeline && (
               <div>
@@ -94,14 +176,19 @@ export default function ProjectDetailPage() {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
-            <Button asChild size="lg" className="gap-2">
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
-            </Button>
+            {project.link.startsWith("http") && (
+              <Button asChild size="lg" className="gap-2">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Live Demo
+                </a>
+              </Button>
+            )}
 
             {project.github && (
               <Button asChild variant="outline" size="lg" className="gap-2">
@@ -126,7 +213,7 @@ export default function ProjectDetailPage() {
             <h2 className="text-2xl font-bold text-foreground mb-6">
               Overview
             </h2>
-            <p className="text-base text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed max-w-[65ch]">
               {project.overview}
             </p>
           </section>
@@ -281,12 +368,18 @@ export default function ProjectDetailPage() {
             works
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button asChild size="lg" className="gap-2">
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Visit Live Site
-              </a>
-            </Button>
+            {project.link.startsWith("http") && (
+              <Button asChild size="lg" className="gap-2">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Visit Live Site
+                </a>
+              </Button>
+            )}
 
             {project.github && (
               <Button asChild variant="outline" size="lg" className="gap-2">

@@ -1,142 +1,382 @@
-import type { Project, WorkExperience, SkillCategory } from "@/types/portfolio";
+import type {
+  Project,
+  WorkExperience,
+  SkillCategory,
+  Company,
+  SkillGroup,
+  StatItem,
+} from "@/types/portfolio";
 
 export const SKILL_CATEGORIES: SkillCategory = {
-  Frontend: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Three.js"],
-  Backend: ["Node.js", "Bun", "PostgreSQL", "MongoDB"],
-  DevOps: ["Vercel", "AWS", "Docker"],
-  Tools: ["Git", "VS Code", "Figma"],
+  Frontend: ["React.js", "Redux Toolkit", "Tailwind CSS", "JavaScript"],
+  Backend: ["Node.js", "Express.js", "MongoDB", "Redis", "PostgreSQL"],
+  DevOps: ["Docker", "CI/CD", "Vercel", "Render"],
+  Tools: ["Git", "Jest", "Postman"],
 };
+
+export const SKILL_GROUPS: SkillGroup[] = [
+  {
+    label: "Frontend",
+    skills: [
+      { name: "React.js", color: "#61DAFB" },
+      { name: "Redux Toolkit", color: "#764ABC" },
+      { name: "Tailwind CSS", color: "#38BDF8" },
+      { name: "JavaScript", color: "#F7DF1E" },
+    ],
+  },
+  {
+    label: "Backend",
+    skills: [
+      { name: "Node.js", color: "#339933" },
+      { name: "Express.js", color: "currentColor" },
+      { name: "MongoDB", color: "#47A248" },
+      { name: "Redis", color: "#DC382D" },
+      { name: "PostgreSQL", color: "#4169E1" },
+    ],
+  },
+  {
+    label: "Payments, Auth & Quality",
+    skills: [
+      { name: "Razorpay", color: "#072654" },
+      { name: "JWT", color: "currentColor" },
+      { name: "Docker", color: "#2496ED" },
+      { name: "Jest", color: "#C21325" },
+    ],
+  },
+];
+
+/** Outcome-oriented hero proof (not implementation counts). */
+export const HERO_STATS: StatItem[] = [
+  { value: "Live", label: "Booking platform" },
+  { value: "Razorpay", label: "Payments live" },
+  { value: "BullMQ", label: "Jobs in prod" },
+  { value: "2+", label: "Professional roles" },
+];
+
+export const COMPANIES: Company[] = [
+  {
+    name: "SportsHub",
+    role: "Freelance · Live product",
+    href: "https://sports-hub-user-web.vercel.app/",
+    domain: "sports-hub-user-web.vercel.app",
+    latest: true,
+  },
+  {
+    name: "Indian Capital",
+    role: "Full Stack Developer Intern",
+    href: "https://www.indiancapital.in/",
+    domain: "indiancapital.in",
+  },
+  {
+    name: "Unified Mentor",
+    role: "Full Stack Developer Intern",
+    href: "https://unifiedmentor.com",
+    domain: "unifiedmentor.com",
+  },
+];
+
+export const GITHUB_HIGHLIGHTS: StatItem[] = [
+  { value: "60+", label: "Repositories" },
+  { value: "Live", label: "Contribution graph" },
+  { value: "3", label: "SportsHub apps" },
+  { value: "49", label: "Jest tests" },
+];
+
+export const CAREER_TIMELINE: StatItem[] = [
+  { value: "2024", label: "Unified Mentor intern · React + REST APIs" },
+  {
+    value: "2025",
+    label: "Indian Capital intern · Workers, auth, payments, CMS",
+  },
+  {
+    value: "2026",
+    label: "Freelance · SportsHub live — bookings, Redis, Razorpay",
+  },
+];
+
+export const FEATURED_SKILLS = [
+  { name: "React.js", color: "#61DAFB" },
+  { name: "Node.js", color: "#339933" },
+  { name: "MongoDB", color: "#47A248" },
+  { name: "Redis", color: "#DC382D" },
+  { name: "Razorpay", color: "#072654" },
+  { name: "Docker", color: "#2496ED" },
+  { name: "JWT", color: "currentColor" },
+  { name: "Jest", color: "#C21325" },
+] as const;
 
 export const PROJECTS: Project[] = [
   {
-    id: "resumind",
-    title: "Resumind",
+    id: "sportshub",
+    title: "SportsHub",
+    tagline: "Live Sports Venue Booking Platform",
+    pickLabel: "Flagship",
+    primaryBadge: "Production",
+    badges: ["Sole Engineer", "Payments"],
+    highlights: [
+      "Redis distributed locks",
+      "MongoDB transactions",
+      "BullMQ booking expiry",
+      "Razorpay payments",
+      "JWT + refresh rotation",
+    ],
+    browserUrl: "sports-hub-user-web.vercel.app",
+    summary:
+      "Concurrency-safe venue booking with live payments — owned end-to-end as sole engineer.",
     description:
-      "An AI-powered resume analyzer that helps job seekers optimize their resumes for ATS systems and specific job roles",
+      "Live sports activity booking platform — venue discovery, concurrency-safe bookings, Razorpay payments, and admin operations. Built and owned end-to-end as freelance sole engineer.",
     problem:
-      "Job seekers struggle to understand why their resumes get rejected by ATS systems and how to improve them for specific job roles",
+      "Sports venue booking platforms often suffer from double bookings and failed payments during peak demand.",
     solution:
-      "Built an AI-powered resume analyzer that evaluates resumes against job descriptions, provides actionable improvement suggestions, and highlights ATS optimization gaps",
+      "SportsHub solves this with distributed locking, transactional writes, automated booking expiration, and payment webhooks — owned end-to-end as a freelance sole engineer.",
+    solutionGroups: [
+      {
+        label: "Core Backend",
+        items: [
+          "Redis distributed locks",
+          "MongoDB transactions",
+          "BullMQ workers",
+          "Razorpay webhooks",
+        ],
+      },
+      {
+        label: "Security",
+        items: [
+          "JWT authentication",
+          "Refresh-token rotation",
+          "OTP verification",
+          "CSRF protection",
+          "Redis-backed rate limiting",
+        ],
+      },
+    ],
     technical:
-      "Implemented resume parsing and semantic analysis using AI models, React.js for fast server-side rendering, MongoDB for structured resume insights storage, and deployed on Vercel for global edge performance",
+      "Freelance sole engineer across 3 live applications: Node.js API, user web app, and admin panel. 55+ REST APIs, 10 MongoDB models. Stack: React.js, Node.js, Express.js, MongoDB, Redis, Razorpay, Redux Toolkit, Docker. MVC architecture with centralized validation/error handling; validated by 49 Jest tests.",
     outcome:
-      "Helps users improve ATS match scores, identify missing keywords, and generate clearer, role-specific resume feedback within seconds",
-    tech: ["React.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
-    link: "https://resumindai-ashy.vercel.app/",
-    github: "https://github.com/dahiyakapil/Resumind-AI",
-    image: "/assets/projects/Resumind.png",
-    timeline: "2 months",
-    role: "Full Stack",
-    team: "Solo",
-    status: "Completed",
-    overview:
-      "Resumind is an AI-powered resume analysis platform that helps job seekers understand why their resumes may be rejected by Applicant Tracking Systems (ATS) and provides actionable insights to improve them for specific job roles. The platform uses advanced AI models to parse resumes, analyze content against job descriptions, and generate detailed feedback.",
-    features: [
-      "Upload Resume: Users can upload their resume in PDF or DOCX format for instant analysis",
-      "Job Description Matching: Compare your resume against specific job descriptions to find gaps",
-      "ATS Score: Get a detailed ATS compatibility score with breakdown by category",
-      "Keyword Analysis: Identify missing keywords and skills from job descriptions",
-      "Improvement Suggestions: Receive actionable recommendations to enhance your resume",
-      "Section Analysis: Get detailed feedback on each resume section (experience, skills, education)",
-      "Real-time Feedback: Instant analysis results without waiting",
-    ],
-    challenges: [
-      "Job seekers don't know why their resumes get rejected by ATS systems",
-      "Difficult to optimize resumes for specific job roles without expertise",
-      "No clear visibility into what recruiters and ATS systems are looking for",
-      "Generic resume templates don't account for role-specific requirements",
-    ],
-    impact: [
-      "Helped users identify critical gaps in their resumes within seconds",
-      "Improved ATS match scores by highlighting missing keywords and skills",
-      "Provided role-specific feedback that increased interview callbacks",
-      "Saved time by automating resume analysis that would take hours manually",
-      "Empowered job seekers with actionable insights to improve their applications",
-    ],
-    futurePlans: [
-      "Add resume builder with ATS-optimized templates",
-      "Implement cover letter analysis and generation",
-      "Create industry-specific optimization profiles",
-      "Add LinkedIn profile optimization",
-      "Build Chrome extension for one-click job application analysis",
-    ],
-  },
-  {
-    id: "url-shortener",
-    title: "URL Shortener",
-    description:
-      "A full-stack URL shortening service that lets users generate short, shareable links from long URLs with analytics support.",
-    problem:
-      "Long URLs are hard to remember, share, or include in messages; there was no lightweight, self-hosted solution in my toolset.",
-    solution:
-      "Built a custom URL shortening service with a React frontend and Node.js backend to generate, store, and redirect short URLs, with real-time analytics for link clicks with real user.",
-    technical:
-      "Designed with React for the frontend UI, Node.js/Express for the backend API, MongoDB for link storage, and deployed via Vercel (frontend) and a cloud Node host (backend).",
-    outcome:
-      "Users can easily shorten long URLs, track click counts, and copy/share the resulting links across platforms.",
+      "Live production platform for venue discovery, real-time booking, payments, and admin operations.",
     tech: [
       "React.js",
-      "TypeScript",
       "Node.js",
       "Express.js",
       "MongoDB",
-      "Tailwind CSS",
+      "Redis",
+      "Razorpay",
+      "Redux Toolkit",
+      "Docker",
     ],
-    link: "https://url-short-pearl.vercel.app",
-    github: "https://github.com/dahiyakapil/Url-Shortener",
-    image: "/assets/projects/URL-Shortener.png",
-    timeline: "3 weeks",
-    role: "Full Stack",
-    team: "Solo",
-    status: "Completed",
+    link: "https://sports-hub-user-web.vercel.app/",
+    image: "/assets/projects/SportsHub.png",
+    timeline: "Jan 2026 – Present",
+    role: "Freelance sole engineer — API, user app, admin panel",
+    team: "Solo (Freelance)",
+    status: "In Progress",
+    featured: true,
+    caseStudy: true,
+    accent: "green",
+    metrics: [
+      { value: "Redis", label: "Distributed Locks" },
+      { value: "Mongo", label: "Transactions" },
+      { value: "BullMQ", label: "Background Jobs" },
+      { value: "Razorpay", label: "Payments Live" },
+    ],
+    architecture: [
+      "Frontend",
+      "API",
+      "Redis Lock",
+      "Mongo Tx",
+      "BullMQ",
+      "Payment",
+    ],
     overview:
-      "A full-stack web application that provides a simple UI for creating short links from long URLs and a backend API for link redirection and analytics",
+      "SportsHub is a live sports activity booking platform I am building as a freelance sole engineer. I own the product end-to-end: Node.js API, user-facing web app, and admin panel — covering venue discovery, bookings, payments, and operations.",
     features: [
-      "Create short, human-friendly URLs",
-      "Automatic redirect when accessing a short link",
-      "Click count analytics per URL",
-      "Copy short links to clipboard",
-      "Responsive UI",
+      "Venue discovery and sports activity booking flows",
+      "Concurrency-safe booking engine using Redis distributed locks and MongoDB transactions",
+      "BullMQ background jobs for automated booking expiry",
+      "Razorpay integration with payment webhooks",
+      "JWT access tokens, refresh token rotation, reuse detection, and OTP verification",
+      "CSRF protection and Redis-backed rate limiting",
+      "Admin panel for platform operations",
+      "MVC architecture with centralized validation and error handling",
+      "49 Jest tests covering critical booking and auth paths",
     ],
     challenges: [
-      "Ensuring accurate tracking of link clicks without affecting performance",
-      "Designing a scalable redirect system",
-      "Handling invalid URL inputs and collisions",
+      "Concurrent bookings without double-booking slots",
+      "Payment reconciliation via Razorpay webhooks",
+      "Slot locking under race conditions",
+      "Admin scalability across venues and operations",
+      "Background cleanup of expired unpaid holds",
     ],
     impact: [
-      "Users can shorten URLs with one click and track usage without third-party services",
-      "Self-hosted solution gives full control over data",
-      "Improved shareability of links for portfolios, emails, and chats",
+      "Concurrency-safe bookings via Redis locks + MongoDB transactions",
+      "Payment flows reconciled through Razorpay webhooks",
+      "Background jobs expire unpaid holds and keep inventory consistent",
+      "Three apps owned end-to-end: API, user web, and admin",
     ],
     futurePlans: [
-      "Add custom slug creation",
-      "Add user authentication and personal dashboards",
-      "Generate QR codes for shortened links",
-      "Add API keys for third-party API usage",
-      "Deploy with analytics dashboard",
+      "Expand venue inventory and sports categories",
+      "Deeper ops analytics in the admin panel",
     ],
   },
   {
-    id: "kapil-mail",
-    title: "Mail Website",
+    id: "resumind",
+    title: "Resumind AI",
+    tagline: "AI-powered ATS Resume Optimization Platform",
+    pickLabel: "Featured AI",
+    primaryBadge: "Production",
+    badges: ["AI", "Open Source"],
+    highlights: [
+      "ATS matching against job descriptions",
+      "PDF resume parsing",
+      "AI-powered suggestions",
+      "Keyword scoring modules",
+      "Authenticated upload flow",
+    ],
+    browserUrl: "resumindai-ashy.vercel.app",
+    summary:
+      "AI-powered ATS analyzer that scores resumes against real job descriptions.",
     description:
-      "A lightweight full-stack email platform with real-time messaging, JWT authentication, and WebSocket-based updates built on Cloudflare Workers.",
+      "AI-powered ATS resume analyzer that helps candidates optimize resumes against real job descriptions.",
     problem:
-      "Most email platforms are heavy, complex, and over-engineered for simple communication needs. Building a real-time email system with low latency and global scalability is challenging using traditional server-based architectures.",
+      "Job seekers struggle to see why ATS systems reject resumes or how to improve them for a specific role.",
     solution:
-      "Designed and built a simplified email platform using serverless edge infrastructure with real-time updates, enabling fast, reliable messaging without managing traditional servers.",
+      "Built Resumind AI with 10+ REST APIs for resume upload, authentication, PDF parsing, AI analysis, and job matching — plus 8+ ATS evaluation modules for parsing, keyword matching, scoring, and AI-powered recommendations.",
     technical:
-      "Built the frontend with Next.js 14 and Tailwind CSS for a fast, responsive UI. Implemented the backend using Cloudflare Workers and Durable Objects for globally distributed state management. Used JWT-based authentication for secure sessions and WebSockets for real-time inbox updates. Designed REST APIs for messaging, authentication, and message state management.",
+      "React.js, Node.js, Express.js, MongoDB, Redux, Tailwind CSS, DeepSeek AI.",
     outcome:
-      "Delivered a globally scalable, real-time email system with instant message delivery, low-latency inbox updates, and a clean user experience optimized for performance and simplicity.",
+      "Candidates get ATS scores, keyword gaps, and actionable AI recommendations against a target role.",
+    tech: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Redux",
+      "Tailwind CSS",
+    ],
+    link: "https://resumindai-ashy.vercel.app/",
+    github: "https://github.com/dahiyakapil/Resumind-AI",
+    image: "/assets/projects/Resumind.png",
+    timeline: "Project",
+    role: "Full Stack — APIs, ATS modules, AI analysis",
+    team: "Solo",
+    status: "Completed",
+    featured: true,
+    accent: "violet",
+    metrics: [
+      { value: "10+", label: "Production APIs" },
+      { value: "8+", label: "AI Features" },
+      { value: "Live", label: "Production" },
+    ],
+    overview:
+      "Resumind AI evaluates resumes for ATS compatibility, suggests improvements, and matches candidate skills with job descriptions using DeepSeek AI on a MERN stack.",
+    features: [
+      "Resume upload with authentication",
+      "PDF parsing for structured resume content",
+      "ATS scoring and keyword matching against job descriptions",
+      "AI-powered recommendations via DeepSeek AI",
+      "Job matching based on parsed skills and experience",
+    ],
+    challenges: [
+      "Reliable PDF parsing across resume formats",
+      "Meaningful ATS scoring beyond keyword stuffing",
+      "Connecting AI analysis to actionable UI feedback",
+    ],
+    impact: [
+      "Live ATS resume analyzer and job matcher",
+      "10+ REST APIs covering upload, auth, parsing, analysis, and matching",
+      "8+ ATS evaluation modules for scoring and recommendations",
+    ],
+    futurePlans: [
+      "Cover letter analysis",
+      "Industry-specific scoring profiles",
+    ],
+  },
+  {
+    id: "tempusmail",
+    title: "Tempus Mail (Internship)",
+    tagline: "Serverless Product Integrations",
+    badges: ["Internship", "Serverless"],
+    highlights: [
+      "Cloudflare Workers workflows",
+      "Firebase Auth",
+      "Notion CMS",
+      "Payment gateway hooks",
+    ],
+    browserUrl: "tempusmail.com",
+    description:
+      "Internship work at Indian Capital — serverless backend workflows with Cloudflare Workers, Firebase Auth, Notion CMS, and payment gateway integrations.",
+    problem:
+      "The product needed serverless backend workflows and integrations for auth, CMS, and payments without a heavy traditional server footprint.",
+    solution:
+      "Built serverless backend workflows using Cloudflare Workers and integrated Firebase Auth, Notion CMS, payment gateways, and external REST APIs.",
+    technical:
+      "Cloudflare Workers, Firebase Auth, Notion CMS, payment gateways, external REST APIs (Indian Capital internship, Sep–Dec 2025).",
+    outcome:
+      "Delivered internship deliverables spanning serverless workflows, authentication, CMS, and payment integrations.",
+    tech: [
+      "Cloudflare Workers",
+      "Firebase",
+      "Notion CMS",
+      "React.js",
+      "Node.js",
+    ],
+    link: "https://tempusmail.com",
+    image: "/assets/projects/Mail-App-CLoudflare.png",
+    timeline: "Sep 2025 – Dec 2025",
+    role: "Full Stack Developer Intern",
+    team: "Internship",
+    status: "Completed",
+    featured: false,
+    accent: "orange",
+    metrics: [
+      { value: "Intern", label: "ICIL" },
+      { value: "Workers", label: "Serverless" },
+    ],
+    overview:
+      "Work completed during the Full Stack Developer internship at Indian Capital and Investment (Coimbatore) Limited — focused on Cloudflare Workers, Firebase Auth, Notion CMS, and payment integrations.",
+    features: [
+      "Serverless backend workflows on Cloudflare Workers",
+      "Firebase Authentication integrations",
+      "Notion CMS integration",
+      "Payment gateway and external REST API integrations",
+    ],
+    challenges: [
+      "Wiring serverless workers with third-party auth and CMS",
+      "Reliable payment and API integrations in production-like environments",
+    ],
+    impact: [
+      "Shipped internship features for serverless workflows, auth, CMS, and payments",
+    ],
+    futurePlans: [],
+  },
+  {
+    id: "kapil-mail",
+    title: "Edge Mail",
+    tagline: "Realtime Edge Inbox",
+    badges: ["Live", "Open Source", "Edge"],
+    highlights: [
+      "JWT authentication",
+      "WebSocket realtime updates",
+      "Cloudflare Workers",
+      "Durable Objects state",
+      "Inbox read/unread flows",
+    ],
+    browserUrl: "kapil-4oz.pages.dev",
+    description:
+      "Realtime edge-native email platform delivering instant inbox updates without traditional servers.",
+    problem:
+      "Building realtime messaging with low latency is hard on traditional server architectures.",
+    solution:
+      "Implemented a simplified email platform on Cloudflare Workers with JWT authentication and WebSocket-based updates.",
+    technical:
+      "Next.js, React, TypeScript, Tailwind CSS, Cloudflare Workers, Durable Objects, WebSockets, JWT.",
+    outcome:
+      "Realtime inbox updates on edge infrastructure without managing traditional origin servers.",
     tech: [
       "Next.js",
       "React.js",
       "TypeScript",
-      "Tailwind CSS",
       "Cloudflare Workers",
-      "Durable Objects",
-      "WebSockets",
       "JWT",
     ],
     link: "https://kapil-4oz.pages.dev/",
@@ -146,52 +386,109 @@ export const PROJECTS: Project[] = [
     role: "Full Stack",
     team: "Solo",
     status: "Completed",
+    featured: true,
+    accent: "teal",
+    metrics: [
+      { value: "Edge", label: "Workers" },
+      { value: "WS", label: "Realtime" },
+      { value: "Live", label: "Production" },
+    ],
     overview:
-      "Kapil Mail is a lightweight, full-stack email platform built as part of a Full-Stack Developer Internship Assessment. The system is designed on a modern serverless architecture using Cloudflare Workers and Durable Objects, enabling real-time communication without traditional servers. It focuses on performance, simplicity, and global scalability.",
+      "Portfolio project demonstrating realtime messaging on Cloudflare Workers and Durable Objects.",
     features: [
-      "JWT-based user authentication (Register, Login, Logout)",
-      "Inbox management with read/unread state tracking",
-      "Compose and send messages with emoji support",
-      "Sent messages view for tracking outgoing communication",
-      "Search and pagination across inbox and sent messages",
-      "Real-time inbox updates using WebSockets",
-      "Graceful error and loading state handling",
-      "Mobile-first responsive UI with Tailwind CSS",
+      "JWT authentication",
+      "Inbox with read/unread state",
+      "Realtime updates via WebSockets",
     ],
     challenges: [
-      "Designing real-time communication without traditional WebSocket servers",
-      "Maintaining globally consistent message state across edge locations",
-      "Implementing secure JWT authentication in a stateless serverless environment",
-      "Handling concurrent message delivery and read-state synchronization",
+      "Stateful realtime messaging on serverless edge",
     ],
     impact: [
-      "Achieved real-time message delivery without dedicated backend servers",
-      "Demonstrated modern edge-first system architecture using Durable Objects",
-      "Reduced infrastructure complexity by eliminating centralized servers",
-      "Showcased production-grade real-time system design in a portfolio project",
+      "Demonstrated edge-first realtime architecture",
     ],
-    futurePlans: [
-      "Add file attachments and media previews",
-      "Implement threaded conversations",
-      "Add spam filtering and message tagging",
-      "Introduce user profiles and avatars",
-      "Implement email encryption for sensitive messages",
+    futurePlans: [],
+  },
+  {
+    id: "url-shortener",
+    title: "URL Shortener",
+    tagline: "Links + Click Analytics",
+    badges: ["Live", "Open Source"],
+    highlights: [
+      "Short link creation",
+      "Redirect API",
+      "Click count analytics",
+      "Copy to clipboard",
     ],
+    browserUrl: "url-short-pearl.vercel.app",
+    description:
+      "Full-stack URL shortener with redirect handling and basic click analytics.",
+    problem:
+      "Long URLs are hard to share; needed a lightweight self-hosted shortener with basic analytics.",
+    solution:
+      "Built React + Node.js/Express shortener with MongoDB storage and click counts.",
+    technical:
+      "React.js, TypeScript, Node.js, Express.js, MongoDB, Tailwind CSS.",
+    outcome:
+      "Users can shorten URLs, copy links, and track click counts.",
+    tech: [
+      "React.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+    ],
+    link: "https://url-short-pearl.vercel.app",
+    github: "https://github.com/dahiyakapil/Url-Shortener",
+    image: "/assets/projects/URL-Shortener.png",
+    timeline: "3 weeks",
+    role: "Full Stack",
+    team: "Solo",
+    status: "Completed",
+    featured: false,
+    accent: "blue",
+    metrics: [
+      { value: "Live", label: "Demo" },
+      { value: "MERN", label: "Stack" },
+    ],
+    overview:
+      "URL shortener with redirect API and click analytics.",
+    features: [
+      "Create short URLs",
+      "Redirect + click count analytics",
+      "Copy to clipboard",
+    ],
+    challenges: [
+      "Accurate click tracking",
+      "Collision handling for short codes",
+    ],
+    impact: [
+      "Self-hosted short links with basic analytics",
+    ],
+    futurePlans: [],
   },
   {
     id: "pocket-notes",
     title: "Pocket Notes",
+    tagline: "Realtime Multi-Device Notes",
+    badges: ["Live", "Open Source", "Realtime"],
+    highlights: [
+      "Inbox-style notes",
+      "Realtime sync",
+      "JWT sessions",
+      "Multi-device updates",
+    ],
+    browserUrl: "pocket-notes-module-test-c1x3.vercel.app",
     description:
-      "A real-time, multi-device notes and messaging platform with authentication, WebSocket sync, and offline-friendly design.",
+      "Realtime multi-device notes and messaging with JWT auth on a lightweight stack.",
     problem:
-      "Most note and messaging apps are heavy, slow, and require always-on devices, making quick note-taking and lightweight communication inefficient across multiple devices.",
+      "Quick notes across devices need lightweight sync without heavy chat apps.",
     solution:
-      "Built a lightweight, notes platform that enables users to securely send and receive notes across multiple devices with instant synchronization, low-latency updates, and a highly responsive user experience.",
+      "Built a notes platform with Cloudflare Workers, Durable Objects, WebSockets, and JWT auth.",
     technical:
-      "Developed a modern frontend using React and Vite for fast performance, implemented a Cloudflare Workers backend with Durable Objects for stateful real-time messaging, used WebSockets for live updates, and JWT-based authentication for secure access across sessions.",
+      "React, Vite, Cloudflare Workers, Durable Objects, WebSockets, JWT.",
     outcome:
-      "Users can securely access their notes from multiple devices in real time, receive instant updates, and manage messages efficiently without keeping a primary device online.",
-    tech: ["React.js", "JavaScript", "Vite", "CSS3", "HTML5"],
+      "Realtime note sync across devices.",
+    tech: ["React.js", "JavaScript", "Vite"],
     link: "https://pocket-notes-module-test-c1x3.vercel.app",
     github: "https://github.com/dahiyakapil/pocket-notes-module-test",
     image: "/assets/projects/Pocket-Notes.png",
@@ -199,84 +496,167 @@ export const PROJECTS: Project[] = [
     role: "Full Stack",
     team: "Solo",
     status: "Completed",
+    featured: false,
+    accent: "blue",
+    metrics: [
+      { value: "Realtime", label: "Sync" },
+      { value: "Live", label: "Demo" },
+    ],
     overview:
-      "Pocket Notes is a lightweight, full-stack real-time notes and messaging platform designed for fast, secure, and multi-device communication. It combines a clean UI with a powerful serverless backend to deliver instant synchronization across devices.",
+      "Lightweight realtime notes/messaging portfolio project.",
     features: [
-      "Inbox-style message and note organization",
-      "Instant updates when a new message arrives or status changes",
-      "Responsive, mobile-first UI",
-      "Error and loading state handling for smooth UX",
+      "Inbox-style notes",
+      "Realtime updates",
+      "JWT sessions",
     ],
     challenges: [
-      "Maintaining real-time synchronization across devices",
-      "Designing a stateful system on a serverless platform",
+      "Cross-device realtime sync on serverless",
     ],
     impact: [
-      "Enabled real-time cross-device note synchronization",
-      "Improved user productivity with instant updates",
+      "Realtime multi-device note sync",
     ],
-    futurePlans: [
-      "Add end-to-end encryption for stored messages",
-      "Implement message attachments and rich text notes",
-      "Add user groups and shared notebooks",
-      "Introduce offline-first sync with background updates",
-    ],
+    futurePlans: [],
   },
 ];
 
+export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured);
+export const CASE_STUDY = PROJECTS.find((p) => p.caseStudy) ?? PROJECTS[0];
+/** Home projects grid — flagship + one supporting build */
+export const HOME_PROJECTS = [...PROJECTS]
+  .filter((p) => p.featured)
+  .sort((a, b) => Number(!!b.caseStudy) - Number(!!a.caseStudy))
+  .slice(0, 2);
+
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: "Indian Capital and Investment Limited",
-    role: "Full Stack Developer",
-    period: "Sept 2025 - Dec 2025",
+    company: "SportsHub",
+    role: "Freelance Full Stack Developer",
+    period: "Jan 2026 – Present",
+    location: "Remote (India)",
+    website: "https://sports-hub-user-web.vercel.app/",
+    logoDomain: "sports-hub-user-web.vercel.app",
+    badges: ["Production", "Sole Engineer", "Payments", "Booking Engine"],
+    keyAchievement:
+      "Owned the entire backend architecture of a production sports booking platform used by real customers—from authentication to payments, booking engine, background jobs, and deployment.",
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
+      "Razorpay",
+      "Redux Toolkit",
+      "Docker",
+    ],
+    techGroups: [
+      { label: "Frontend", items: ["React.js", "Redux Toolkit"] },
+      { label: "Backend", items: ["Node.js", "Express.js"] },
+      { label: "Database", items: ["MongoDB"] },
+      { label: "Infrastructure", items: ["Redis", "Docker"] },
+      { label: "Payments", items: ["Razorpay"] },
+    ],
+    achievements: [
+      {
+        label: "Ownership",
+        detail:
+          "Sole engineer on the live SportsHub product end-to-end — Node.js API, user web app, and admin panel for venue discovery, bookings, payments, and admin operations.",
+      },
+      {
+        label: "Booking Engine",
+        detail:
+          "Designed a concurrency-safe booking flow with Redis distributed locks and MongoDB transactions that prevents double bookings during simultaneous reservations.",
+      },
+      {
+        label: "Background Jobs",
+        detail:
+          "Automated reservation expiry with BullMQ so expired holds release without manual intervention.",
+      },
+      {
+        label: "Payments",
+        detail:
+          "Integrated Razorpay webhooks for reliable payment confirmation across booking flows.",
+      },
+      {
+        label: "Security",
+        detail:
+          "Reduced authentication attack surface with JWT access tokens, refresh-token rotation, and reuse detection.",
+      },
+      {
+        label: "Access Control",
+        detail:
+          "Added OTP verification, CSRF protection, and Redis-backed rate limiting on sensitive endpoints.",
+      },
+      {
+        label: "Architecture",
+        detail:
+          "Architected a scalable backend with 55+ APIs, 10 domain models, centralized validation, consistent error handling, and 49 automated tests.",
+      },
+    ],
+  },
+  {
+    company: "Indian Capital and Investment (Coimbatore) Limited",
+    role: "Full Stack Developer Intern",
+    period: "Sep 2025 – Dec 2025",
     location: "Remote (India)",
     website: "https://www.indiancapital.in/",
     linkedin:
       "https://www.linkedin.com/company/indian-capital-and-investment-cbe-ltd",
+    logoDomain: "indiancapital.in",
     technologies: [
-      "Next.js",
-      "React.js",
-      "TypeScript",
-      "Node.js",
-      "Tailwind CSS",
+      "Cloudflare Workers",
       "Firebase",
-      "Laravel",
-      "PHP",
-      "Strapi",
-      "WordPress",
-      "Elementor",
+      "Notion CMS",
+      "React.js",
+      "Node.js",
+    ],
+    techGroups: [
+      { label: "Frontend", items: ["React.js"] },
+      { label: "Backend", items: ["Node.js", "Cloudflare Workers"] },
+      { label: "Platform", items: ["Firebase", "Notion CMS"] },
     ],
     achievements: [
-      "Built and deployed a scalable Notion-based database system using Cloudflare Workers for fast, serverless data handling on tempusmail.com",
-      "Integrated Notion CMS with a custom attention-mechanism-based content prioritization system to enhance content visibility and retrieval efficiency on blog.tempusmail.com",
-      "Developed premium features including Firebase Authentication, Google SSO, secure payment gateway integration, Telegram alerts, and automated email notifications for users on premium.tempusmail.com.",
-      "Implemented Firebase Cloud Functions for domain and email account management, managed Cloudflare DNS records, and ensured seamless connectivity between premium and admin panels via premium.tempusmail.com and panel.tempusmail.com",
+      {
+        label: "Serverless",
+        detail:
+          "Built serverless backend workflows on Cloudflare Workers for faster, edge-ready request handling.",
+      },
+      {
+        label: "Integrations",
+        detail:
+          "Connected Firebase Auth, Notion CMS, payment gateways, and external REST APIs into a cohesive product flow.",
+      },
     ],
   },
   {
     company: "Unified Mentor",
     role: "Full Stack Developer Intern",
-    period: "Jul 2024 - Jan 2025",
+    period: "Jul 2024 – Jan 2025",
     location: "Remote (India)",
     website: "https://unifiedmentor.com",
     linkedin: "https://www.linkedin.com/company/unified-mentor",
+    logoDomain: "unifiedmentor.com",
     technologies: [
       "React.js",
-      "Next.js",
-      "TypeScript",
-      "Redux",
       "Node.js",
       "Express.js",
       "MongoDB",
-      "Tailwind CSS",
-      "Vercel",
+      "Redux",
+    ],
+    techGroups: [
+      { label: "Frontend", items: ["React.js", "Redux"] },
+      { label: "Backend", items: ["Node.js", "Express.js"] },
+      { label: "Database", items: ["MongoDB"] },
     ],
     achievements: [
-      "Created and enhanced responsive UI screens using React.js and Next.js, improving page load speed by 35% and increasing overall UI consistency across the platform.",
-      "Architected and optimized backend REST APIs using Node.js, Express.js, and MongoDB, reducing API latency by 40% and strengthening authentication reliability across services.",
-      "Designed reusable frontend components and state management flows with Redux, improving maintainability and accelerating feature development cycles.",
-      "Implemented secure authentication and role-based access control for internal dashboards, improving data protection and user session reliability.",
-      "Orchestrated CI/CD deployment pipelines on Vercel and Render, achieving 99% deployment success rate and reducing manual deployment time by 70%.",
+      {
+        label: "Frontend",
+        detail: "Shipped 10+ responsive React.js pages for product and admin flows.",
+      },
+      {
+        label: "APIs",
+        detail:
+          "Developed 12+ RESTful APIs covering authentication and core CRUD operations.",
+      },
     ],
   },
 ];
@@ -284,17 +664,25 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const SOCIAL_LINKS = {
   github: "https://github.com/dahiyakapil",
   linkedin: "https://www.linkedin.com/in/kapildahiya21/",
-  email: "mailto:kapildahiya308@gmail.com",
+  email: "kapildahiya308@gmail.com",
   twitter: "https://x.com/KapilDahiya21",
+  phone: "+91 8168035828",
 } as const;
 
 export const PERSONAL_INFO = {
-  name: "Kapil",
+  name: "Kapil Dahiya",
   nickname: "Kapil",
-  title: "A Full Stack web developer",
+  role: "Backend Engineer",
+  punchline: "specializing in distributed systems",
+  title: "Backend Engineer specializing in distributed systems",
+  headlineLead: "Building",
+  headlineAccent: "production systems",
+  headlineTail: "and payment-enabled apps.",
   description:
-    "I architect scalable web applications with TypeScript, React, and Next.js. Focused on performance, design systems, and user experience.",
-  bio: "Founding engineer specializing in frontend architecture and product development. I build scalable systems from the ground up, with a focus on performance, maintainability, and exceptional user experiences.",
+    "I design and build production-grade distributed systems — concurrency control, background jobs, secure APIs, and scalable payment-enabled applications. Currently freelancing as sole engineer on SportsHub, a live booking platform.",
+  bio: "Backend-focused software engineer based in Haryana, India. I freelance on production products — currently owning SportsHub live: Redis locks, MongoDB transactions, BullMQ, Razorpay, and 55+ APIs across three apps. Previously interned at Indian Capital (Cloudflare Workers, Firebase Auth, Notion CMS, payments) and Unified Mentor (React + REST APIs).",
+  availability:
+    "Open to full-time roles & freelance · Remote · Haryana, India",
   avatar: "/assets/Kapil_DP-modified.png",
   avatarLarge: "/assets/Kapil_Square.png",
   initials: "K",

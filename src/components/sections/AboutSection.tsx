@@ -1,99 +1,55 @@
-import { Suspense } from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-import { PERSONAL_INFO } from "@/constants/portfolio-data";
-import { getTechMeta } from "@/constants/techColors";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-const AvatarSkeleton = () => (
-  <div className="h-56 w-56 rounded-2xl bg-muted animate-pulse" />
-);
-
-interface TechIconProps {
-  label: string;
-}
-
-function TechIcon({ label }: TechIconProps) {
-  const meta = getTechMeta(label);
-  if (!meta) return null;
-
-  const { icon: Icon, color } = meta;
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div className="cursor-default">
-          <Icon className="h-6 w-6 transition-transform hover:scale-110" style={{ color }} />
-        </div>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p className="text-xs font-medium">{label}</p>
-      </TooltipContent>
-    </Tooltip>
-  );
-}
-
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { CAREER_TIMELINE, PERSONAL_INFO } from "@/constants/portfolio-data";
 
 export function AboutSection() {
   return (
     <section id="about" className="py-10 px-4 sm:px-6 lg:px-8">
-      <div>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
-          About Me
-        </h2>
-      </div>
-      <Card className="border-border/40 bg-background/40 backdrop-blur p-0 m-0">
-        <CardContent>
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[260px_1fr]">
-            {/* LEFT */}
-            <div className="flex justify-center md:justify-start">
-              <Suspense fallback={<AvatarSkeleton />}>
-                <div className="relative aspect-square w-56 rounded-2xl overflow-hidden border border-border/50 shadow-lg">
-                  <Avatar className="h-full w-full rounded-none">
-                    <AvatarImage
-                      src={PERSONAL_INFO.avatarLarge}
-                      alt={PERSONAL_INFO.name}
-                      className="object-cover w-full h-full"
-                    />
-                  </Avatar>
-                </div>
-              </Suspense>
-            </div>
+      <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+        About
+      </h2>
 
-            {/* RIGHT */}
-            <div className="space-y-4 m-0">
-              <div className="leading-tight">
-                <h2 className="text-3xl font-bold">Kapil Dahiya</h2>
-              </div>
-
-              <p className="text-muted-foreground max-w-xl">
-                I build production-grade web applications with a strong focus on
-                frontend architecture, performance, and long-term scalability.
-              </p>
-
-              <div>
-                <p className="text-md font-bold text-muted-foreground mb-3">
-                  Skills
-                </p>
-                <TooltipProvider>
-                  <div className="flex items-center space-x-2">
-                    <TechIcon label="React" />
-                    <TechIcon label="Next.js" />
-                    <TechIcon label="TypeScript" />
-                    <TechIcon label="Node.js" />
-                  </div>
-                </TooltipProvider>
-              </div>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-10 items-start">
+        <div className="flex justify-center md:justify-start">
+          <div className="relative aspect-square w-48 md:w-full max-w-[200px] rounded-2xl overflow-hidden border border-border/50">
+            <Avatar className="h-full w-full rounded-none">
+              <AvatarImage
+                src={PERSONAL_INFO.avatarLarge}
+                alt={PERSONAL_INFO.name}
+                className="object-cover w-full h-full"
+              />
+            </Avatar>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        <div className="space-y-5">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+            {PERSONAL_INFO.name}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed max-w-[65ch]">
+            {PERSONAL_INFO.bio}
+          </p>
+          <p className="text-sm font-medium text-foreground/80">
+            {PERSONAL_INFO.availability}
+          </p>
+
+          <div className="pt-2">
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+              Growth
+            </p>
+            <ol className="space-y-3 border-l border-border/60 pl-4">
+              {CAREER_TIMELINE.map((item) => (
+                <li key={item.value} className="relative">
+                  <span className="absolute -left-[1.28rem] top-1.5 h-2 w-2 rounded-full bg-foreground" />
+                  <p className="text-sm font-semibold text-foreground">
+                    {item.value}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{item.label}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
