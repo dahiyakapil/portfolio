@@ -78,7 +78,10 @@ export interface Company {
 
 export interface SkillGroup {
   label: string;
-  skills: { name: string; color: string }[];
+  description?: string;
+  /** Lucide-style key used by the Skills section */
+  icon?: "backend" | "infra" | "frontend";
+  skills: { name: string; color: string; highlight?: boolean }[];
 }
 
 export interface StatItem {

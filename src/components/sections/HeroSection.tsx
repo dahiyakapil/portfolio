@@ -188,7 +188,7 @@ export function HeroSection() {
                     className="px-7 h-11 text-base gap-2"
                   >
                     <FileDown className="h-4 w-4" />
-                    Download resume
+                    Download CV
                   </Button>
                 </a>
                 <Link to="/contact">

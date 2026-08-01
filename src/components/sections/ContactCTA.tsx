@@ -44,12 +44,17 @@ export function ContactCTA() {
                 Contact me
               </Button>
             </Link>
-            <Link to="/resume">
+            <a
+              href="/assets/resume/Kapil_Resume.pdf"
+              download="Kapil_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="outline" size="lg" className="gap-2">
                 <FileText className="h-4 w-4" />
-                Resume
+                Download CV
               </Button>
-            </Link>
+            </a>
             <a href={`mailto:${SOCIAL_LINKS.email}`}>
               <Button variant="ghost" size="lg" className="gap-2">
                 {SOCIAL_LINKS.email}

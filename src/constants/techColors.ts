@@ -1,4 +1,5 @@
 import { FaJava } from "react-icons/fa";
+import { Network, Workflow } from "lucide-react";
 
 import {
   SiReact,
@@ -54,6 +55,8 @@ export const TECH_DATA: Record<string, TechMeta> = {
   PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
   MySQL: { icon: SiMysql, color: "#4479A1" },
   Redis: { icon: SiRedis, color: "#DC382D" },
+  BullMQ: { icon: Workflow, color: "#E11D48" },
+  "REST APIs": { icon: Network, color: "currentColor" },
   Razorpay: { icon: SiRazorpay, color: "#072654" },
   "Redux Toolkit": { icon: SiRedux, color: "#764ABC" },
   Redux: { icon: SiRedux, color: "#764ABC" },

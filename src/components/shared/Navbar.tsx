@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/theme-provider";
-import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -16,17 +15,21 @@ export function Navbar() {
   const location = useLocation();
 
   const navItems = [
-    { name: "Work", href: "/experience" },
+    { name: "Work", href: "/#case-study" },
+    { name: "Experience", href: "/experience" },
     { name: "Projects", href: "/projects" },
-    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/#about" },
   ];
 
   const isActive = (href: string) => {
     if (href === "/projects") return location.pathname.startsWith("/projects");
-    return location.pathname === href;
+    if (href === "/experience") return location.pathname === "/experience";
+    if (href === "/#about")
+      return location.pathname === "/" && location.hash === "#about";
+    if (href === "/#case-study")
+      return location.pathname === "/" && location.hash === "#case-study";
+    return false;
   };
-
-  const resumeActive = location.pathname === "/resume";
 
   return (
     <nav className="fixed top-0 inset-x-0 z-50 pointer-events-none">
@@ -58,16 +61,6 @@ export function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-
-                <Link to="/resume" className="ml-1">
-                  <Button
-                    size="sm"
-                    variant={resumeActive ? "default" : "default"}
-                    className="h-8 px-4 rounded-full text-sm font-semibold"
-                  >
-                    Resume
-                  </Button>
-                </Link>
 
                 <TooltipProvider delayDuration={300}>
                   <Tooltip>
@@ -122,15 +115,6 @@ export function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-                <Link
-                  to="/resume"
-                  onClick={() => setIsOpen(false)}
-                  className="block px-3 py-2"
-                >
-                  <Button className="w-full rounded-full font-semibold">
-                    Resume
-                  </Button>
-                </Link>
                 <button
                   onClick={toggleTheme}
                   className="flex items-center gap-2 p-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors"

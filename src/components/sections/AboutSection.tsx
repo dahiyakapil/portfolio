@@ -3,7 +3,7 @@ import { CAREER_TIMELINE, PERSONAL_INFO } from "@/constants/portfolio-data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-10 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="pt-6 pb-10 px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
         About
       </h2>

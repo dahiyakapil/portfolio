@@ -8,39 +8,56 @@ import type {
 } from "@/types/portfolio";
 
 export const SKILL_CATEGORIES: SkillCategory = {
-  Frontend: ["React.js", "Redux Toolkit", "Tailwind CSS", "JavaScript"],
-  Backend: ["Node.js", "Express.js", "MongoDB", "Redis", "PostgreSQL"],
-  DevOps: ["Docker", "CI/CD", "Vercel", "Render"],
-  Tools: ["Git", "Jest", "Postman"],
+  Frontend: ["React.js", "Redux Toolkit", "Tailwind CSS"],
+  Backend: [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Redis",
+    "PostgreSQL",
+    "BullMQ",
+  ],
+  DevOps: ["Docker", "Cloudflare Workers", "JWT", "Razorpay", "Jest"],
+  Tools: ["Git", "REST APIs", "Postman"],
 };
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
-    label: "Frontend",
-    skills: [
-      { name: "React.js", color: "#61DAFB" },
-      { name: "Redux Toolkit", color: "#764ABC" },
-      { name: "Tailwind CSS", color: "#38BDF8" },
-      { name: "JavaScript", color: "#F7DF1E" },
-    ],
-  },
-  {
-    label: "Backend",
+    label: "Backend Systems",
+    description:
+      "Production APIs, distributed systems, concurrency and scalable data access.",
+    icon: "backend",
     skills: [
       { name: "Node.js", color: "#339933" },
       { name: "Express.js", color: "currentColor" },
       { name: "MongoDB", color: "#47A248" },
       { name: "Redis", color: "#DC382D" },
+      { name: "BullMQ", color: "#E11D48" },
       { name: "PostgreSQL", color: "#4169E1" },
     ],
   },
   {
-    label: "Payments, Auth & Quality",
+    label: "Production Engineering",
+    description:
+      "Authentication, payments, queues, testing and deployment.",
+    icon: "infra",
     skills: [
-      { name: "Razorpay", color: "#072654" },
       { name: "JWT", color: "currentColor" },
+      { name: "Razorpay", color: "#072654" },
       { name: "Docker", color: "#2496ED" },
+      { name: "REST APIs", color: "currentColor" },
       { name: "Jest", color: "#C21325" },
+      { name: "Cloudflare Workers", color: "#F38020" },
+    ],
+  },
+  {
+    label: "Frontend",
+    description: "React applications, dashboards and internal tools.",
+    icon: "frontend",
+    skills: [
+      { name: "React.js", color: "#61DAFB" },
+      { name: "Redux Toolkit", color: "#764ABC" },
+      { name: "Tailwind CSS", color: "#38BDF8" },
     ],
   },
 ];
@@ -73,13 +90,6 @@ export const COMPANIES: Company[] = [
     href: "https://unifiedmentor.com",
     domain: "unifiedmentor.com",
   },
-];
-
-export const GITHUB_HIGHLIGHTS: StatItem[] = [
-  { value: "60+", label: "Repositories" },
-  { value: "Live", label: "Contribution graph" },
-  { value: "3", label: "SportsHub apps" },
-  { value: "49", label: "Jest tests" },
 ];
 
 export const CAREER_TIMELINE: StatItem[] = [
