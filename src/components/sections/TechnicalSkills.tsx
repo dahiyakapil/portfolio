@@ -105,6 +105,7 @@ export function TechnicalSkills() {
                                         : "h-[1.125rem] w-[1.125rem]"
                                     }
                                     style={{ color }}
+                                    aria-hidden="true"
                                   />
                                 )}
                               </div>

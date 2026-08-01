@@ -75,6 +75,7 @@ export function FeaturedCaseStudy() {
                       <Icon
                         className="h-3.5 w-3.5 shrink-0"
                         style={{ color: meta.color }}
+                        aria-hidden="true"
                       />
                       {t.replace(/\.js$/, "")}
                     </span>
@@ -157,7 +158,12 @@ export function FeaturedCaseStudy() {
           {nodes.length > 0 && (
             <div id="architecture" className="scroll-mt-28">
               <SectionLabel>Architecture</SectionLabel>
-              <div className="rounded-xl border border-border/60 bg-background/50 p-4 md:p-5 overflow-x-auto">
+              <div
+                className="rounded-xl border border-border/60 bg-background/50 p-4 md:p-5 overflow-x-auto"
+                tabIndex={0}
+                role="region"
+                aria-label="SportsHub architecture flow"
+              >
                 <ol className="flex items-center gap-0 min-w-[560px] md:min-w-0">
                   {nodes.map((node, i) => (
                     <li key={node} className="flex items-center flex-1 min-w-0">

@@ -1,10 +1,9 @@
-import { useEffect, useRef } from "react";
 import { ArrowRight, FileDown, Mail } from "lucide-react";
-import { SiX, SiGithub, SiLinkedin } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/shared/OptimizedImage";
+import { IconGithub, IconLinkedin, IconX } from "@/components/icons/brands";
 import {
   CASE_STUDY,
   PERSONAL_INFO,
@@ -16,6 +15,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { scrollToHash } from "@/lib/hashScroll";
+import { useHeavyHeroEffects } from "@/hooks/useMotionPreference";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef } from "react";
 
 function HeroArchitecturePreview() {
   const nodes = CASE_STUDY?.architecture ?? [
@@ -83,33 +86,52 @@ function HeroArchitecturePreview() {
 
 export function HeroSection() {
   const glowRef = useRef<HTMLDivElement>(null);
+  const heavyEffects = useHeavyHeroEffects();
 
   useEffect(() => {
+    if (!heavyEffects) return;
     const glow = glowRef.current;
     if (!glow) return;
 
+    let raf = 0;
     const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      glow.style.setProperty("--mx", `${x}%`);
-      glow.style.setProperty("--my", `${y}%`);
+      const { clientX, clientY } = e;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const x = (clientX / window.innerWidth) * 100;
+        const y = (clientY / window.innerHeight) * 100;
+        glow.style.setProperty("--mx", `${x}%`);
+        glow.style.setProperty("--my", `${y}%`);
+      });
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("mousemove", onMove);
+    };
+  }, [heavyEffects]);
 
   return (
     <section className="relative pt-24 md:pt-28 pb-8 md:pb-10 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-0" aria-hidden>
         <div className="absolute inset-0 hero-grid opacity-[0.35] dark:opacity-[0.25]" />
-        <div className="absolute inset-0 hero-noise opacity-[0.04] dark:opacity-[0.06]" />
-        <div
-          ref={glowRef}
-          className="absolute inset-0 hero-cursor-glow opacity-60 dark:opacity-80"
-        />
-        <div className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-[var(--hero-accent-to)]/20 blur-3xl animate-blob" />
-        <div className="absolute bottom-0 left-[-10%] h-64 w-64 rounded-full bg-[var(--hero-accent-from)]/15 blur-3xl animate-blob animation-delay-2000" />
+        {heavyEffects ? (
+          <>
+            <div className="absolute inset-0 hero-noise opacity-[0.04] dark:opacity-[0.06]" />
+            <div
+              ref={glowRef}
+              className="absolute inset-0 hero-cursor-glow opacity-60 dark:opacity-80"
+            />
+            <div className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-[var(--hero-accent-to)]/20 blur-3xl animate-blob" />
+            <div className="absolute bottom-0 left-[-10%] h-64 w-64 rounded-full bg-[var(--hero-accent-from)]/15 blur-3xl animate-blob animation-delay-2000" />
+          </>
+        ) : (
+          <>
+            <div className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-[var(--hero-accent-to)]/12 blur-3xl" />
+            <div className="absolute bottom-0 left-[-10%] h-64 w-64 rounded-full bg-[var(--hero-accent-from)]/10 blur-3xl" />
+          </>
+        )}
       </div>
 
       <div className="w-full relative z-10 px-4 sm:px-6 lg:px-8">
@@ -132,7 +154,12 @@ export function HeroSection() {
             <div className="space-y-5">
               <p className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground tracking-wide">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                  <span
+                    className={cn(
+                      "absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60",
+                      heavyEffects && "animate-ping"
+                    )}
+                  />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
                 {PERSONAL_INFO.availability}
@@ -156,12 +183,23 @@ export function HeroSection() {
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
-                <a href="#case-study">
+                <Link
+                  to="/#case-study"
+                  onClick={(e) => {
+                    if (window.location.pathname === "/") {
+                      e.preventDefault();
+                      if (window.location.hash !== "#case-study") {
+                        window.history.pushState(null, "", "/#case-study");
+                      }
+                      scrollToHash("#case-study");
+                    }
+                  }}
+                >
                   <Button size="lg" className="px-7 h-11 text-base gap-2">
                     View projects
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
-                </a>
+                </Link>
                 <a
                   href="/assets/resume/Kapil_Resume.pdf"
                   download="Kapil_Resume.pdf"
@@ -173,7 +211,7 @@ export function HeroSection() {
                     size="lg"
                     className="px-7 h-11 text-base gap-2"
                   >
-                    <FileDown className="h-4 w-4" />
+                    <FileDown className="h-4 w-4" aria-hidden="true" />
                     Download CV
                   </Button>
                 </a>
@@ -183,7 +221,7 @@ export function HeroSection() {
                     size="lg"
                     className="px-5 h-11 text-base text-muted-foreground hover:text-foreground gap-2"
                   >
-                    <Mail className="h-4 w-4" />
+                    <Mail className="h-4 w-4" aria-hidden="true" />
                     Contact
                   </Button>
                 </Link>
@@ -197,10 +235,10 @@ export function HeroSection() {
                         href={SOCIAL_LINKS.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                        aria-label="X"
+                        className="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        aria-label="X (Twitter)"
                       >
-                        <SiX className="h-4 w-4" />
+                        <IconX className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>X</TooltipContent>
@@ -211,10 +249,10 @@ export function HeroSection() {
                         href={SOCIAL_LINKS.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         aria-label="LinkedIn"
                       >
-                        <SiLinkedin className="h-4 w-4" />
+                        <IconLinkedin className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>LinkedIn</TooltipContent>
@@ -225,10 +263,10 @@ export function HeroSection() {
                         href={SOCIAL_LINKS.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         aria-label="GitHub"
                       >
-                        <SiGithub className="h-4 w-4" />
+                        <IconGithub className="h-4 w-4" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>GitHub</TooltipContent>
@@ -237,10 +275,10 @@ export function HeroSection() {
                     <TooltipTrigger asChild>
                       <a
                         href={`mailto:${SOCIAL_LINKS.email}`}
-                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         aria-label="Email"
                       >
-                        <Mail className="h-4 w-4" />
+                        <Mail className="h-4 w-4" aria-hidden="true" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>Email</TooltipContent>

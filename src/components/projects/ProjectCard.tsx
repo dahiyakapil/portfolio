@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
-import { SiGithub } from "react-icons/si";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/shared/OptimizedImage";
+import { IconGithub } from "@/components/icons/brands";
 import { ACCENT_CARD, ACCENT_PICK } from "@/constants/accents";
 import { getTechMeta } from "@/constants/techColors";
 import type { Project } from "@/types/portfolio";
@@ -77,7 +77,11 @@ function TechPill({ name }: { name: string }) {
       <TooltipTrigger asChild>
         <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/40 px-1.5 py-0.5 text-[10px] font-medium text-foreground/90">
           {meta && (
-            <meta.icon className="h-2.5 w-2.5" style={{ color: meta.color }} />
+            <meta.icon
+              className="h-2.5 w-2.5"
+              style={{ color: meta.color }}
+              aria-hidden="true"
+            />
           )}
           {name}
         </span>
@@ -258,7 +262,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <SiGithub className="h-3 w-3" />
+                <IconGithub className="h-3 w-3" />
                 GitHub
               </a>
             </Button>

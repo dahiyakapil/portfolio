@@ -1,6 +1,6 @@
 import { FileDown, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { SiGithub, SiLinkedin } from "react-icons/si";
+import { IconGithub, IconLinkedin } from "@/components/icons/brands";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants/portfolio-data";
@@ -57,7 +57,7 @@ export function ContactCTA() {
           <div className="flex flex-wrap items-center gap-2.5 pt-1">
             <Button asChild size="lg" className="gap-2">
               <Link to="/contact">
-                <Mail className="h-4 w-4" />
+                <Mail className="h-4 w-4" aria-hidden="true" />
                 Contact me
               </Link>
             </Button>
@@ -68,7 +68,7 @@ export function ContactCTA() {
               rel="noopener noreferrer"
             >
               <Button variant="outline" size="lg" className="gap-2">
-                <FileDown className="h-4 w-4" />
+                <FileDown className="h-4 w-4" aria-hidden="true" />
                 Download CV
               </Button>
             </a>
@@ -82,10 +82,10 @@ export function ContactCTA() {
                     href={SOCIAL_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     aria-label="GitHub"
                   >
-                    <SiGithub className="h-4 w-4" />
+                    <IconGithub className="h-4 w-4" />
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>GitHub</TooltipContent>
@@ -97,10 +97,10 @@ export function ContactCTA() {
                     href={SOCIAL_LINKS.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     aria-label="LinkedIn"
                   >
-                    <SiLinkedin className="h-4 w-4" />
+                    <IconLinkedin className="h-4 w-4" />
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>LinkedIn</TooltipContent>
@@ -110,10 +110,10 @@ export function ContactCTA() {
                 <TooltipTrigger asChild>
                   <a
                     href={`mailto:${SOCIAL_LINKS.email}`}
-                    className="inline-flex items-center gap-2 h-9 rounded-full border border-border/60 px-3 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-border transition-colors"
-                    aria-label="Email"
+                    className="inline-flex items-center gap-2 h-9 rounded-full border border-border/60 px-3 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label={`Email ${SOCIAL_LINKS.email}`}
                   >
-                    <Mail className="h-3.5 w-3.5 shrink-0" />
+                    <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     {SOCIAL_LINKS.email}
                   </a>
                 </TooltipTrigger>

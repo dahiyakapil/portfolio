@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import type { WorkExperience } from "@/types/portfolio";
-import { SiLinkedin } from "react-icons/si";
+import { IconLinkedin } from "@/components/icons/brands";
 import { ChevronDown, Globe, Star } from "lucide-react";
 import {
   Tooltip,
@@ -25,7 +25,11 @@ function TechPill({ tech }: { tech: string }) {
       <TooltipTrigger asChild>
         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-muted/50 hover:bg-muted transition-colors cursor-default">
           {meta && (
-            <meta.icon className="text-sm" style={{ color: meta.color }} />
+            <meta.icon
+              className="text-sm"
+              style={{ color: meta.color }}
+              aria-hidden="true"
+            />
           )}
           <span className="text-xs font-medium">{tech}</span>
         </div>
@@ -91,7 +95,7 @@ export function ExperienceCard({
                             className="text-muted-foreground hover:text-primary transition-colors"
                             aria-label="Company website"
                           >
-                            <Globe className="w-4 h-4" />
+                            <Globe className="w-4 h-4" aria-hidden="true" />
                           </a>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -109,7 +113,7 @@ export function ExperienceCard({
                             className="text-muted-foreground hover:text-primary transition-colors"
                             aria-label="LinkedIn profile"
                           >
-                            <SiLinkedin className="w-4 h-4" />
+                            <IconLinkedin className="w-4 h-4" />
                           </a>
                         </TooltipTrigger>
                         <TooltipContent>

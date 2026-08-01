@@ -301,6 +301,7 @@ export default function ProjectDetailPage() {
                           <Icon
                             className="text-3xl transition-all duration-300 group-hover/icon:scale-110"
                             style={{ color: color === 'currentColor' ? 'inherit' : color }}
+                            aria-hidden="true"
                           />
                         </div>
                       </TooltipTrigger>
