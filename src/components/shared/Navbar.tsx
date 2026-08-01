@@ -1,17 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/context/theme-provider";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   const navItems = [
@@ -61,29 +53,6 @@ export function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-
-                <TooltipProvider delayDuration={300}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={toggleTheme}
-                        className="p-2 rounded-md hover:bg-muted transition-colors ml-1"
-                        aria-label="Toggle theme"
-                      >
-                        {theme === "dark" ? (
-                          <Sun className="h-5 w-5" />
-                        ) : (
-                          <Moon className="h-5 w-5" />
-                        )}
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">
-                      <p className="text-xs">
-                        {theme === "dark" ? "Light Mode" : "Dark Mode"}
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
               </div>
 
               <button
@@ -115,22 +84,6 @@ export function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-                <button
-                  onClick={toggleTheme}
-                  className="flex items-center gap-2 p-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors"
-                >
-                  {theme === "dark" ? (
-                    <>
-                      <Sun className="h-4 w-4" />
-                      <span>Light mode</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="h-4 w-4" />
-                      <span>Dark mode</span>
-                    </>
-                  )}
-                </button>
               </div>
             )}
           </div>
