@@ -1,4 +1,5 @@
 import { FileDown, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -51,12 +52,12 @@ export function ContactCTA() {
           </p>
 
           <div className="flex flex-wrap items-center gap-2.5 pt-1">
-            <a href={`mailto:${SOCIAL_LINKS.email}`}>
-              <Button size="lg" className="gap-2">
+            <Button asChild size="lg" className="gap-2">
+              <Link to="/contact">
                 <Mail className="h-4 w-4" />
                 Contact me
-              </Button>
-            </a>
+              </Link>
+            </Button>
             <a
               href="/assets/resume/Kapil_Resume.pdf"
               download="Kapil_Resume.pdf"

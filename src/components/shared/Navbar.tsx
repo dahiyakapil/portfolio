@@ -10,14 +10,13 @@ export function Navbar() {
     { name: "Work", href: "/#case-study" },
     { name: "Experience", href: "/experience" },
     { name: "Projects", href: "/projects" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const isActive = (href: string) => {
     if (href === "/projects") return location.pathname.startsWith("/projects");
     if (href === "/experience") return location.pathname === "/experience";
-    if (href === "/#contact")
-      return location.pathname === "/" && location.hash === "#contact";
+    if (href === "/contact") return location.pathname === "/contact";
     if (href === "/#case-study")
       return location.pathname === "/" && location.hash === "#case-study";
     return false;
