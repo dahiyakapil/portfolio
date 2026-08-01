@@ -1,4 +1,3 @@
-import { CompaniesSection } from "@/components/sections/CompaniesSection";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { FeaturedCaseStudy } from "@/components/sections/FeaturedCaseStudy";
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <CompaniesSection />
       <FeaturedCaseStudy />
       <ExperienceSection />
       <ProjectsSection />

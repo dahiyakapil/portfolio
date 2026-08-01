@@ -2,9 +2,7 @@ import type {
   Project,
   WorkExperience,
   SkillCategory,
-  Company,
   SkillGroup,
-  StatItem,
 } from "@/types/portfolio";
 
 export const SKILL_CATEGORIES: SkillCategory = {
@@ -59,36 +57,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { name: "Redux Toolkit", color: "#764ABC" },
       { name: "Tailwind CSS", color: "#38BDF8" },
     ],
-  },
-];
-
-/** Outcome-oriented hero proof (not implementation counts). */
-export const HERO_STATS: StatItem[] = [
-  { value: "Live", label: "Booking platform" },
-  { value: "Razorpay", label: "Payments live" },
-  { value: "BullMQ", label: "Jobs in prod" },
-  { value: "2+", label: "Professional roles" },
-];
-
-export const COMPANIES: Company[] = [
-  {
-    name: "SportsHub",
-    role: "Freelance · Live product",
-    href: "https://sports-hub-user-web.vercel.app/",
-    domain: "sports-hub-user-web.vercel.app",
-    latest: true,
-  },
-  {
-    name: "Indian Capital",
-    role: "Full Stack Developer Intern",
-    href: "https://www.indiancapital.in/",
-    domain: "indiancapital.in",
-  },
-  {
-    name: "Unified Mentor",
-    role: "Full Stack Developer Intern",
-    href: "https://unifiedmentor.com",
-    domain: "unifiedmentor.com",
   },
 ];
 

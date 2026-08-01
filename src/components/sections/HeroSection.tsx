@@ -6,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   CASE_STUDY,
-  HERO_STATS,
   PERSONAL_INFO,
   SOCIAL_LINKS,
 } from "@/constants/portfolio-data";
@@ -269,20 +268,6 @@ export function HeroSection() {
           <div className="order-last lg:order-none">
             <HeroArchitecturePreview />
           </div>
-        </div>
-
-        {/* Proof strip */}
-        <div className="mt-14 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border-t border-border/50 pt-8">
-          {HERO_STATS.map((stat) => (
-            <div key={stat.label} className="space-y-1">
-              <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-                {stat.value}
-              </p>
-              <p className="text-xs md:text-sm text-muted-foreground leading-snug">
-                {stat.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
